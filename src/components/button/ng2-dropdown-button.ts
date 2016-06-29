@@ -1,26 +1,33 @@
 import {
     Component,
     Output,
-    EventEmitter
+    EventEmitter,
+    ElementRef
 } from '@angular/core';
 
 @Component({
     moduleId: module.id,
     selector: 'ng2-dropdown-button',
-    styles: [],
+    styles: [ require('./style.scss').toString() ],
     template: require('./template.html')
 })
 export class Ng2DropdownButton {
-    constructor() {}
+    @Output() public onMenuToggled = new EventEmitter();
 
-    @Output() onMenuToggled = new EventEmitter();
+    constructor(private element: ElementRef) {
 
-    toggleMenu() {
+    }
+
+    public toggleMenu() {
         this.onMenuToggled.emit(true);
+    }
+
+    public getPosition() {
+      const el = this.element.nativeElement;
+      return el.getBoundingClientRect();
     }
 
     ngOnInit() {
 
     }
 }
-

@@ -1,0 +1,20 @@
+.ng2-dropdown-button {
+  background: #fff;
+  border: none;
+  padding: 0.65rem 1rem;
+  font-size: 13px;
+  letter-spacing: 0.08rem;
+  border-radius: 0;
+  color: #444;
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  outline: 0;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.25s;
+  border-radius: 3px;
+}
+
+.ng2-dropdown-button:active {
+  background: #efefef;
+}

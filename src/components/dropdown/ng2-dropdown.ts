@@ -26,14 +26,13 @@ export class Ng2Dropdown implements OnInit, Ng2DropdownComponent {
     @ContentChild(Ng2DropdownButton) public button: Ng2DropdownButton;
     @ContentChild(Ng2DropdownMenu) public menu: Ng2DropdownMenu;
 
-    public state = {
-        isOpen: false
-    };
-
     constructor() {}
 
     toggleMenu() {
-        this.state.isOpen = !this.state.isOpen;
+        this.menu.getState().isVisible ? this.menu.hide() : this.menu.show();
+
+        const position = this.button.getPosition();
+        this.menu.updatePosition(position);
     }
 
     ngAfterContentInit() {

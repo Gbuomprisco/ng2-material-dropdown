@@ -1,7 +1,12 @@
 <div class="ng2-dropdown-container">
     <ng-content select="ng2-dropdown-button"></ng-content>
 
-    <div [hidden]="!state.isOpen">
+    <div [hidden]="!menu.state.isVisible" class="ng2-dropdown-menu-container">
+
+        <div class="ng2-dropdown-backdrop"
+          (click)="menu.hide()"
+        ></div>
+
         <ng-content select="ng2-dropdown-menu"></ng-content>
     </div>
 </div>

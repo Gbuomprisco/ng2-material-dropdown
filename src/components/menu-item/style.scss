@@ -1,0 +1,18 @@
+.ng2-menu-item {
+  padding: 1rem;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-size: 14px;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.ng2-menu-item:hover {
+  background: #efefef;
+}
+
+.ng2-menu-item:active {
+  background: #eee;
+}
