@@ -1,0 +1,86 @@
+{
+  "name": "ng2-dropdown",
+  "version": "1.0.0",
+  "description": "Angular 2 Dropdown Component.",
+  "scripts": {
+    "typings-install": "typings install",
+    "postinstall": "npm run typings-install",
+    "prepublish": "npm run build && ./node_modules/.bin/tsc -p tsconfig.json",
+    "build": "webpack --inline --colors --progress --display-error-details --display-cached",
+    "watch": "npm run build -- --watch",
+    "server": "webpack-dev-server --config webpack.demo.js --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base demo",
+    "start": "npm run server",
+    "test": "karma start karma.conf.js --single-run"
+  },
+  "author": {
+    "name": "Giancarlo Buomprisco",
+    "email": "giancarlopsk@gmail.com"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@angular/common": "2.0.0-rc.3",
+    "@angular/compiler": "2.0.0-rc.3",
+    "@angular/core": "2.0.0-rc.3",
+    "@angular/http": "2.0.0-rc.3",
+    "@angular/platform-browser": "2.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.3",
+    "@angular/platform-server": "2.0.0-rc.3",
+    "@angular/router": "2.0.0-rc.2",
+    "autoprefixer": "^6.3.6",
+    "awesome-typescript-loader": "~0.16.2",
+    "core-js": "^2.2.0",
+    "css-loader": "^0.23.1",
+    "es6-promise": "3.0.2",
+    "es6-shim": "0.35.0",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.3",
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-coverage": "^1.0.0",
+    "karma-jasmine": "^0.3.8",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "1.7.0",
+    "node-sass": "^3.8.0",
+    "postcss-loader": "^0.9.1",
+    "precss": "^1.4.0",
+    "protractor": "^3.3.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.6",
+    "sass-loader": "^3.2.1",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "ts-helpers": "1.1.1",
+    "ts-node": "^0.7.3",
+    "tslint": "^3.5.0",
+    "typescript": "~1.8.9",
+    "typings": "~1.0.3",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.0",
+    "webpack-merge": "^0.8.4",
+    "zone.js": "~0.6.12"
+  },
+  "dependencies": {},
+  "keywords": [
+    "angular 2",
+    "angular 2 component dropdown",
+    "angular 2 dropdown",
+    "angular 2 menu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gbuomprisco/ng2-dropdown"
+  },
+  "bugs": {
+    "url": "https://github.com/Gbuomprisco/ng2-dropdown/issues"
+  },
+  "homepage": "https://github.com/Gbuomprisco/ng2-dropdown",
+  "main": "./index.js",
+  "files": [
+    "dist",
+    "index.js",
+    "index.ts"
+  ]
+}

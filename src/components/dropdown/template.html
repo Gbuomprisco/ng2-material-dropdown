@@ -1,0 +1,7 @@
+<div class="ng2-dropdown-container">
+    <ng-content select="ng2-dropdown-button"></ng-content>
+
+    <div [hidden]="!state.isOpen">
+        <ng-content select="ng2-dropdown-menu"></ng-content>
+    </div>
+</div>
