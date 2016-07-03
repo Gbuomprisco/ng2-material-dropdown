@@ -13,7 +13,7 @@ import { Ng2MenuItem } from '../../src/components/menu-item/ng2-menu-item';
 })
 
 export class App {
-    pages = ['Home', 'About', 'Logout'];
+    pages = ['Home', 'Explore', 'Help'];
     constructor() {
 
     }

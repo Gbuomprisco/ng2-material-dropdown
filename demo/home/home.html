@@ -5,6 +5,8 @@
         </ng2-dropdown-button>
         <ng2-dropdown-menu>
             <ng2-menu-item *ngFor="let page of pages">
+                <i class="material-icons" ng2-menu-item-icon>{{ page.toLowerCase() }}</i>
+
                 {{ page }}
             </ng2-menu-item>
             <ng2-menu-divider></ng2-menu-divider>

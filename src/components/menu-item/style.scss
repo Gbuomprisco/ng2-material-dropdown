@@ -1,6 +1,6 @@
 .ng2-menu-item {
     font-family: "Helvetica Neue", Helvetica, Arial;
-    padding: 1rem 1.25rem;
+    padding: 0 1.25rem;
     background: #fff;
     color: #525252;
     cursor: pointer;
@@ -9,6 +9,9 @@
     font-weight: 400;
     transition: background 0.3s;
     letter-spacing: 0.03em;
+    height: 48px;
+    line-height: 48px;
+    vertical-align: middle;
 }
 
 .ng2-menu-item--selected {
@@ -18,4 +21,12 @@
 
 .ng2-menu-item:focus {
     outline: 0;
+}
+
+.ng2-menu-item [ng2-menu-item-icon] {
+    vertical-align: bottom;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    color: rgba(0, 0, 0, 0.54);
 }
