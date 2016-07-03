@@ -1,18 +1,21 @@
 .ng2-menu-item {
-  padding: 1rem;
-  background: #fff;
-  color: #222;
-  cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, Arial;
-  font-size: 14px;
-  text-transform: none;
-  font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    color: #525252;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 400;
+    transition: background 0.3s;
+    letter-spacing: 0.03em;
 }
 
-.ng2-menu-item:hover {
-  background: #efefef;
+.ng2-menu-item--selected {
+    background: #f9f9f9;
+    outline: 0;
 }
 
-.ng2-menu-item:active {
-  background: #eee;
+.ng2-menu-item:focus {
+    outline: 0;
 }

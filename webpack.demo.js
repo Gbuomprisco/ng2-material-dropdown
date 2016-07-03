@@ -42,6 +42,10 @@ var webpackConfig = {
                 loader: "html"
             },
             {
+                test: /\.svg/,
+                loader: 'svg-url-loader'
+            },
+            {
                 test: /\.scss$/,
                 loaders: ["style", "css", "postcss", "sass"]
             }

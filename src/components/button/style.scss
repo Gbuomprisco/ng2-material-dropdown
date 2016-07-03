@@ -1,20 +1,30 @@
 .ng2-dropdown-button {
-  background: #fff;
-  border: none;
-  padding: 0.65rem 1rem;
-  font-size: 13px;
-  letter-spacing: 0.08rem;
-  border-radius: 0;
-  color: #444;
-  font-family: "Helvetica Neue", Helvetica, Arial;
-  outline: 0;
-  cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: all 0.25s;
-  border-radius: 3px;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    background: #fff;
+    padding: 0.3rem 0.5rem;
+    font-size: 14px;
+    letter-spacing: 0.08rem;
+    color: #616161;
+    outline: 0;
+    cursor: pointer;
+    font-weight: 400;
+    border: none;
+    border-bottom: 1px solid #efefef;
+}
+
+.ng2-dropdown-button:hover {
+    color: #222;
 }
 
 .ng2-dropdown-button:active {
-  background: #efefef;
+    color: #222;
+    border-bottom: 2px solid #2196F3;
+}
+
+.caret-icon {
+    background: url('./caret.svg');
+    width: 13px;
+    min-height: 13px;
+    display: inline-block;
+    vertical-align: baseline;
 }

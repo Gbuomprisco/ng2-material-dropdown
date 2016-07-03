@@ -8,13 +8,13 @@ var autoprefixer = require('autoprefixer');
 var webpackConfig = {
     entry: {
         'vendor': ['@angular/core', '@angular/common'],
-        'component': './src/component.ts'
+        'ng2-dropdown': './src/index.ts'
     },
 
     output: {
         path: './dist',
         libraryTarget: "umd",
-        library: 'angular2-component-starter',
+        library: 'ng2-dropdown',
         umdNamedRequire: true
     },
 
@@ -30,7 +30,7 @@ var webpackConfig = {
     tslint: {
         emitErrors: false,
         failOnHint: false,
-        resourcePath: 'demo'
+        resourcePath: 'src'
     },
 
     module: {
@@ -48,6 +48,10 @@ var webpackConfig = {
             {
                 test: /\.html$/,
                 loader: "html"
+            },
+            {
+                test: /\.svg/,
+                loader: 'svg-url-loader'
             },
             {
                 test: /\.scss$/,

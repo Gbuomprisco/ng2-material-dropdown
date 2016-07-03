@@ -1,3 +1,9 @@
-<div class='ng2-dropdown-menu'>
-    <ng-content></ng-content>
+<div class="ng2-dropdown-menu-container" tabindex="0" (keydown)="handleKeypress($event)">
+    <div class='ng2-dropdown-menu'
+         [class.ng2-dropdown-menu--active]="state.isVisible"
+         @fade="state.toString()">
+            <ng-content></ng-content>
+    </div>
 </div>
+
+<div class="ng2-dropdown-backdrop" [hidden]="!state.isVisible" (click)="hide()"></div>

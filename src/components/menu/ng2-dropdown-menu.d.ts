@@ -1,0 +1,12 @@
+interface Ng2DropdownMenuComponent {
+    state: {
+        isVisible: boolean;
+        toString(): string;
+    };
+    show(): void;
+    hide(): void;
+    updatePosition(position): void;
+    handleKeypress($event): void;
+}
+
+export { Ng2DropdownMenuComponent }

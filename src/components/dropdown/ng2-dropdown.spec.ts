@@ -35,7 +35,7 @@ describe('MyComponent', () => {
 
 @Component({
     selector: 'test-app',
-    template: `<my-component></my-component>`,
+    template: `<ng2-dropdown></ng2-dropdown>`,
     directives: [Ng2Dropdown]
 })
 class TestApp {

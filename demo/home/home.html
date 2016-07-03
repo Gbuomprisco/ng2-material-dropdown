@@ -1,21 +1,15 @@
 <main>
 	<ng2-dropdown>
         <ng2-dropdown-button>
-            <div>
-                Open Menu
-            </div>
+            Open Menu
         </ng2-dropdown-button>
         <ng2-dropdown-menu>
-            <ng2-menu-item>
-                Home
+            <ng2-menu-item *ngFor="let page of pages">
+                {{ page }}
             </ng2-menu-item>
-
+            <ng2-menu-divider></ng2-menu-divider>
             <ng2-menu-item>
-							About
-            </ng2-menu-item>
-
-            <ng2-menu-item>
-							Logout
+                With Divider
             </ng2-menu-item>
         </ng2-dropdown-menu>
     </ng2-dropdown>

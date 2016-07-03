@@ -1,14 +1,14 @@
 {
   "name": "ng2-dropdown",
-  "version": "1.0.0",
-  "description": "Angular 2 Dropdown Component.",
+  "version": "0.0.1",
+  "description": "Angular 2 Dropdown Component",
   "scripts": {
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
     "prepublish": "npm run build && ./node_modules/.bin/tsc -p tsconfig.json",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
-    "server": "webpack-dev-server --config webpack.demo.js --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base demo",
+    "server": "webpack-dev-server --config webpack.demo.js --inline --colors --progress --display-error-details --display-cached --port 3005  --content-base demo",
     "start": "npm run server",
     "test": "karma start karma.conf.js --single-run"
   },
@@ -51,6 +51,7 @@
     "sass-loader": "^3.2.1",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
+    "svg-url-loader": "^1.0.3",
     "ts-helpers": "1.1.1",
     "ts-node": "^0.7.3",
     "tslint": "^3.5.0",
