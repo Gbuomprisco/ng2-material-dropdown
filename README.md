@@ -2,7 +2,7 @@
 
 Material-like dropdown component for Angular2.
 
-**Work in progress, not available yet from NPM**
+**Work in progress**
 
 ## Install
 
@@ -15,7 +15,6 @@ TODO
 
 Once installed, import the directives and use it them your container component:
 
-
     // example.html
     <ng2-dropdown>
         <ng2-dropdown-button>
@@ -25,7 +24,9 @@ Once installed, import the directives and use it them your container component:
             <ng2-menu-item *ngFor="let page of pages">
                 {{ page }}
             </ng2-menu-item>
+            
             <ng2-menu-divider></ng2-menu-divider>
+            
             <ng2-menu-item>
                 With Divider
             </ng2-menu-item>
@@ -48,4 +49,6 @@ Once installed, import the directives and use it them your container component:
     
  
 ## API
-TODO...
+
+#### ng2-menu-item
+`preventClose` - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked

@@ -156,9 +156,13 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
 
         // execute function when a <ng2-menu-item> gets clicked
         dropdownState.onItemClicked.subscribe((item: Ng2MenuItem) => {
+
+            // if preventClose is specified, exit early
             if (item.preventClose) {
                 return;
             }
+
+            // or, hide menu on click
             this.state.isVisible = false;
         });
     }

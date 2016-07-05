@@ -13,33 +13,99 @@ import {
     TestComponentBuilder
 } from '@angular/compiler/testing';
 
-import { Component } from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 
 // Load the implementations that should be tested
-import {Ng2Dropdown} from './ng2-dropdown';
+import { Ng2Dropdown } from '../../index';
+import { dropdownState } from './ng2-dropdown-state';
+import { BasicDropdown } from './test-helpers';
 
-describe('MyComponent', () => {
+function getComponent(fixture, component) {
+    fixture.detectChanges();
+    return fixture.debugElement.query(By.directive(component)).componentInstance;
+}
+
+describe('Ng2Dropdown', () => {
     let builder: TestComponentBuilder;
 
     beforeEach(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => builder = tcb));
 
     describe('when the controller is instantiated', () => {
         it('has its properties defined', () => {
-            builder.createAsync(TestApp).then((fixture: ComponentFixture<TestApp>) => {
-                const component = fixture.debugElement.query(By.directive(Ng2Dropdown)).componentInstance;
+            builder.createAsync(BasicDropdown).then((fixture: ComponentFixture<BasicDropdown>) => {
+                const component = getComponent(fixture, Ng2Dropdown);
+                expect(component.button).toBeDefined();
+                expect(component.menu).toBeDefined();
+                expect(component.menu.items.length).toEqual(2);
+                expect(component.menu.state.isVisible).toBe(false);
+            });
+        });
+
+        it('shows/hides dropdown menu', () => {
+            builder.createAsync(BasicDropdown).then((fixture: ComponentFixture<BasicDropdown>) => {
+                const component = getComponent(fixture, Ng2Dropdown);
+
+                component.button.toggleMenu();
+                expect(component.menu.state.isVisible).toEqual(true);
+
+                component.button.toggleMenu();
+                expect(component.menu.state.isVisible).toEqual(false);
+            });
+        });
+    });
+
+    describe('when using keyboard keys', () => {
+        let keyUp: Event = new Event('keyup');
+        let keyDown: Event = new Event('keydown');
+        let enter: Event = new Event('enter');
+        let tab: Event = new Event('tab');
+
+        keyUp['keyCode'] = 38;
+        keyDown['keyCode'] = 40;
+        enter['keyCode'] = 13;
+        tab['keyCode'] = 9;
+
+        it('goes through the dropdown items', () => {
+            builder.createAsync(BasicDropdown).then((fixture: ComponentFixture<BasicDropdown>) => {
+                const component = getComponent(fixture, Ng2Dropdown);
+                component.menu.show();
+
+                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
+
+                component.menu.handleKeypress(keyDown);
+                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+
+                component.menu.handleKeypress(keyUp);
+                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
+
+                component.menu.handleKeypress(tab);
+                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+            });
+        });
+
+        it('fires click event when pressing enter', () => {
+            builder.createAsync(BasicDropdown).then((fixture: ComponentFixture<BasicDropdown>) => {
+                const component = getComponent(fixture, Ng2Dropdown);
+
+                component.menu.show();
+
+                // press enter
+                component.menu.handleKeypress(enter);
+
+                // menu not visible
+                expect(component.menu.state.isVisible).toEqual(false);
+
+                // show menu and press element with preventClose attribute set to true
+                component.menu.show();
+                component.menu.handleKeypress(keyDown);
+                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+
+                // press enter
+                component.menu.handleKeypress(enter);
+
+                // menu is visible
+                expect(component.menu.state.isVisible).toEqual(true);
             });
         });
     });
 });
-
-@Component({
-    selector: 'test-app',
-    template: `<ng2-dropdown></ng2-dropdown>`,
-    directives: [Ng2Dropdown]
-})
-class TestApp {
-    ngOnInit() {
-
-    }
-}
