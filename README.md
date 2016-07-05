@@ -35,7 +35,7 @@ Once installed, import the directives and use it them your container component:
     
     // app.ts
     // import all needed directives
-    import { NG2_DROPDOWN_DIRECTIVES } from 'ng2-dropdown';
+    import { NG2_DROPDOWN_DIRECTIVES } from 'ng2-material-dropdown';
     
     @Component({
         selector: 'app',
