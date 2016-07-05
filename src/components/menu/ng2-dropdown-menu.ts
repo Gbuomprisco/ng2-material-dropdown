@@ -152,7 +152,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
 
         // append menu element to the body
         const body = document.querySelector('body');
-        body.appendChild(this.element.nativeElement.parentElement);
+        body.appendChild(this.element.nativeElement);
 
         // execute function when a <ng2-menu-item> gets clicked
         dropdownState.onItemClicked.subscribe((item: Ng2MenuItem) => {

@@ -1,18 +1,54 @@
 <main>
-	<ng2-dropdown>
-        <ng2-dropdown-button>
-            Open Menu
-        </ng2-dropdown-button>
-        <ng2-dropdown-menu>
-            <ng2-menu-item *ngFor="let page of pages">
-                <i class="material-icons" ng2-menu-item-icon>{{ page.toLowerCase() }}</i>
 
-                {{ page }}
-            </ng2-menu-item>
-            <ng2-menu-divider></ng2-menu-divider>
-            <ng2-menu-item>
-                With Divider
-            </ng2-menu-item>
-        </ng2-dropdown-menu>
-    </ng2-dropdown>
+    <h1>Material Dropdown</h1>
+
+    <div>
+        <h2>
+            Simple dropdown
+        </h2>
+
+        <ng2-dropdown>
+            <ng2-dropdown-button>
+                Open Menu
+            </ng2-dropdown-button>
+            <ng2-dropdown-menu>
+                <ng2-menu-item *ngFor="let page of pages">
+                    <i class="material-icons" ng2-menu-item-icon>{{ page.toLowerCase() }}</i>
+
+                    {{ page }}
+                </ng2-menu-item>
+                <ng2-menu-divider></ng2-menu-divider>
+                <ng2-menu-item>
+                    With Divider
+                </ng2-menu-item>
+            </ng2-dropdown-menu>
+        </ng2-dropdown>
+    </div>
+
+
+    <div>
+        <h2>
+            Dropdown with prevent close items
+        </h2>
+
+        <ng2-dropdown>
+            <ng2-dropdown-button>
+                Open Menu
+            </ng2-dropdown-button>
+            <ng2-dropdown-menu>
+                <ng2-menu-item [preventClose]="true">
+                    I am not going to close the menu
+                </ng2-menu-item>
+
+                <ng2-menu-item [preventClose]="true">
+                    me neither
+                </ng2-menu-item>
+
+                <ng2-menu-item>
+                    But I am!
+                </ng2-menu-item>
+            </ng2-dropdown-menu>
+        </ng2-dropdown>
+    </div>
+
 </main>
