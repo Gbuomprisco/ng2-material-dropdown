@@ -38,7 +38,6 @@ const ACTIONS = {
 };
 
 
-
 // Component <ng2-dropdown-menu>
 @Component({
     moduleId: module.id,

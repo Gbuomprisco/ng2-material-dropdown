@@ -50,5 +50,9 @@ Once installed, import the directives and use it them your container component:
  
 ## API
 
+#### ng2-dropdown
+
+`onItemClicked()` - `[(onItemClicked($event)]` : event that emits the item clicked on
+
 #### ng2-menu-item
 `preventClose` - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked
