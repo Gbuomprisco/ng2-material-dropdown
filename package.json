@@ -1,7 +1,7 @@
 {
-  "name": "ng2-dropdown",
-  "version": "0.0.1",
-  "description": "Angular 2 Dropdown Component",
+  "name": "ng2-material-dropdown",
+  "version": "0.0.2",
+  "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
@@ -66,18 +66,19 @@
   "dependencies": {},
   "keywords": [
     "angular 2",
+    "angular 2 material dropdown",
     "angular 2 component dropdown",
     "angular 2 dropdown",
     "angular 2 menu"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gbuomprisco/ng2-dropdown"
+    "url": "https://github.com/Gbuomprisco/ng2-material-dropdown"
   },
   "bugs": {
-    "url": "https://github.com/Gbuomprisco/ng2-dropdown/issues"
+    "url": "https://github.com/Gbuomprisco/ng2-material-dropdown/issues"
   },
-  "homepage": "https://github.com/Gbuomprisco/ng2-dropdown",
+  "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
   "main": "./index.js",
   "files": [
     "dist",

@@ -6,7 +6,7 @@ Material-like dropdown component for Angular2.
 
 ## Install
 
-    npm install ng2-dropdown --save
+    npm install ng2-material-dropdown --save
 
 ## Demo
 TODO
