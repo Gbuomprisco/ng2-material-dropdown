@@ -1,6 +1,7 @@
 import {
     Component,
     Output,
+    Input,
     EventEmitter,
     ElementRef
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { Ng2DropdownButtonComponent } from './ng2-dropdown-button.d';
 })
 export class Ng2DropdownButton implements Ng2DropdownButtonComponent {
     @Output() public onMenuToggled = new EventEmitter();
+    @Input() public showCaret: boolean = true;
 
     constructor(private element: ElementRef) {}
 

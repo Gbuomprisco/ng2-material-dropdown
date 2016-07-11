@@ -6,11 +6,9 @@ interface Ng2DropdownComponent {
 }
 
 interface Ng2DropdownStateServiceInterface {
-    onItemClicked: EventEmitter<Ng2MenuItem>;
     onItemSelected: EventEmitter<Ng2MenuItem>;
-    selectedItem: Ng2MenuItem;
-
-    select(item: Ng2MenuItem): void;
+    getSelectedItem(): Ng2MenuItem;
+    select(item: Ng2MenuItem, dispatchEvent: boolean): void;
     unselect(): void;
 }
 

@@ -9,31 +9,30 @@ import {
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2DropdownMenuComponent } from './ng2-dropdown-menu.d';
 
-import { dropdownState } from '../dropdown/ng2-dropdown-state';
+import { DropdownState } from '../dropdown/ng2-dropdown-state';
 import { animations } from './animations';
-
 
 // ACTIONS executed on keypress
 const ACTIONS = {
-    9: (index, items) => {
+    9: (index, items, state) => {
         if (index < items.length - 1) {
-            dropdownState.select(items[index + 1]);
+            state.select(items[index + 1]);
         } else {
-            dropdownState.select(items[0]);
+            state.select(items[0]);
         }
     },
-    38: (index, items) => {
+    38: (index, items, state) => {
         if (index > 0) {
-            dropdownState.select(items[index - 1]);
+            state.select(items[index - 1]);
         }
     },
-    40: (index, items) => {
+    40: (index, items, state) => {
         if (index < items.length - 1) {
-            dropdownState.select(items[index + 1]);
+            state.select(items[index + 1]);
         }
     },
-    13: () => {
-        dropdownState.onItemClicked.emit(dropdownState.selectedItem);
+    13: (index, items, state) => {
+        state.onItemClicked.emit(state.getSelectedItem());
     }
 };
 
@@ -42,6 +41,7 @@ const ACTIONS = {
 @Component({
     moduleId: module.id,
     selector: 'ng2-dropdown-menu',
+    providers: [ ],
     styles: [require('./style.scss').toString()],
     template: require('./template.html'),
     animations
@@ -70,7 +70,9 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         }
     };
 
-    constructor(private element: ElementRef, private renderer: Renderer) {}
+    constructor(private element: ElementRef,
+                private stateProvider: DropdownState,
+                private renderer: Renderer) {}
 
     /**
      * @name show
@@ -84,7 +86,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         this.focusMenuElement();
 
         // select first item
-        dropdownState.select(this.items.first);
+        this.stateProvider.select(this.items.first, false);
     }
 
     /**
@@ -95,7 +97,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         this.state.isVisible = false;
 
         // reset selected item state
-        dropdownState.unselect();
+        this.stateProvider.unselect();
     }
 
     /**
@@ -120,13 +122,13 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
     public handleKeypress($event): void {
         const key = $event.keyCode,
             items = this.items.toArray(),
-            index = items.indexOf(dropdownState.selectedItem);
+            index = items.indexOf(this.stateProvider.getSelectedItem());
 
         if (!ACTIONS.hasOwnProperty(key)) {
             return;
         }
 
-        ACTIONS[key].call(this, index, items);
+        ACTIONS[key].call(this, index, items, this.stateProvider);
 
         $event.preventDefault();
     }
@@ -148,21 +150,8 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
     }
 
     ngOnInit() {
-
         // append menu element to the body
         const body = document.querySelector('body');
         body.appendChild(this.element.nativeElement);
-
-        // execute function when a <ng2-menu-item> gets clicked
-        dropdownState.onItemClicked.subscribe((item: Ng2MenuItem) => {
-
-            // if preventClose is specified, exit early
-            if (item.preventClose) {
-                return;
-            }
-
-            // or, hide menu on click
-            this.state.isVisible = false;
-        });
     }
 }

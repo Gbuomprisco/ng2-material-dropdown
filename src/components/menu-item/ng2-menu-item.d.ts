@@ -1,7 +1,6 @@
 interface Ng2MenuItemComponent {
-    isSelected: boolean;
     preventClose: boolean;
-    onClick(): void;
+    isSelected: boolean;
     select(): void;
 }
 

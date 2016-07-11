@@ -22,7 +22,7 @@ export const animations = [
             animate('50ms ease-out')
         ]),
         transition('hidden => visible', [
-            animate('150ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+            animate('200ms cubic-bezier(0.55, 0, 0.55, 0.2)')
         ])
     ])
 ];
