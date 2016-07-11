@@ -2,14 +2,14 @@
 
 Material-like dropdown component for Angular2.
 
-**Work in progress**
+**Work in progress**. Please do notice this is a work in progress and it is far from being usable in production.
 
 ## Install
 
     npm install ng2-material-dropdown --save
 
 ## Demo
-TODO
+Check out the demo at [http://www.webpackbin.com/Ey8sUC2UZ](http://www.webpackbin.com/Ey8sUC2UZ)
 
 ## Usage
 

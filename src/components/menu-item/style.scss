@@ -11,7 +11,10 @@
     letter-spacing: 0.03em;
     height: 48px;
     line-height: 48px;
-    vertical-align: middle;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .ng2-menu-item--selected {
