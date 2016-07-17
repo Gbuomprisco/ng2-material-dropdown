@@ -10,7 +10,7 @@ import { Ng2DropdownStateServiceInterface } from './ng2-dropdown.d';
 let selectedItem;
 
 @Injectable()
-export class DropdownState implements Ng2DropdownStateServiceInterface {
+export class Ng2DropdownState implements Ng2DropdownStateServiceInterface {
     @Output() public onItemSelected = new EventEmitter<Ng2MenuItem>();
     @Output() public onItemClicked = new EventEmitter<Ng2MenuItem>();
 

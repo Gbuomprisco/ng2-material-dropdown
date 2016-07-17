@@ -4,13 +4,15 @@ const Ng2Dropdown = components.Ng2Dropdown;
 const Ng2DropdownMenu = components.Ng2DropdownMenu;
 const Ng2MenuItem = components.Ng2MenuItem;
 const Ng2DropdownButton = components.Ng2DropdownButton;
+const Ng2DropdownState = components.Ng2DropdownState;
 
 exports.Ng2Dropdown = Ng2Dropdown;
 exports.Ng2DropdownMenu = Ng2DropdownMenu;
 exports.Ng2DropdownMenuItem = Ng2MenuItem;
 exports.Ng2DropdownButton = Ng2DropdownButton;
+exports.Ng2DropdownState = Ng2DropdownState;
 
-export { Ng2Dropdown, Ng2DropdownMenu, Ng2DropdownButton, Ng2MenuItem };
+export { Ng2Dropdown, Ng2DropdownMenu, Ng2DropdownButton, Ng2MenuItem, Ng2DropdownState };
 
 const NG2_DROPDOWN_DIRECTIVES = [Ng2Dropdown, Ng2DropdownMenu, Ng2DropdownButton, Ng2MenuItem];
 

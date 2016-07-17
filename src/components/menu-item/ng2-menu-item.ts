@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { Ng2MenuItemComponent } from './ng2-menu-item.d';
-import { DropdownState } from '../dropdown/ng2-dropdown-state';
+import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
 
 @Component({
     moduleId: module.id,
@@ -16,7 +16,7 @@ import { DropdownState } from '../dropdown/ng2-dropdown-state';
 export class Ng2MenuItem implements Ng2MenuItemComponent {
     @Input() public preventClose: boolean = false;
 
-    constructor(private state: DropdownState) {}
+    constructor(private state: Ng2DropdownState) {}
 
     public get isSelected(): boolean {
         return this === this.state.getSelectedItem();

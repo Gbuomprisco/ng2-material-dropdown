@@ -8,7 +8,7 @@ import {
 import { Ng2DropdownButton } from '../button/ng2-dropdown-button';
 import { Ng2DropdownMenu } from '../menu/ng2-dropdown-menu';
 import { Ng2DropdownComponent } from './ng2-dropdown.d';
-import { DropdownState } from '../dropdown/ng2-dropdown-state';
+import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
 
 const styles = [require('./style.scss').toString()],
     template = require('./template.html');
@@ -19,7 +19,7 @@ const styles = [require('./style.scss').toString()],
 @Component({
     moduleId: module.id,
     selector: 'ng2-dropdown',
-    providers: [ DropdownState ],
+    providers: [ Ng2DropdownState ],
     styles,
     template
 })
@@ -29,7 +29,7 @@ export class Ng2Dropdown implements Ng2DropdownComponent {
 
     @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(private state: DropdownState) {}
+    constructor(private state: Ng2DropdownState) {}
 
     /**
      * @name toggleMenu

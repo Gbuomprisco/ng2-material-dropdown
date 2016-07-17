@@ -9,7 +9,7 @@ import {
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2DropdownMenuComponent } from './ng2-dropdown-menu.d';
 
-import { DropdownState } from '../dropdown/ng2-dropdown-state';
+import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
 import { animations } from './animations';
 
 // ACTIONS executed on keypress
@@ -35,7 +35,6 @@ const ACTIONS = {
         state.onItemClicked.emit(state.getSelectedItem());
     }
 };
-
 
 // Component <ng2-dropdown-menu>
 @Component({
@@ -71,7 +70,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
     };
 
     constructor(private element: ElementRef,
-                private stateProvider: DropdownState,
+                private stateProvider: Ng2DropdownState,
                 private renderer: Renderer) {}
 
     /**
