@@ -13,3 +13,6 @@ interface Ng2DropdownStateServiceInterface {
 }
 
 export { Ng2DropdownComponent, Ng2DropdownStateServiceInterface }
+
+export class Ng2Dropdown {}
+export class Ng2DropdownState {}

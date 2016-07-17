@@ -5,3 +5,4 @@ interface Ng2MenuItemComponent {
 }
 
 export { Ng2MenuItemComponent }
+export class Ng2MenuItem {}

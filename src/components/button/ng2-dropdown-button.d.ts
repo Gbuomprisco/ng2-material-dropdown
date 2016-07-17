@@ -4,3 +4,4 @@ interface Ng2DropdownButtonComponent {
 }
 
 export { Ng2DropdownButtonComponent }
+export class Ng2DropdownButton {}

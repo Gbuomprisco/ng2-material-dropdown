@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "typings-install": "typings install",
@@ -84,5 +84,6 @@
     "dist",
     "index.js",
     "index.ts"
-  ]
+  ],
+  "typings": "src/typings.d.ts"
 }
