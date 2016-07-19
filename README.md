@@ -61,3 +61,5 @@ Once installed, import the directives and use it them your container component:
 
 **`ng2-menu-item`**
 `preventClose` - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked
+`value` - `[?any]` : any value that you may want to attach to a menu item
+

@@ -1,35 +1,58 @@
 import {
     Component,
-    Input
+    Input,
+    Inject,
+    forwardRef
 } from '@angular/core';
 
 import { Ng2MenuItemComponent } from './ng2-menu-item.d';
-import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
+import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
 @Component({
     moduleId: module.id,
     selector: 'ng2-menu-item',
     styles: [ require('./style.scss').toString() ],
-    providers: [ ],
     template: require('./template.html')
 })
 export class Ng2MenuItem implements Ng2MenuItemComponent {
+    /**
+     * @preventClose
+     * @desc if true, clicking on the item won't close the dropdown
+     * @type {boolean}
+     */
     @Input() public preventClose: boolean = false;
 
-    constructor(private state: Ng2DropdownState) {}
+    /**
+     * @name value
+     * @desc any value associated to the item
+     * @type {any}
+     */
+    @Input() public value: any;
 
+    constructor(@Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown) {}
+
+    /**
+     * @name isSelected
+     * @desc returns current selected item
+     * @returns {boolean}
+     */
     public get isSelected(): boolean {
-        return this === this.state.getSelectedItem();
+        return this === this.dropdown.state.selectedItem;
     }
 
     /**
-     * @name select
+     * @name click
+     * @desc emits select event
      */
     public select(): void {
-        this.state.select(this, true);
+        this.dropdown.state.select(this, true);
     }
 
+    /**
+     * @name click
+     * @desc emits click event
+     */
     public click(): void {
-        this.state.onItemClicked.emit(this);
+        this.dropdown.state.onItemClicked.emit(this);
     }
 }

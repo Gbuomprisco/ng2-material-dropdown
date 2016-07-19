@@ -1,4 +1,4 @@
-interface Ng2DropdownMenuComponent {
+export interface Ng2DropdownMenuComponent {
     state: {
         isVisible: boolean;
         toString(): string;
@@ -8,6 +8,3 @@ interface Ng2DropdownMenuComponent {
     updatePosition(position): void;
     handleKeypress($event): void;
 }
-
-export { Ng2DropdownMenuComponent }
-export class Ng2DropdownMenu {}

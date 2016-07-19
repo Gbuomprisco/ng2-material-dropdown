@@ -3,44 +3,21 @@ import {
     ElementRef,
     Renderer,
     ContentChildren,
-    QueryList
+    QueryList,
+    forwardRef,
+    Inject
 } from '@angular/core';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
+import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 import { Ng2DropdownMenuComponent } from './ng2-dropdown-menu.d';
 
-import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
 import { animations } from './animations';
+import { ACTIONS } from './actions';
 
-// ACTIONS executed on keypress
-const ACTIONS = {
-    9: (index, items, state) => {
-        if (index < items.length - 1) {
-            state.select(items[index + 1]);
-        } else {
-            state.select(items[0]);
-        }
-    },
-    38: (index, items, state) => {
-        if (index > 0) {
-            state.select(items[index - 1]);
-        }
-    },
-    40: (index, items, state) => {
-        if (index < items.length - 1) {
-            state.select(items[index + 1]);
-        }
-    },
-    13: (index, items, state) => {
-        state.onItemClicked.emit(state.getSelectedItem());
-    }
-};
-
-// Component <ng2-dropdown-menu>
 @Component({
     moduleId: module.id,
     selector: 'ng2-dropdown-menu',
-    providers: [ ],
     styles: [require('./style.scss').toString()],
     template: require('./template.html'),
     animations
@@ -51,7 +28,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @name items
      * @type {QueryList<Ng2MenuItem>}
      */
-    @ContentChildren(Ng2MenuItem) items: QueryList<Ng2MenuItem>;
+    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
 
     /**
      * @name state
@@ -69,8 +46,8 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         }
     };
 
-    constructor(private element: ElementRef,
-                private stateProvider: Ng2DropdownState,
+    constructor(@Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown,
+                private element: ElementRef,
                 private renderer: Renderer) {}
 
     /**
@@ -85,7 +62,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         this.focusMenuElement();
 
         // select first item
-        this.stateProvider.select(this.items.first, false);
+        this.dropdown.state.select(this.items.first, false);
     }
 
     /**
@@ -96,7 +73,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         this.state.isVisible = false;
 
         // reset selected item state
-        this.stateProvider.unselect();
+        this.dropdown.state.unselect();
     }
 
     /**
@@ -121,13 +98,13 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
     public handleKeypress($event): void {
         const key = $event.keyCode,
             items = this.items.toArray(),
-            index = items.indexOf(this.stateProvider.getSelectedItem());
+            index = items.indexOf(this.dropdown.state.selectedItem);
 
         if (!ACTIONS.hasOwnProperty(key)) {
             return;
         }
 
-        ACTIONS[key].call(this, index, items, this.stateProvider);
+        ACTIONS[key].call(this, index, items, this.dropdown.state);
 
         $event.preventDefault();
     }

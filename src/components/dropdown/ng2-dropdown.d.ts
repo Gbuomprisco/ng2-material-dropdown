@@ -1,18 +1,15 @@
 import { EventEmitter } from '@angular/core';
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 
-interface Ng2DropdownComponent {
+export interface Ng2DropdownComponent {
+    state: Ng2DropdownStateProvider;
     toggleMenu(): void;
 }
 
-interface Ng2DropdownStateServiceInterface {
+export interface Ng2DropdownStateProvider {
     onItemSelected: EventEmitter<Ng2MenuItem>;
-    getSelectedItem(): Ng2MenuItem;
+    onItemClicked: EventEmitter<Ng2MenuItem>;
+    selectedItem: Ng2MenuItem;
     select(item: Ng2MenuItem, dispatchEvent: boolean): void;
     unselect(): void;
 }
-
-export { Ng2DropdownComponent, Ng2DropdownStateServiceInterface }
-
-export class Ng2Dropdown {}
-export class Ng2DropdownState {}

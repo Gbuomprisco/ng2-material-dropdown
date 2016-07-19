@@ -17,7 +17,6 @@ import { By } from '@angular/platform-browser';
 
 // Load the implementations that should be tested
 import { Ng2Dropdown } from '../../index';
-import { dropdownState } from './ng2-dropdown-state';
 import { BasicDropdown } from './test-helpers';
 
 function getComponent(fixture, component) {
@@ -70,16 +69,16 @@ describe('Ng2Dropdown', () => {
                 const component = getComponent(fixture, Ng2Dropdown);
                 component.menu.show();
 
-                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
+                expect(component.state.selectedItem).toBe(component.menu.items.toArray()[0]);
 
                 component.menu.handleKeypress(keyDown);
-                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+                expect(component.state.selectedItem).toBe(component.menu.items.toArray()[1]);
 
                 component.menu.handleKeypress(keyUp);
-                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
+                expect(component.state.selectedItem).toBe(component.menu.items.toArray()[0]);
 
                 component.menu.handleKeypress(tab);
-                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+                expect(component.state.selectedItem).toBe(component.menu.items.toArray()[1]);
             });
         });
 
@@ -98,7 +97,7 @@ describe('Ng2Dropdown', () => {
                 // show menu and press element with preventClose attribute set to true
                 component.menu.show();
                 component.menu.handleKeypress(keyDown);
-                expect(dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+                expect(component.state.selectedItem).toBe(component.menu.items.toArray()[1]);
 
                 // press enter
                 component.menu.handleKeypress(enter);

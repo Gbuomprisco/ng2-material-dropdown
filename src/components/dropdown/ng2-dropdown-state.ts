@@ -1,26 +1,22 @@
 import {
-    Output,
-    EventEmitter,
-    Injectable
+    EventEmitter
 } from '@angular/core';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
-import { Ng2DropdownStateServiceInterface } from './ng2-dropdown.d';
+import { Ng2DropdownStateProvider } from './ng2-dropdown.d';
 
-let selectedItem;
-
-@Injectable()
-export class Ng2DropdownState implements Ng2DropdownStateServiceInterface {
-    @Output() public onItemSelected = new EventEmitter<Ng2MenuItem>();
-    @Output() public onItemClicked = new EventEmitter<Ng2MenuItem>();
+export class Ng2DropdownState implements Ng2DropdownStateProvider {
+    public onItemSelected: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();
+    public onItemClicked: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();
+    private _selectedItem: Ng2MenuItem;
 
     /**
      * @name selectedItem
      * @desc getter for _selectedItem
      * @returns {Ng2MenuItem}
      */
-    public getSelectedItem(): Ng2MenuItem {
-        return selectedItem;
+    public get selectedItem(): Ng2MenuItem {
+        return this._selectedItem;
     }
 
     /**
@@ -29,11 +25,13 @@ export class Ng2DropdownState implements Ng2DropdownStateServiceInterface {
      * @param dispatchEvent {boolean}
      */
     public select(item: Ng2MenuItem, dispatchEvent = true): void {
-        selectedItem = item;
+        this._selectedItem = item;
 
-        if (dispatchEvent) {
-            this.onItemSelected.emit(item);
+        if (!dispatchEvent) {
+            return;
         }
+
+        this.onItemSelected.emit(item);
     }
 
     /**
@@ -41,6 +39,6 @@ export class Ng2DropdownState implements Ng2DropdownStateServiceInterface {
      * @desc sets _selectedItem as undefined
      */
     public unselect(): void {
-        selectedItem = undefined;
+        this._selectedItem = undefined;
     }
 }
