@@ -50,23 +50,24 @@ Once installed, import the directives and use it them your container component:
  
 ## API
 
-**`ng2-dropdown`**
-**`onItemSelected()`** - **`[(onItemSelected($event)]`** : event that emits the currently selected/hovered item
-**`onItemClicked()`** - **`[(onItemClicked($event)]`** : event that emits the item clicked on
-**`onShow()`** - **`[(onItemClicked($event)]`** : event that emits when the dropdown gets shown
-**`onHide()`** - **`[(onItemClicked($event)]`** : event that emits when the dropdown gets hidden
+`ng2-dropdown`
+
+- **`onItemSelected()`** - **`[(onItemSelected($event)]`** : event that emits the currently selected/hovered item
+- **`onItemClicked()`** - **`[(onItemClicked($event)]`** : event that emits the item clicked on
+- **`onShow()`** - **`[(onItemClicked($event)]`** : event that emits when the dropdown gets shown
+- **`onHide()`** - **`[(onItemClicked($event)]`** : event that emits when the dropdown gets hidden
 
 
-**`ng2-dropdown-menu`**
-**`focusFirstElement`** - **`[?boolean]`** : by default the first element is immediately focused. You can disable by setting this option to false
-**`width`** - **`[?number]`**: this determines the width of the menu. Possible values are 2, 4 and 6. By default, this is set to 4
+`ng2-dropdown-menu`
+- **`focusFirstElement`** - **`[?boolean]`** : by default the first element is immediately focused. You can disable by setting this option to false
+- **`width`** - **`[?number]`**: this determines the width of the menu. Possible values are 2, 4 and 6. By default, this is set to 4
 
 
-**`ng2-dropdown-button`**
-**`showCaret`** - **`[?boolean]`** : if present, a caret will be appended to the button's text
+`ng2-dropdown-button`
+- **`showCaret`** - **`[?boolean]`** : if present, a caret will be appended to the button's text
 
 
-**`ng2-menu-item`**
-**`preventClose`** - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked
-**`value` - `[?any]`** : any value that you may want to attach to a menu item. Useful for using this component with other components.
+`ng2-menu-item`
+- **`preventClose`** - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked
+- **`value` - `[?any]`** : any value that you may want to attach to a menu item. Useful for using this component with other components.
 
