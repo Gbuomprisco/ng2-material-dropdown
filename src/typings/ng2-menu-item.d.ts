@@ -1,4 +1,4 @@
-export interface Ng2MenuItemComponent {
+declare class Ng2MenuItemComponent {
     preventClose: boolean;
     isSelected: boolean;
     value: any;

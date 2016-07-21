@@ -1,3 +1,4 @@
-!dist/ng2-tag-input.bundle.js
-!dist/ng2-tag-input.map
+!dist/ng2-dropdown.bundle.js
+!dist/ng2-dropdown.map
+!src/typings/
 !index.js

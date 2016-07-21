@@ -6,7 +6,7 @@ import {
     ElementRef
 } from '@angular/core';
 
-import { Ng2DropdownButtonComponent } from './ng2-dropdown-button.d';
+import { Ng2DropdownButtonComponent } from '../../typings/ng2-dropdown-button.d.ts';
 
 @Component({
     moduleId: module.id,
@@ -15,7 +15,7 @@ import { Ng2DropdownButtonComponent } from './ng2-dropdown-button.d';
     template: require('./template.html')
 })
 export class Ng2DropdownButton implements Ng2DropdownButtonComponent {
-    @Output() public onMenuToggled = new EventEmitter();
+    @Output() public onMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Input() public showCaret: boolean = true;
 
     constructor(private element: ElementRef) {}

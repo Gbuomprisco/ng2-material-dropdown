@@ -1,9 +1,6 @@
-import {
-    EventEmitter
-} from '@angular/core';
-
+import { EventEmitter } from '@angular/core';
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
-import { Ng2DropdownStateProvider } from './ng2-dropdown.d';
+import { Ng2DropdownStateProvider } from '../../typings/ng2-dropdown.d.ts';
 
 export class Ng2DropdownState implements Ng2DropdownStateProvider {
     public onItemSelected: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();

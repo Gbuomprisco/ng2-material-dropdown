@@ -5,7 +5,6 @@ import {
     forwardRef
 } from '@angular/core';
 
-import { Ng2MenuItemComponent } from './ng2-menu-item.d';
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
 @Component({

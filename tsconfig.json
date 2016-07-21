@@ -16,6 +16,7 @@
   },
   "files": [
     "typings/index.d.ts",
+    "src/typings/index.d.ts",
     "index.ts"
   ],
   "exclude": [

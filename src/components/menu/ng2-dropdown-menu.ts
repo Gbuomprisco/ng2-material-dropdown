@@ -11,7 +11,6 @@ import {
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
-import { Ng2DropdownMenuComponent } from './ng2-dropdown-menu.d';
 
 import { animations } from './animations';
 import { ACTIONS } from './actions';
@@ -33,7 +32,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @name items
      * @type {QueryList<Ng2MenuItem>}
      */
-    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
+    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItemComponent>;
 
     /**
      * @name state
@@ -59,7 +58,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @name show
      * @shows menu and selects first item
      */
-    public show(): void {
+    public show(focus = true): void {
         // update state
         this.state.isVisible = true;
 
@@ -68,8 +67,10 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
             this.dropdown.state.select(this.items.first, false);
         }
 
-        // focus element
-        this.focusMenuElement();
+        if (focus) {
+            // focus element
+            this.focusMenuElement();
+        }
     }
 
     /**
