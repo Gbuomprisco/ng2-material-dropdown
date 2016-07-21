@@ -28,9 +28,16 @@ const styles = [require('./style.scss').toString()],
     template
 })
 export class Ng2Dropdown implements Ng2DropdownComponent {
+
+    // get children components
     @ContentChild(Ng2DropdownButton) public button: Ng2DropdownButton;
     @ContentChild(Ng2DropdownMenu) public menu: Ng2DropdownMenu;
+
+    // outputs
     @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<string>();
+    @Output() public onItemSelected: EventEmitter<string> = new EventEmitter<string>();
+    @Output() public onShow: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
+    @Output() public onHide: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
 
     /**
      * @name state
@@ -43,16 +50,20 @@ export class Ng2Dropdown implements Ng2DropdownComponent {
      * @desc toggles menu visibility
      */
     public toggleMenu(): void {
-        this.menu.state.isVisible ? this.menu.hide() : this.menu.show();
+        const isVisible = this.menu.state.isVisible;
+        isVisible ? this.menu.hide() : this.menu.show();
 
         // get button's position
         const position = this.button.getPosition();
 
         // update menu position based on its button's
         this.menu.updatePosition(position);
+
+        // emit event
+        isVisible ? this.onHide.emit(this) : this.onShow.emit(this);
     }
 
-    ngAfterViewInit() {
+    ngOnInit() {
         this.state.onItemClicked.subscribe(item => {
             this.onItemClicked.emit(item);
 
@@ -63,10 +74,10 @@ export class Ng2Dropdown implements Ng2DropdownComponent {
             this.toggleMenu();
         });
 
-        if (this.button) {
-            this.button.onMenuToggled.subscribe(() => {
-                this.toggleMenu();
-            });
-        }
+        this.state.onItemSelected.subscribe(item => this.onItemSelected.emit(item));
+    }
+
+    ngAfterViewInit() {
+        this.button.onMenuToggled.subscribe(() => this.toggleMenu());
     }
 }

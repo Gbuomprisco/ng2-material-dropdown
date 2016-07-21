@@ -1,9 +1,14 @@
-<div class="ng2-dropdown-menu-container" tabindex="0" (keydown)="handleKeypress($event)">
-    <div class='ng2-dropdown-menu'
-         [class.ng2-dropdown-menu--active]="state.isVisible"
-         @fade="state.toString()">
-            <ng-content></ng-content>
+<!-- CONTAINER -->
+<div class="ng2-dropdown-menu-container ng2-dropdown-menu-container--{{ width }}"
+     [class.ng2-dropdown-menu-container--open]="state.isVisible"
+     tabindex="0"
+     (keydown)="handleKeypress($event)">
+
+    <!-- MENU -->
+    <div class='ng2-dropdown-menu' @fade="state.toString()">
+        <ng-content></ng-content>
     </div>
 </div>
 
+<!-- BACKDROP -->
 <div class="ng2-dropdown-backdrop" [hidden]="!state.isVisible" (click)="hide()"></div>

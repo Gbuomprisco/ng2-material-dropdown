@@ -1,5 +1,4 @@
 .ng2-dropdown-menu-container {
-    max-height: 300px;
     position: fixed;
     z-index: 2;
     overflow-y: auto;
@@ -7,6 +6,25 @@
     padding: 0.5em 0;
     background: #fff;
     border-radius: 2px;
+    display: none;
+}
+
+.ng2-dropdown-menu-container.ng2-dropdown-menu-container--open {
+    display: block;
+}
+
+.ng2-dropdown-menu-container--2 {
+    width: 150px;
+}
+
+// default
+.ng2-dropdown-menu-container--4 {
+    width: 250px;
+}
+
+// default
+.ng2-dropdown-menu-container--6 {
+    width: 320px;
 }
 
 .ng2-dropdown-menu-container:focus {
@@ -20,10 +38,10 @@
 
 .ng2-dropdown-menu * {
     opacity: 0;
-    transition: opacity 0.8s;
+    transition: opacity 0.5s;
 }
 
-.ng2-dropdown-menu--active * {
+.ng2-dropdown-menu-container.ng2-dropdown-menu-container--open * {
     opacity: 1;
 }
 

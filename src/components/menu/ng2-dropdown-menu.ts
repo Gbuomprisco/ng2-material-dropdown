@@ -5,7 +5,8 @@ import {
     ContentChildren,
     QueryList,
     forwardRef,
-    Inject
+    Inject,
+    Input
 } from '@angular/core';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
@@ -23,6 +24,10 @@ import { ACTIONS } from './actions';
     animations
 })
 export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
+
+    // possible values: 2, 4, 6
+    @Input() public width: number = 4;
+    @Input() public focusFirstElement: boolean = true;
 
     /**
      * @name items
@@ -58,11 +63,13 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         // update state
         this.state.isVisible = true;
 
+        // select first item unless user disabled this option
+        if (this.focusFirstElement) {
+            this.dropdown.state.select(this.items.first, false);
+        }
+
         // focus element
         this.focusMenuElement();
-
-        // select first item
-        this.dropdown.state.select(this.items.first, false);
     }
 
     /**
@@ -71,6 +78,8 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      */
     public hide(): void {
         this.state.isVisible = false;
+
+        this.renderer.setElementStyle(this.getMenuElement(), 'display', 'none');
 
         // reset selected item state
         this.dropdown.state.unselect();
@@ -121,8 +130,9 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @name focusMenuElement
      * @desc calls focus method on the menu
      */
-    private focusMenuElement(): void {
-        this.renderer.invokeElementMethod(this.getMenuElement(), 'focus', []);
+    private focusMenuElement(element: Element = this.getMenuElement()): void {
+        this.renderer.setElementStyle(element, 'display', 'block');
+        this.renderer.invokeElementMethod(element, 'focus', []);
     }
 
     ngOnInit() {

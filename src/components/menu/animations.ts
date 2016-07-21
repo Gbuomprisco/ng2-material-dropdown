@@ -9,8 +9,8 @@ import {
 export const animations = [
     trigger('fade', [
         state('visible', style({
-            width: '250px',
-            maxHeight: '300px',
+            width: '100%',
+            maxHeight: '350px',
             opacity: 1
         })),
         state('hidden', style({
@@ -19,10 +19,10 @@ export const animations = [
             opacity: 0
         })),
         transition('visible => hidden', [
-            animate('50ms ease-out')
+            animate('100ms ease-out')
         ]),
         transition('hidden => visible', [
-            animate('200ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+            animate('150ms cubic-bezier(0.55, 0, 0.55, 0.2)')
         ])
     ])
 ];
