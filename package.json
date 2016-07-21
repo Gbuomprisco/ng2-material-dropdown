@@ -85,7 +85,7 @@
     "index.js",
     "index.ts",
     "index.d.ts",
-    "src/typings"
+    "src/typings/"
   ],
   "typings": "./index.d.ts"
 }

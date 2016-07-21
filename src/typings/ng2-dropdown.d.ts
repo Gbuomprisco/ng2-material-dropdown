@@ -1,5 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { Ng2DropdownButtonComponent } from './ng2-dropdown-button.d.ts';
+import { Ng2MenuItemComponent } from './ng2-menu-item.d.ts';
+import { Ng2DropdownMenuComponent } from './ng2-dropdown-menu.d.ts';
 
 export declare class Ng2DropdownComponent {
     state: Ng2DropdownStateProvider;

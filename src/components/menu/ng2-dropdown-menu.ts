@@ -15,6 +15,10 @@ import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 import { animations } from './animations';
 import { ACTIONS } from './actions';
 
+import { Ng2DropdownMenuComponent } from '../../typings/ng2-dropdown-menu.d.ts';
+import { Ng2MenuItemComponent } from '../../typings/ng2-menu-item.d.ts';
+
+
 @Component({
     moduleId: module.id,
     selector: 'ng2-dropdown-menu',

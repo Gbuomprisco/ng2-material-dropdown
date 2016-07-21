@@ -1,4 +1,4 @@
-declare class Ng2DropdownMenuComponent {
+export declare class Ng2DropdownMenuComponent {
     state: {
         isVisible: boolean;
         toString(): string;

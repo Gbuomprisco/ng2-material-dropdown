@@ -8,6 +8,7 @@ import {
 import { Ng2DropdownButton } from '../button/ng2-dropdown-button';
 import { Ng2DropdownMenu } from '../menu/ng2-dropdown-menu';
 import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
+
 import { Ng2DropdownComponent, Ng2DropdownStateProvider } from '../../typings/ng2-dropdown.d.ts';
 
 const styles = [require('./style.scss').toString()],
@@ -69,9 +70,5 @@ export class Ng2Dropdown implements Ng2DropdownComponent {
         }
 
         this.state.onItemSelected.subscribe(item => this.onItemSelected.emit(item));
-    }
-
-    ngAfterViewInit() {
-        
     }
 }

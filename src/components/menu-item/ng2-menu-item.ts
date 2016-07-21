@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
+import { Ng2MenuItemComponent } from '../../typings/ng2-menu-item.d.ts';
 
 @Component({
     moduleId: module.id,
