@@ -1,4 +1,2 @@
-!dist/ng2-dropdown.bundle.js
-!dist/ng2-dropdown.map
-!src/typings/
-!index.js
+!dist
+!src/typings
