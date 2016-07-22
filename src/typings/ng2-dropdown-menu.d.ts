@@ -3,7 +3,7 @@ export declare class Ng2DropdownMenuComponent {
         isVisible: boolean;
         toString(): string;
     };
-    show(): void;
+    show(focus: boolean): void;
     hide(): void;
     updatePosition(position): void;
     handleKeypress($event): void;

@@ -63,6 +63,8 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @shows menu and selects first item
      */
     public show(focus = true): void {
+        this.renderer.setElementStyle(this.getMenuElement(), 'display', 'block');
+
         // update state
         this.state.isVisible = true;
 
@@ -136,7 +138,6 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @desc calls focus method on the menu
      */
     private focusMenuElement(element: Element = this.getMenuElement()): void {
-        this.renderer.setElementStyle(element, 'display', 'block');
         this.renderer.invokeElementMethod(element, 'focus', []);
     }
 
