@@ -41,15 +41,21 @@ export class Ng2Dropdown implements Ng2DropdownComponent {
      * @name toggleMenu
      * @desc toggles menu visibility
      */
-    public toggleMenu(position = this.button.getPosition()): void {
-        const isVisible = this.menu.state.isVisible;
-        isVisible ? this.menu.hide() : this.menu.show();
+    public toggleMenu(position = this.button.getPosition(), focus = true): void {
+        this.menu.state.isVisible ? this.hide() : this.show(position, focus);
+    }
+
+    private hide(): void {
+        this.menu.hide();
+        this.onHide.emit(this);
+    }
+
+    private show(position = this.button.getPosition(), focus = true): void {
+        this.menu.show(focus);
 
         // update menu position based on its button's
         this.menu.updatePosition(position);
-
-        // emit event
-        isVisible ? this.onHide.emit(this) : this.onShow.emit(this);
+        this.onShow.emit(this);
     }
 
     ngOnInit() {
@@ -60,7 +66,7 @@ export class Ng2Dropdown implements Ng2DropdownComponent {
                 return;
             }
 
-            this.toggleMenu();
+            this.hide.call(this);
         });
 
         if (this.button) {
