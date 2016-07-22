@@ -13,7 +13,7 @@ export declare class Ng2DropdownComponent {
     onItemSelected: EventEmitter<string>;
     onShow: EventEmitter<Ng2DropdownComponent>;
     onHide: EventEmitter<Ng2DropdownComponent>;
-    toggleMenu(position: ClientRect): void;
+    toggleMenu(position: ClientRect, focus: boolean): void;
 }
 
 export declare class Ng2DropdownStateProvider {

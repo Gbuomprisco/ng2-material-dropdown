@@ -61,7 +61,7 @@ Once installed, import the directives and use it them your container component:
 `ng2-dropdown-menu`
 - **`focusFirstElement`** - **`[?boolean]`** : by default the first element is immediately focused. You can disable by setting this option to false
 - **`width`** - **`[?number]`**: this determines the width of the menu. Possible values are 2, 4 and 6. By default, this is set to 4
-
+- **`offset`** - **`[?string]`**: offset to adjust the position of the dropdown with absolute values
 
 `ng2-dropdown-button`
 - **`showCaret`** - **`[?boolean]`** : if present, a caret will be appended to the button's text

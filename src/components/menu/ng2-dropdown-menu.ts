@@ -31,6 +31,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
     // possible values: 2, 4, 6
     @Input() public width: number = 4;
     @Input() public focusFirstElement: boolean = true;
+    @Input() public offset: string;
 
     /**
      * @name items
@@ -98,9 +99,21 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @param position {ClientRect}
      */
     public updatePosition(position: ClientRect): void {
-        const element = this.getMenuElement(),
-            top = `${position.top - 15}px`,
+        const element = this.getMenuElement();
+
+        let top = `${position.top - 15}px`,
             left = `${position.left - 5}px`;
+
+        if (this.offset) {
+            const offset = this.offset.split(' ');
+
+            if (!offset[1]) {
+                offset[1] = '0';
+            }
+
+            top = `${parseInt(top.replace('px', '')) + parseInt(offset[0])}px`;
+            left = `${parseInt(left.replace('px', '')) + parseInt(offset[1])}px`;
+        }
 
         this.renderer.setElementStyle(element, 'top', top);
         this.renderer.setElementStyle(element, 'left', left);
