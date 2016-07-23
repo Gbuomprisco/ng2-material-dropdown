@@ -100,20 +100,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      */
     public updatePosition(position: ClientRect): void {
         const element = this.getMenuElement();
-
-        let top = `${position.top - 15}px`,
-            left = `${position.left - 5}px`;
-
-        if (this.offset) {
-            const offset = this.offset.split(' ');
-
-            if (!offset[1]) {
-                offset[1] = '0';
-            }
-
-            top = `${parseInt(top.replace('px', '')) + parseInt(offset[0])}px`;
-            left = `${parseInt(left.replace('px', '')) + parseInt(offset[1])}px`;
-        }
+        const {top, left} = this.calcPositionOffset(position);
 
         this.renderer.setElementStyle(element, 'top', top);
         this.renderer.setElementStyle(element, 'left', left);
@@ -152,6 +139,29 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      */
     private focusMenuElement(element: Element = this.getMenuElement()): void {
         this.renderer.invokeElementMethod(element, 'focus', []);
+    }
+
+    /**
+     * @name calcPositionOffset
+     * @param position
+     * @returns {{top: string, left: string}}
+     */
+    private calcPositionOffset(position): {top: string, left: string} {
+        let top = `${position.top - 15}px`,
+            left = `${position.left - 5}px`;
+
+        if (this.offset) {
+            const offset = this.offset.split(' ');
+
+            if (!offset[1]) {
+                offset[1] = '0';
+            }
+
+            top = `${parseInt(top.replace('px', '')) + parseInt(offset[0])}px`;
+            left = `${parseInt(left.replace('px', '')) + parseInt(offset[1])}px`;
+        }
+
+        return {top, left};
     }
 
     ngOnInit() {

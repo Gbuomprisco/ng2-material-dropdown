@@ -2,7 +2,7 @@
 <div class="ng2-dropdown-menu-container ng2-dropdown-menu-container--{{ width }}"
      [class.ng2-dropdown-menu-container--open]="state.isVisible"
      tabindex="0"
-     (keydown)="handleKeypress($event)">
+     (keyup)="handleKeypress($event)">
 
     <!-- MENU -->
     <div class='ng2-dropdown-menu' @fade="state.toString()">
