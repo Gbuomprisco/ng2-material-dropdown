@@ -147,8 +147,8 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @returns {{top: string, left: string}}
      */
     private calcPositionOffset(position): {top: string, left: string} {
-        let top = `${position.top - 15}px`,
-            left = `${position.left - 5}px`;
+        let top = `${position.top + window.scrollY - 15}px`,
+            left = `${position.left + window.scrollX - 5}px`;
 
         if (this.offset) {
             const offset = this.offset.split(' ');
