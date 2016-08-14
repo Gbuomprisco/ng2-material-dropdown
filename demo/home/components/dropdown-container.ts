@@ -8,7 +8,6 @@ import { Ng2DropdownButton } from '../../../src/components/button/ng2-dropdown-b
 import { Ng2MenuItem } from '../../../src/components/menu-item/ng2-menu-item';
 
 @Component({
-    moduleId: module.id,
     selector: 'dropdown-container',
     providers: [ ],
     directives: [ Ng2Dropdown, Ng2DropdownMenu, Ng2DropdownButton, Ng2MenuItem ],

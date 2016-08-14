@@ -9,24 +9,20 @@ import {
     Input
 } from '@angular/core';
 
-import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
-import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
-
 import { animations } from './animations';
 import { ACTIONS } from './actions';
 
-import { Ng2DropdownMenuComponent } from '../../typings/ng2-dropdown-menu.d.ts';
-import { Ng2MenuItemComponent } from '../../typings/ng2-menu-item.d.ts';
+import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
+import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
 
 @Component({
-    moduleId: module.id,
     selector: 'ng2-dropdown-menu',
     styles: [require('./style.scss').toString()],
     template: require('./template.html'),
     animations
 })
-export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
+export class Ng2DropdownMenu {
 
     // possible values: 2, 4, 6
     @Input() public width: number = 4;
@@ -37,7 +33,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @name items
      * @type {QueryList<Ng2MenuItem>}
      */
-    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItemComponent>;
+    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
 
     /**
      * @name state
@@ -63,7 +59,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @name show
      * @shows menu and selects first item
      */
-    public show(focus = true): void {
+    public show(): void {
         this.renderer.setElementStyle(this.getMenuElement(), 'display', 'block');
 
         // update state
@@ -72,11 +68,6 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         // select first item unless user disabled this option
         if (this.focusFirstElement) {
             this.dropdown.state.select(this.items.first, false);
-        }
-
-        if (focus) {
-            // focus element
-            this.focusMenuElement();
         }
     }
 
@@ -112,6 +103,10 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      * @param $event
      */
     public handleKeypress($event): void {
+        if (!this.state.isVisible) {
+            return;
+        }
+
         const key = $event.keyCode,
             items = this.items.toArray(),
             index = items.indexOf(this.dropdown.state.selectedItem);
@@ -131,14 +126,6 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
      */
     private getMenuElement(): Element {
         return this.element.nativeElement.children[0];
-    }
-
-    /**
-     * @name focusMenuElement
-     * @desc calls focus method on the menu
-     */
-    private focusMenuElement(element: Element = this.getMenuElement()): void {
-        this.renderer.invokeElementMethod(element, 'focus', []);
     }
 
     /**
@@ -168,5 +155,7 @@ export class Ng2DropdownMenu implements Ng2DropdownMenuComponent {
         // append menu element to the body
         const body = document.querySelector('body');
         body.appendChild(this.element.nativeElement);
+
+        this.renderer.listen(body, 'keyup', $event => this.handleKeypress($event));
     }
 }

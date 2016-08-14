@@ -6,15 +6,13 @@ import {
 } from '@angular/core';
 
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
-import { Ng2MenuItemComponent } from '../../typings/ng2-menu-item.d.ts';
 
 @Component({
-    moduleId: module.id,
     selector: 'ng2-menu-item',
     styles: [ require('./style.scss').toString() ],
     template: require('./template.html')
 })
-export class Ng2MenuItem implements Ng2MenuItemComponent {
+export class Ng2MenuItem {
     /**
      * @preventClose
      * @desc if true, clicking on the item won't close the dropdown

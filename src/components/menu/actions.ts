@@ -1,5 +1,5 @@
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
-import { Ng2DropdownStateProvider } from '../../typings/ng2-dropdown.d.ts';
+import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
 
 const KEYS = {
     ENTER: 13,
@@ -8,19 +8,19 @@ const KEYS = {
     NEXT: 40
 };
 
-const onSwitchNext = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStateProvider) => {
+const onSwitchNext = (index: number, items: Ng2MenuItem[], state: Ng2DropdownState) => {
     if (index < items.length - 1) {
         state.select(items[index + 1], true);
     }
 };
 
-const onSwitchPrev = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStateProvider) => {
+const onSwitchPrev = (index: number, items: Ng2MenuItem[], state: Ng2DropdownState) => {
     if (index > 0) {
         state.select(items[index - 1], true);
     }
 };
 
-const onBackspace = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStateProvider) => {
+const onBackspace = (index: number, items: Ng2MenuItem[], state: Ng2DropdownState) => {
     if (index < items.length - 1) {
         state.select(items[index + 1], true);
     } else {
@@ -28,7 +28,7 @@ const onBackspace = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStat
     }
 };
 
-const onEnter = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStateProvider) => {
+const onEnter = (index: number, items: Ng2MenuItem[], state: Ng2DropdownState) => {
     state.onItemClicked.emit(state.selectedItem);
 };
 
