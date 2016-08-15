@@ -156,6 +156,6 @@ export class Ng2DropdownMenu {
         const body = document.querySelector('body');
         body.appendChild(this.element.nativeElement);
 
-        this.renderer.listen(body, 'keyup', $event => this.handleKeypress($event));
+        this.renderer.listen(body, 'keyup', this.handleKeypress);
     }
 }
