@@ -8,7 +8,6 @@ import { DropdownContainer } from './components/dropdown-container';
 
 @Component({
     selector: 'app',
-    directives: [ Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem, DropdownContainer ],
     template: require('./home.html')
 })
 

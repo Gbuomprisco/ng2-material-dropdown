@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "typings-install": "typings install",
@@ -19,13 +19,13 @@
   "contributors": [],
   "license": "MIT",
   "devDependencies": {
-    "@angular/common": "2.0.0-rc.5",
-    "@angular/compiler": "2.0.0-rc.5",
-    "@angular/core": "2.0.0-rc.5",
-    "@angular/http": "2.0.0-rc.5",
-    "@angular/platform-browser": "2.0.0-rc.5",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
-    "@angular/platform-server": "2.0.0-rc.5",
+    "@angular/common": "2.0.0-rc.6",
+    "@angular/compiler": "2.0.0-rc.6",
+    "@angular/core": "2.0.0-rc.6",
+    "@angular/http": "2.0.0-rc.6",
+    "@angular/platform-browser": "2.0.0-rc.6",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.6",
+    "@angular/platform-server": "2.0.0-rc.6",
     "@angular/router": "2.0.0-rc.2",
     "autoprefixer": "^6.3.6",
     "awesome-typescript-loader": "~0.16.2",
@@ -47,7 +47,7 @@
     "precss": "^1.4.0",
     "protractor": "^3.3.0",
     "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.6",
+    "rxjs": "5.0.0-beta.11",
     "sass-loader": "^3.2.1",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
@@ -61,7 +61,7 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.0",
     "webpack-merge": "^0.8.4",
-    "zone.js": "~0.6.12"
+    "zone.js": "0.6.17"
   },
   "dependencies": {},
   "keywords": [
@@ -86,6 +86,5 @@
     "index.ts",
     "index.d.ts",
     "src/typings/"
-  ],
-  "typings": "./index.d.ts"
+  ]
 }

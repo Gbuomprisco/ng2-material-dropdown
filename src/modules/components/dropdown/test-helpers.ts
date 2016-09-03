@@ -1,11 +1,8 @@
-import { Component } from '@angular/core';
-
-import { Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem } from '../../index';
-const directives = [Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem];
+import { Component, NgModule } from '@angular/core';
+import { Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem } from '../../../index';
 
 @Component({
     selector: 'basic-dropdown',
-    directives,
     template: `
         <main>
         <ng2-dropdown>
@@ -27,3 +24,15 @@ const directives = [Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem
 export class BasicDropdown {
     ngOnInit() {}
 }
+
+@NgModule({
+    declarations: [
+        BasicDropdown,
+        Ng2Dropdown,
+        Ng2DropdownMenu,
+        Ng2DropdownButton,
+        Ng2MenuItem
+    ],
+    exports: [BasicDropdown]
+})
+export class TestModule {}

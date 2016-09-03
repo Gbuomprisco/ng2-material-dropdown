@@ -1,5 +1,5 @@
 <button class='ng2-dropdown-button' (click)="toggleMenu()">
     <ng-content></ng-content>
 
-    <span class="caret" *ngIf="showCaret"></span>
+    <span class="caret" [hidden]="!showCaret"></span>
 </button>

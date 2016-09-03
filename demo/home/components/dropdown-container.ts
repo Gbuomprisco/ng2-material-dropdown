@@ -10,7 +10,6 @@ import { Ng2MenuItem } from '../../../src/components/menu-item/ng2-menu-item';
 @Component({
     selector: 'dropdown-container',
     providers: [ ],
-    directives: [ Ng2Dropdown, Ng2DropdownMenu, Ng2DropdownButton, Ng2MenuItem ],
     template: `<ng2-dropdown>
                     <ng2-dropdown-button>Open</ng2-dropdown-button>
                     <ng2-dropdown-menu>
