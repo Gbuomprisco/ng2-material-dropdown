@@ -1,4 +1,4 @@
-const components = require('./dist/ng2-dropdown.bundle.js');
+const components = require('./ng2-dropdown.bundle.js');
 
 export const Ng2Dropdown = components.Ng2Dropdown;
 export const Ng2DropdownMenu = components.Ng2DropdownMenu;
