@@ -4,7 +4,6 @@
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "typings-install": "typings install",
-    "postinstall": "npm run typings-install",
     "prepublish": "npm run build && ./node_modules/.bin/tsc",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
