@@ -142,14 +142,17 @@ export class Ng2DropdownMenu {
             clientHeight = element.clientHeight,
 
             marginFromBottom = parseInt(top) + clientHeight,
-            marginFromRight = parseInt(left) + clientWidth;
+            marginFromRight = parseInt(left) + clientWidth,
 
-        if (marginFromBottom >= window.innerHeight) {
+            windowScrollHeight = window.innerHeight + window.scrollY,
+            windowScrollWidth = window.innerWidth + window.scrollX;
+
+        if (marginFromBottom >= windowScrollHeight) {
             top = `${parseInt(top.replace('px', '')) - clientHeight}px`;
         }
 
-        if (marginFromRight >= window.innerWidth) {
-            const marginRight = marginFromRight - window.innerWidth + 30;
+        if (marginFromRight >= windowScrollWidth) {
+            const marginRight = marginFromRight - windowScrollWidth + 30;
             left = `${parseInt(left.replace('px', '')) - marginRight}px`;
         }
 
