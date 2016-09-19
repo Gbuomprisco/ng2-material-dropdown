@@ -51,6 +51,8 @@ export class Ng2DropdownMenu {
         }
     };
 
+    private position: ClientRect;
+
     constructor(@Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown,
                 private element: ElementRef,
                 private renderer: Renderer) {}
@@ -90,11 +92,7 @@ export class Ng2DropdownMenu {
      * @param position {ClientRect}
      */
     public updatePosition(position: ClientRect): void {
-        const element = this.getMenuElement();
-        const {top, left} = this.calcPositionOffset(position);
-
-        this.renderer.setElementStyle(element, 'top', top);
-        this.renderer.setElementStyle(element, 'left', left);
+        this.position = position;
     }
 
     /**
@@ -134,21 +132,48 @@ export class Ng2DropdownMenu {
      * @returns {{top: string, left: string}}
      */
     private calcPositionOffset(position): {top: string, left: string} {
-        let top = `${position.top + window.scrollY - 15}px`,
-            left = `${position.left + window.scrollX - 5}px`;
+        let { top, left } = this.applyOffset(
+            `${position.top + window.scrollY - 15}px`,
+            `${position.left + window.scrollX - 5}px`
+        );
 
-        if (this.offset) {
-            const offset = this.offset.split(' ');
+        const element = this.getMenuElement(),
+            clientWidth = element.clientWidth,
+            clientHeight = element.clientHeight,
 
-            if (!offset[1]) {
-                offset[1] = '0';
-            }
+            marginFromBottom = parseInt(top) + clientHeight,
+            marginFromRight = parseInt(left) + clientWidth,
 
-            top = `${parseInt(top.replace('px', '')) + parseInt(offset[0])}px`;
-            left = `${parseInt(left.replace('px', '')) + parseInt(offset[1])}px`;
+            windowScrollHeight = window.innerHeight + window.scrollY,
+            windowScrollWidth = window.innerWidth + window.scrollX;
+
+        if (marginFromBottom >= windowScrollHeight) {
+            top = `${parseInt(top.replace('px', '')) - clientHeight}px`;
+        }
+
+        if (marginFromRight >= windowScrollWidth) {
+            const marginRight = marginFromRight - windowScrollWidth + 30;
+            left = `${parseInt(left.replace('px', '')) - marginRight}px`;
         }
 
         return {top, left};
+    }
+
+    private applyOffset(top: string, left: string): {top: string, left: string} {
+        if (!this.offset) {
+            return { top, left };
+        }
+
+        const offset = this.offset.split(' ');
+
+        if (!offset[1]) {
+            offset[1] = '0';
+        }
+
+        top = `${parseInt(top.replace('px', '')) + parseInt(offset[0])}px`;
+        left = `${parseInt(left.replace('px', '')) + parseInt(offset[1])}px`;
+
+        return { top, left };
     }
 
     ngOnInit() {
@@ -157,5 +182,15 @@ export class Ng2DropdownMenu {
         body.appendChild(this.element.nativeElement);
 
         this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
+    }
+
+    ngAfterViewChecked() {
+        if (this.state.isVisible) {
+            const element = this.getMenuElement();
+            const {top, left} = this.calcPositionOffset(this.position);
+
+            this.renderer.setElementStyle(element, 'top', top);
+            this.renderer.setElementStyle(element, 'left', left);
+        }
     }
 }
