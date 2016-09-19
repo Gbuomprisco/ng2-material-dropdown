@@ -2,14 +2,12 @@
 
 Material-like dropdown component for Angular2.
 
-**Work in progress**. Please do notice this is a work in progress and it is far from being usable in production.
-
 ## Install
 
     npm install ng2-material-dropdown --save
 
 ## Demo
-Check out the demo at [http://www.webpackbin.com/Ey8sUC2UZ](http://www.webpackbin.com/Ey8sUC2UZ)
+Check out the demo at [http://www.webpackbin.com/Ey8sUC2UZ](http://www.webpackbin.com/Ey8sUC2UZ) [outdated]
 
 ## Usage
 
@@ -24,30 +22,30 @@ Once installed, import the directives and use it them your container component:
             <ng2-menu-item *ngFor="let page of pages">
                 {{ page }}
             </ng2-menu-item>
-            
+
             <ng2-menu-divider></ng2-menu-divider>
-            
+
             <ng2-menu-item>
                 With Divider
             </ng2-menu-item>
         </ng2-dropdown-menu>
     </ng2-dropdown>
-    
+
     // app.ts
     // import all needed directives
     import { NG2_DROPDOWN_DIRECTIVES } from 'ng2-material-dropdown';
-    
+
     @Component({
         selector: 'app',
         directives: [ ...NG2_DROPDOWN_DIRECTIVES ],
         template: require('./example.html')
     })
-    
+
     export class App {
         pages = ['Home', 'Explore', 'Help'];
     }
-    
- 
+
+
 ## API
 
 `ng2-dropdown`
@@ -70,4 +68,3 @@ Once installed, import the directives and use it them your container component:
 `ng2-menu-item`
 - **`preventClose`** - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked
 - **`value` - `[?any]`** : any value that you may want to attach to a menu item. Useful for using this component with other components.
-

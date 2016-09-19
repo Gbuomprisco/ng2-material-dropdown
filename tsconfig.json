@@ -10,13 +10,13 @@
     "declaration": true,
     "sourceMap": true,
     "moduleResolution": "node",
-    "rootDir": "."
+    "rootDir": ".",
+    "types": ["node", "es6-shim", "es6-collections"]
   },
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true
   },
   "files": [
-    "typings/index.d.ts",
     "src/index.ts",
     "index.ts"
   ],
