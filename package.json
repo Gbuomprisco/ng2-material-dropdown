@@ -1,10 +1,9 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.2.6",
+  "version": "0.3.1",
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "typings-install": "typings install",
-    "postinstall": "npm run typings-install",
     "prepublish": "npm run build && ./node_modules/.bin/tsc",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
@@ -79,12 +78,10 @@
     "url": "https://github.com/Gbuomprisco/ng2-material-dropdown/issues"
   },
   "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
-  "main": "./index.js",
+  "main": "./dist/index.js",
   "files": [
     "dist",
-    "index.js",
     "index.ts",
-    "index.d.ts",
-    "src/typings/"
+    "index.d.ts"
   ]
 }
