@@ -184,7 +184,7 @@ export class Ng2DropdownMenu {
         this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
     }
 
-    ngAfterViewChecked() {
+    ngDoCheck() {
         if (this.state.isVisible) {
             const element = this.getMenuElement();
             const {top, left} = this.calcPositionOffset(this.position);

@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "prepublish": "npm run build && ./node_modules/.bin/tsc",
