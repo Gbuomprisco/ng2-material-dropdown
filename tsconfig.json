@@ -11,18 +11,18 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "rootDir": ".",
-    "types": ["node", "es6-shim", "es6-collections"]
+    "types": ["node", "es6-shim", "es6-collections", "jasmine"]
   },
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true
   },
   "files": [
-    "src/index.ts",
     "index.ts"
   ],
+  "include": [
+    "src"
+  ],
   "exclude": [
-    "typings/main.d.ts",
-    "typings/main",
     "node_modules"
   ],
   "compileOnSave": false,
