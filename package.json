@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "prepublish": "npm run build && ./node_modules/.bin/tsc",
@@ -80,10 +80,9 @@
     "url": "https://github.com/Gbuomprisco/ng2-material-dropdown/issues"
   },
   "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
-  "main": "./dist/index.js",
+  "main": "./dist/ng2-dropdown.bundle.js",
   "files": [
     "dist",
-    "index.ts",
-    "index.d.ts"
+    "index.ts"
   ]
 }

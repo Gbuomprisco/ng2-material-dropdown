@@ -29,6 +29,10 @@ const onBackspace = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStat
 };
 
 const onEnter = (index: number, items: Ng2MenuItem[], state: Ng2DropdownState) => {
+    if (!state.selectedItem) {
+        return;
+    }
+
     state.onItemClicked.emit(state.selectedItem);
 };
 
