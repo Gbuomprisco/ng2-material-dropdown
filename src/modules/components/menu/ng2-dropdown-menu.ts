@@ -132,9 +132,15 @@ export class Ng2DropdownMenu {
      * @returns {{top: string, left: string}}
      */
     private calcPositionOffset(position): {top: string, left: string} {
+        var supportPageOffset = window.pageXOffset !== undefined;
+        var isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
+
+        let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+        let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
         let { top, left } = this.applyOffset(
-            `${position.top + window.scrollY - 15}px`,
-            `${position.left + window.scrollX - 5}px`
+            `${position.top + y - 15}px`,
+            `${position.left + x - 5}px`
         );
 
         const element = this.getMenuElement(),
