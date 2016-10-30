@@ -52,6 +52,7 @@ export class Ng2DropdownMenu {
     };
 
     private position: ClientRect;
+    private listener;
 
     constructor(@Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown,
                 private element: ElementRef,
@@ -187,7 +188,7 @@ export class Ng2DropdownMenu {
         const body = document.querySelector('body');
         body.appendChild(this.element.nativeElement);
 
-        this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
+        this.listener = this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
     }
 
     ngDoCheck() {
@@ -198,5 +199,10 @@ export class Ng2DropdownMenu {
             this.renderer.setElementStyle(element, 'top', top);
             this.renderer.setElementStyle(element, 'left', left);
         }
+    }
+
+    ngOnDestroy() {
+        this.element.nativeElement.remove();
+        this.listener();
     }
 }
