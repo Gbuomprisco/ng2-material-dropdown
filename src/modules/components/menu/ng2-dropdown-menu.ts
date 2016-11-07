@@ -94,6 +94,7 @@ export class Ng2DropdownMenu {
      */
     public updatePosition(position: ClientRect): void {
         this.position = position;
+        this.ngDoCheck();
     }
 
     /**
