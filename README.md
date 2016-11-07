@@ -13,34 +13,34 @@ Check out the demo at [http://www.webpackbin.com/Ey8sUC2UZ](http://www.webpackbi
 
 Once installed, import the directives and use it them your container component:
 
+```html
+<ng2-dropdown>
+    <ng2-dropdown-button>
+        Open Menu
+    </ng2-dropdown-button>
+    <ng2-dropdown-menu>
+        <ng2-menu-item *ngFor="let page of pages">
+            {{ page }}
+        </ng2-menu-item>
+
+        <div class='ng2-menu-divider'></div>
+
+        <ng2-menu-item>
+            With Divider
+        </ng2-menu-item>
+    </ng2-dropdown-menu>
+</ng2-dropdown>
+```
+
 ```javascript
-    // example.html
-    <ng2-dropdown>
-        <ng2-dropdown-button>
-            Open Menu
-        </ng2-dropdown-button>
-        <ng2-dropdown-menu>
-            <ng2-menu-item *ngFor="let page of pages">
-                {{ page }}
-            </ng2-menu-item>
+// import module
+import { Ng2DropdownModule } from 'ng2-material-dropdown';
 
-            <div class='ng2-menu-divider'></div>
-
-            <ng2-menu-item>
-                With Divider
-            </ng2-menu-item>
-        </ng2-dropdown-menu>
-    </ng2-dropdown>
-
-    // app.ts
-    // import all needed directives
-    import { Ng2DropdownModule } from 'ng2-material-dropdown';
-
-    @NgModule({
-        imports: [ Ng2DropdownModule ]
-        // ..
-    })
-    export class MyModule {}
+@NgModule({
+    imports: [ Ng2DropdownModule ]
+    // ..
+})
+export class MyModule {}
 ```
 
 ## API
