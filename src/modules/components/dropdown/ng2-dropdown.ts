@@ -1,4 +1,5 @@
 import {
+    HostListener,
     Component,
     ContentChild,
     Output,
@@ -50,6 +51,13 @@ export class Ng2Dropdown {
         // update menu position based on its button's
         this.menu.updatePosition(position);
         this.onShow.emit(this);
+    }
+
+    @HostListener('window:scroll')
+    private scrollListener() {
+        if (this.menu.state.isVisible) {
+            this.menu.updatePosition(this.button.getPosition());
+        }
     }
 
     ngOnInit() {
