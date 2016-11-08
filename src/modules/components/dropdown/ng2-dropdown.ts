@@ -55,7 +55,7 @@ export class Ng2Dropdown {
 
     @HostListener('window:scroll')
     private scrollListener() {
-        if (this.menu.state.isVisible) {
+        if (this.menu.state.isVisible && this.button) {
             this.menu.updatePosition(this.button.getPosition());
         }
     }
