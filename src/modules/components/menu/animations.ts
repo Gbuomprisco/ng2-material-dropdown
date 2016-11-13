@@ -6,8 +6,6 @@ import {
     state
 } from '@angular/core';
 
-
-
 export const animations: any = [
     trigger('fade', [
         state('visible', style({
@@ -28,4 +26,3 @@ export const animations: any = [
         ])
     ])
 ];
-

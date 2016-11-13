@@ -15,7 +15,6 @@ import { ACTIONS } from './actions';
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
-
 @Component({
     selector: 'ng2-dropdown-menu',
     styles: [require('./style.scss').toString()],
@@ -204,6 +203,9 @@ export class Ng2DropdownMenu {
 
     ngOnDestroy() {
         this.element.nativeElement.remove();
-        this.listener();
+
+        if (this.listener) {
+            this.listener();
+        }
     }
 }
