@@ -202,7 +202,8 @@ export class Ng2DropdownMenu {
     }
 
     ngOnDestroy() {
-        this.element.nativeElement.remove();
+        const elem = this.element.nativeElement;
+        elem.parentNode.removeChild(elem);
 
         if (this.listener) {
             this.listener();
