@@ -13,38 +13,35 @@ Check out the demo at [http://www.webpackbin.com/Ey8sUC2UZ](http://www.webpackbi
 
 Once installed, import the directives and use it them your container component:
 
-    // example.html
-    <ng2-dropdown>
-        <ng2-dropdown-button>
-            Open Menu
-        </ng2-dropdown-button>
-        <ng2-dropdown-menu>
-            <ng2-menu-item *ngFor="let page of pages">
-                {{ page }}
-            </ng2-menu-item>
+```html
+<ng2-dropdown>
+    <ng2-dropdown-button>
+        Open Menu
+    </ng2-dropdown-button>
+    <ng2-dropdown-menu>
+        <ng2-menu-item *ngFor="let page of pages">
+            {{ page }}
+        </ng2-menu-item>
 
-            <ng2-menu-divider></ng2-menu-divider>
+        <div class='ng2-menu-divider'></div>
 
-            <ng2-menu-item>
-                With Divider
-            </ng2-menu-item>
-        </ng2-dropdown-menu>
-    </ng2-dropdown>
+        <ng2-menu-item>
+            With Divider
+        </ng2-menu-item>
+    </ng2-dropdown-menu>
+</ng2-dropdown>
+```
 
-    // app.ts
-    // import all needed directives
-    import { NG2_DROPDOWN_DIRECTIVES } from 'ng2-material-dropdown';
+```javascript
+// import module
+import { Ng2DropdownModule } from 'ng2-material-dropdown';
 
-    @Component({
-        selector: 'app',
-        directives: [ ...NG2_DROPDOWN_DIRECTIVES ],
-        template: require('./example.html')
-    })
-
-    export class App {
-        pages = ['Home', 'Explore', 'Help'];
-    }
-
+@NgModule({
+    imports: [ Ng2DropdownModule ]
+    // ..
+})
+export class MyModule {}
+```
 
 ## API
 
@@ -63,7 +60,6 @@ Once installed, import the directives and use it them your container component:
 
 `ng2-dropdown-button`
 - **`showCaret`** - **`[?boolean]`** : if present, a caret will be appended to the button's text
-
 
 `ng2-menu-item`
 - **`preventClose`** - `[?boolean]` : if present, this attribute prevents the menu to hide when the menu item is clicked

@@ -1,7 +1,7 @@
 .ng2-dropdown-button {
     font-family: "Helvetica Neue", Helvetica, Arial;
     background: #fff;
-    padding: 0.3rem 0.5rem;
+    padding: 0.45rem 0.25rem;
     font-size: 14px;
     letter-spacing: 0.08rem;
     color: #444;
@@ -10,6 +10,12 @@
     font-weight: 400;
     border: none;
     border-bottom: 1px solid #efefef;
+    text-align: left;
+    min-width: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    max-width: 240px;
 }
 
 .ng2-dropdown-button:hover {
@@ -21,9 +27,15 @@
     border-bottom: 2px solid #2196F3;
 }
 
-.caret {
+.ng2-dropdown-button__label {
+    flex: 1 1 95%;
+}
+
+.ng2-dropdown-button__caret {
     background: url('caret.svg');
-    width: 16px;
+    width: 12px;
     height: 12px;
-    display: inline-block;
+    display: flex;
+    flex: 1 1 6%;
+    background-repeat: no-repeat;
 }

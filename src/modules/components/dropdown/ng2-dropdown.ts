@@ -1,4 +1,5 @@
 import {
+    HostListener,
     Component,
     ContentChild,
     Output,
@@ -11,8 +12,8 @@ import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
 
 @Component({
     selector: 'ng2-dropdown',
-    styles: [require('./style.scss').toString()],
-    template: require('./template.html')
+    styleUrls: ['./style.scss'],
+    templateUrl: './template.html'
 })
 export class Ng2Dropdown {
     // get children components
@@ -50,6 +51,13 @@ export class Ng2Dropdown {
         // update menu position based on its button's
         this.menu.updatePosition(position);
         this.onShow.emit(this);
+    }
+
+    @HostListener('window:scroll')
+    private scrollListener() {
+        if (this.menu.state.isVisible && this.button) {
+            this.menu.updatePosition(this.button.getPosition());
+        }
     }
 
     ngOnInit() {

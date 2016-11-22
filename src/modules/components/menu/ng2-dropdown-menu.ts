@@ -6,21 +6,43 @@ import {
     QueryList,
     forwardRef,
     Inject,
-    Input
+    Input,
+    trigger,
+    style,
+    transition,
+    animate,
+    state
 } from '@angular/core';
 
-import { animations } from './animations';
 import { ACTIONS } from './actions';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
-
 @Component({
     selector: 'ng2-dropdown-menu',
-    styles: [require('./style.scss').toString()],
-    template: require('./template.html'),
-    animations
+    styleUrls: ['./style.scss'],
+    templateUrl: './template.html',
+    animations: [
+        trigger('fade', [
+            state('visible', style({
+                width: '100%',
+                maxHeight: '350px',
+                opacity: 1
+            })),
+            state('hidden', style({
+                width: '0px',
+                maxHeight: '0px',
+                opacity: 0
+            })),
+            transition('visible => hidden', [
+                animate('100ms ease-out')
+            ]),
+            transition('hidden => visible', [
+                animate('150ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+            ])
+        ])
+    ]
 })
 export class Ng2DropdownMenu {
 
@@ -94,6 +116,7 @@ export class Ng2DropdownMenu {
      */
     public updatePosition(position: ClientRect): void {
         this.position = position;
+        this.ngDoCheck();
     }
 
     /**
@@ -202,7 +225,11 @@ export class Ng2DropdownMenu {
     }
 
     ngOnDestroy() {
-        this.element.nativeElement.remove();
-        this.listener();
+        const elem = this.element.nativeElement;
+        elem.parentNode.removeChild(elem);
+
+        if (this.listener) {
+            this.listener();
+        }
     }
 }
