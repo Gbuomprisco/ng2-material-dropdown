@@ -8,7 +8,6 @@ import {
     Inject,
     Input
 } from '@angular/core';
-import { Subject } from 'rxjs';
 
 import { animations } from './animations';
 import { ACTIONS } from './actions';
@@ -82,7 +81,6 @@ export class Ng2DropdownMenu {
         this.ngDoCheck();
     }
 
-    private keypresses$ = new Subject();
     /**
      * @name handleKeypress
      * @desc executes functions on keyPress based on the key pressed
