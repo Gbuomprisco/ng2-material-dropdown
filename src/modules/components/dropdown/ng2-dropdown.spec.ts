@@ -37,7 +37,7 @@ describe('Ng2Dropdown', () => {
             expect(component.button).toBeDefined();
             expect(component.menu).toBeDefined();
             expect(component.menu.items.length).toEqual(2);
-            expect(component.menu.state.isVisible).toBe(false);
+            expect(component.state.menuState.isVisible).toBe(false);
         });
 
         it('shows/hides dropdown menu', () => {
@@ -45,10 +45,10 @@ describe('Ng2Dropdown', () => {
             const component = getComponent(fixture, Ng2Dropdown);
 
             component.button.toggleMenu();
-            expect(component.menu.state.isVisible).toEqual(true);
+            expect(component.state.menuState.isVisible).toEqual(true);
 
             component.button.toggleMenu();
-            expect(component.menu.state.isVisible).toEqual(false);
+            expect(component.state.menuState.isVisible).toEqual(false);
         });
     });
 
@@ -68,16 +68,16 @@ describe('Ng2Dropdown', () => {
             const component = getComponent(fixture, Ng2Dropdown);
             component.menu.show();
 
-            expect(component.state.selectedItem).toBe(component.menu.items.toArray()[0]);
+            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
 
             component.menu.handleKeypress(keyDown);
-            expect(component.state.selectedItem).toBe(component.menu.items.toArray()[1]);
+            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
 
             component.menu.handleKeypress(keyUp);
-            expect(component.state.selectedItem).toBe(component.menu.items.toArray()[0]);
+            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
 
             component.menu.handleKeypress(tab);
-            expect(component.state.selectedItem).toBe(component.menu.items.toArray()[1]);
+            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
         });
 
         it('fires click event when pressing enter', () => {
@@ -90,18 +90,18 @@ describe('Ng2Dropdown', () => {
             component.menu.handleKeypress(enter);
 
             // menu not visible
-            expect(component.menu.state.isVisible).toEqual(false);
+            expect(component.state.menuState.isVisible).toEqual(false);
 
             // show menu and press element with preventClose attribute set to true
             component.menu.show();
             component.menu.handleKeypress(keyDown);
-            expect(component.state.selectedItem).toBe(component.menu.items.toArray()[1]);
+            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
 
             // press enter
             component.menu.handleKeypress(enter);
 
             // menu is visible
-            expect(component.menu.state.isVisible).toEqual(true);
+            expect(component.state.menuState.isVisible).toEqual(true);
         });
     });
 });

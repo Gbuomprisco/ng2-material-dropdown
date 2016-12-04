@@ -8,12 +8,13 @@ import {
 
 import { Ng2DropdownButton } from '../button/ng2-dropdown-button';
 import { Ng2DropdownMenu } from '../menu/ng2-dropdown-menu';
-import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
+import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-dropdown',
     styles: [require('./style.scss').toString()],
-    template: require('./template.html')
+    template: require('./template.html'),
+    providers: [DropdownStateService]
 })
 export class Ng2Dropdown {
     // get children components
@@ -26,18 +27,14 @@ export class Ng2Dropdown {
     @Output() public onShow: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
     @Output() public onHide: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
 
-    /**
-     * @name state
-     * @type {Ng2DropdownState}
-     */
-    public state: Ng2DropdownState = new Ng2DropdownState();
+    constructor(private state: DropdownStateService) {}
 
     /**
      * @name toggleMenu
      * @desc toggles menu visibility
      */
     public toggleMenu(position = this.button.getPosition()): void {
-        this.menu.state.isVisible ? this.hide() : this.show(position);
+        this.state.menuState.isVisible ? this.hide() : this.show(position);
     }
 
     private hide(): void {
@@ -55,13 +52,13 @@ export class Ng2Dropdown {
 
     @HostListener('window:scroll')
     private scrollListener() {
-        if (this.menu.state.isVisible && this.button) {
+        if (this.state.menuState.isVisible && this.button) {
             this.menu.updatePosition(this.button.getPosition());
         }
     }
 
     ngOnInit() {
-        this.state.onItemClicked.subscribe(item => {
+        this.state.dropdownState.onItemClicked.subscribe(item => {
             this.onItemClicked.emit(item);
 
             if (item.preventClose) {
@@ -77,6 +74,6 @@ export class Ng2Dropdown {
             });
         }
 
-        this.state.onItemSelected.subscribe(item => this.onItemSelected.emit(item));
+        this.state.dropdownState.onItemSelected.subscribe(item => this.onItemSelected.emit(item));
     }
 }

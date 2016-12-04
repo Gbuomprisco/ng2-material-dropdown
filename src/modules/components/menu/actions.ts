@@ -1,5 +1,5 @@
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
-import { Ng2DropdownState } from '../dropdown/ng2-dropdown-state';
+import { Ng2DropdownState } from '../../services/ng2-dropdown-state';
 
 const KEYS = {
     ENTER: 13,

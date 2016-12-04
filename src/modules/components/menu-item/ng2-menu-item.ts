@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
+import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-menu-item',
@@ -27,7 +28,7 @@ export class Ng2MenuItem {
      */
     @Input() public value: any;
 
-    constructor(@Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown) {}
+    constructor(private state: DropdownStateService) {}
 
     /**
      * @name isSelected
@@ -35,7 +36,7 @@ export class Ng2MenuItem {
      * @returns {boolean}
      */
     public get isSelected(): boolean {
-        return this === this.dropdown.state.selectedItem;
+        return this === this.state.dropdownState.selectedItem;
     }
 
     /**
@@ -43,7 +44,7 @@ export class Ng2MenuItem {
      * @desc emits select event
      */
     public select(): void {
-        this.dropdown.state.select(this, true);
+        this.state.dropdownState.select(this, true);
     }
 
     /**
@@ -51,6 +52,6 @@ export class Ng2MenuItem {
      * @desc emits click event
      */
     public click(): void {
-        this.dropdown.state.onItemClicked.emit(this);
+        this.state.dropdownState.onItemClicked.emit(this);
     }
 }

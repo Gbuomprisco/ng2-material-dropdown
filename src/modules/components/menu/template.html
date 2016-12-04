@@ -1,13 +1,13 @@
 <!-- CONTAINER -->
 <div class="ng2-dropdown-menu-container ng2-dropdown-menu-container--{{ width }}"
-     [class.ng2-dropdown-menu-container--open]="state.isVisible"
+     [class.ng2-dropdown-menu-container--open]="state.menuState.isVisible"
      tabindex="0">
 
     <!-- MENU -->
-    <div class='ng2-dropdown-menu' [@fade]="state.toString()">
+    <div class='ng2-dropdown-menu' [@fade]="state.menuState.toString()">
         <ng-content></ng-content>
     </div>
 </div>
 
 <!-- BACKDROP -->
-<div class="ng2-dropdown-backdrop" [hidden]="!state.isVisible" (click)="hide()"></div>
+<div class="ng2-dropdown-backdrop" *ngIf="state.menuState.isVisible" (click)="hide()"></div>
