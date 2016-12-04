@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 import { Ng2DropdownState } from './ng2-dropdown-state';
 
