@@ -1,12 +1,9 @@
 import {
-    fakeAsync,
     ComponentFixture,
-    async,
-    tick,
     TestBed
 } from '@angular/core/testing';
 
-import { Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem } from '../../../index';
+import { Ng2Dropdown } from './ng2-dropdown';
 
 import { By } from '@angular/platform-browser';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,10 +22,6 @@ describe('Ng2Dropdown', () => {
             imports: [BrowserModule, TestModule]
         });
     });
-
-    beforeEach(async(() => {
-        TestBed.compileComponents();
-    }));
 
     describe('when the controller is instantiated', () => {
         it('has its properties defined', () => {

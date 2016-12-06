@@ -6,10 +6,14 @@ import {
     QueryList,
     forwardRef,
     Inject,
-    Input
+    Input,
+    trigger,
+    style,
+    transition,
+    animate,
+    state
 } from '@angular/core';
 
-import { animations } from './animations';
 import { ACTIONS } from './actions';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
@@ -17,9 +21,28 @@ import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
 @Component({
     selector: 'ng2-dropdown-menu',
-    styles: [require('./style.scss').toString()],
-    template: require('./template.html'),
-    animations
+    styleUrls: ['style.scss'],
+    templateUrl: 'template.html',
+    animations: [
+        trigger('fade', [
+            state('visible', style({
+                width: '100%',
+                maxHeight: '350px',
+                opacity: 1
+            })),
+            state('hidden', style({
+                width: '0px',
+                maxHeight: '0px',
+                opacity: 0
+            })),
+            transition('visible => hidden', [
+                animate('100ms ease-out')
+            ]),
+            transition('hidden => visible', [
+                animate('150ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+            ])
+        ])
+    ]
 })
 export class Ng2DropdownMenu {
 
@@ -53,9 +76,9 @@ export class Ng2DropdownMenu {
     private position: ClientRect;
     private listener;
 
-    constructor(@Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown,
-                private element: ElementRef,
-                private renderer: Renderer) {}
+    constructor( @Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown,
+        private element: ElementRef,
+        private renderer: Renderer) { }
 
     /**
      * @name show
@@ -132,7 +155,7 @@ export class Ng2DropdownMenu {
      * @param position
      * @returns {{top: string, left: string}}
      */
-    private calcPositionOffset(position): {top: string, left: string} {
+    private calcPositionOffset(position): { top: string, left: string } {
         var supportPageOffset = window.pageXOffset !== undefined;
         var isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
 
@@ -163,10 +186,10 @@ export class Ng2DropdownMenu {
             left = `${parseInt(left.replace('px', '')) - marginRight}px`;
         }
 
-        return {top, left};
+        return { top, left };
     }
 
-    private applyOffset(top: string, left: string): {top: string, left: string} {
+    private applyOffset(top: string, left: string): { top: string, left: string } {
         if (!this.offset) {
             return { top, left };
         }
