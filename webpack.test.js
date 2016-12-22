@@ -10,24 +10,24 @@ module.exports = {
         loaders: [
             {
                 test: /\.ts$/,
-                loader: 'awesome-typescript-loader'
+                loaders: ['angular2-template-loader', 'awesome-typescript-loader']
             },
             {
                 test: /\.png/,
-                loader: "url-loader",
-                query: { mimetype: "image/png" }
+                loader: 'url-loader',
+                query: { mimetype: 'image/png' }
             },
             {
                 test: /\.css$/,
-                loader: 'css'
+                loader: 'css-loader'
             },
             {
                 test: /\.html$/,
-                loader: "html"
+                loader: 'raw-loader'
             },
             {
                 test: /\.scss$/,
-                loaders: ["style", "css", "sass"]
+                loaders: ['raw-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.svg/,

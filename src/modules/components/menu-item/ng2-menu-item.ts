@@ -10,8 +10,8 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-menu-item',
-    styles: [ require('./style.scss').toString() ],
-    template: require('./template.html')
+    styleUrls: [ 'style.scss' ],
+    templateUrl: 'template.html'
 })
 export class Ng2MenuItem {
     /**
