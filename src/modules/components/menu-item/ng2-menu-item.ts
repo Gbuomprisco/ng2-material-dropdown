@@ -9,8 +9,8 @@ import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 
 @Component({
     selector: 'ng2-menu-item',
-    styles: [ require('./style.scss').toString() ],
-    template: require('./template.html')
+    styleUrls: [ 'style.scss' ],
+    templateUrl: 'template.html'
 })
 export class Ng2MenuItem {
     /**

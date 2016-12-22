@@ -38,7 +38,7 @@ var webpackConfig = {
             // .ts files for TypeScript
             {
                 test: /\.ts$/,
-                loader: 'awesome-typescript-loader'
+                loaders: ['angular2-template-loader', 'awesome-typescript-loader']
             },
             {
                 test: /\.png/,
@@ -114,12 +114,12 @@ var defaultConfig = {
     },
 
     node: {
-        global: 1,
+        global: true,
         crypto: 'empty',
-        module: 0,
-        Buffer: 0,
-        clearImmediate: 0,
-        setImmediate: 0
+        module: false,
+        Buffer: false,
+        clearImmediate: false,
+        setImmediate: false
     }
 };
 
