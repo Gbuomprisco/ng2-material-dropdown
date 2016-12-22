@@ -3,5 +3,5 @@
         <ng-content></ng-content>
     </span>
 
-    <span class="ng2-dropdown-button__caret" [hidden]="!showCaret"></span>
+    <span class="ng2-dropdown-button__caret" *ngIf="showCaret"></span>
 </button>

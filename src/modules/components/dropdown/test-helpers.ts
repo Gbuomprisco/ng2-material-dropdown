@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { Ng2Dropdown, Ng2DropdownButton, Ng2DropdownMenu, Ng2MenuItem } from '../../../index';
+import { Ng2DropdownModule } from '../../../index';
 
 @Component({
     selector: 'basic-dropdown',
@@ -27,12 +27,9 @@ export class BasicDropdown {
 
 @NgModule({
     declarations: [
-        BasicDropdown,
-        Ng2Dropdown,
-        Ng2DropdownMenu,
-        Ng2DropdownButton,
-        Ng2MenuItem
+        BasicDropdown
     ],
+    imports: [Ng2DropdownModule],
     exports: [BasicDropdown]
 })
 export class TestModule {}

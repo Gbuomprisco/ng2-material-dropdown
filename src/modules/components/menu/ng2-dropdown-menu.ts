@@ -18,6 +18,7 @@ import { ACTIONS } from './actions';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
+import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-dropdown-menu',
@@ -57,28 +58,12 @@ export class Ng2DropdownMenu {
      */
     @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
 
-    /**
-     * @name state
-     * @type {{isVisible: boolean, toString: (function(): string)}}
-     */
-    public state = {
-        isVisible: false,
-
-        /**
-         * @returns current state as a string visible|hidden
-         * @returns {string|string}
-         */
-        toString: (): string => {
-            return this.state.isVisible ? 'visible' : 'hidden';
-        }
-    };
-
     private position: ClientRect;
     private listener;
 
-    constructor( @Inject(forwardRef(() => Ng2Dropdown)) private dropdown: Ng2Dropdown,
-        private element: ElementRef,
-        private renderer: Renderer) { }
+    constructor(private state: DropdownStateService,
+                private element: ElementRef,
+                private renderer: Renderer) {}
 
     /**
      * @name show
@@ -88,11 +73,11 @@ export class Ng2DropdownMenu {
         this.renderer.setElementStyle(this.getMenuElement(), 'display', 'block');
 
         // update state
-        this.state.isVisible = true;
+        this.state.menuState.isVisible = true;
 
         // select first item unless user disabled this option
         if (this.focusFirstElement) {
-            this.dropdown.state.select(this.items.first, false);
+            this.state.dropdownState.select(this.items.first, false);
         }
     }
 
@@ -101,12 +86,12 @@ export class Ng2DropdownMenu {
      * @desc hides menu
      */
     public hide(): void {
-        this.state.isVisible = false;
+        this.state.menuState.isVisible = false;
 
         this.renderer.setElementStyle(this.getMenuElement(), 'display', 'none');
 
         // reset selected item state
-        this.dropdown.state.unselect();
+        this.state.dropdownState.unselect();
     }
 
     /**
@@ -125,19 +110,19 @@ export class Ng2DropdownMenu {
      * @param $event
      */
     public handleKeypress($event): void {
-        if (!this.state.isVisible) {
+        if (this.state.menuState.isVisible === false) {
             return;
         }
 
         const key = $event.keyCode,
             items = this.items.toArray(),
-            index = items.indexOf(this.dropdown.state.selectedItem);
+            index = items.indexOf(this.state.dropdownState.selectedItem);
 
         if (!ACTIONS.hasOwnProperty(key)) {
             return;
         }
 
-        ACTIONS[key].call(this, index, items, this.dropdown.state);
+        ACTIONS[key].call(this, index, items, this.state.dropdownState);
 
         $event.preventDefault();
     }
@@ -215,7 +200,7 @@ export class Ng2DropdownMenu {
     }
 
     ngDoCheck() {
-        if (this.state.isVisible) {
+        if (this.state.menuState.isVisible === true) {
             const element = this.getMenuElement();
             const {top, left} = this.calcPositionOffset(this.position);
 
