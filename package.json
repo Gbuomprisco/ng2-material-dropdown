@@ -1,10 +1,10 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "description": "Angular 2 material-like Dropdown Component",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "npm run moveassets && npm run ngc && webpack --colors --progress --display-error-details --display-cached",
+    "build": "tsc && npm run moveassets && npm run ngc && webpack --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --config webpack.demo.js --inline --colors --progress --display-error-details --display-cached --port 3005  --content-base demo",
     "start": "npm run server",
@@ -62,11 +62,11 @@
     "ts-helpers": "1.1.1",
     "ts-node": "^0.7.3",
     "tslint": "^3.5.0",
-    "typescript": "2.0.10",
+    "typescript": "^2.1.1",
     "typings": "~1.0.3",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^0.8.4",
     "zone.js": "0.6.23"
   },
@@ -89,7 +89,6 @@
   "main": "./dist/ng2-dropdown.bundle.js",
   "files": [
     "dist",
-    "src",
     "tsconfig.json",
     "tsconfig.aot.json",
     "index.ts"

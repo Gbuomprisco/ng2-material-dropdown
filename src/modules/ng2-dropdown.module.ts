@@ -5,6 +5,7 @@ import { Ng2MenuItem } from './components/menu-item/ng2-menu-item';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DropdownStateService } from './services/dropdown-state.service';
 
 @NgModule({
     exports: [
@@ -17,9 +18,9 @@ import { CommonModule } from '@angular/common';
         Ng2Dropdown,
         Ng2MenuItem,
         Ng2DropdownButton,
-        Ng2DropdownMenu
+        Ng2DropdownMenu,
     ],
-    imports: [CommonModule]
+    imports: [ CommonModule ]
 })
 export class Ng2DropdownModule {}
 
@@ -27,5 +28,6 @@ export {
     Ng2Dropdown,
     Ng2DropdownMenu,
     Ng2MenuItem,
-    Ng2DropdownButton
+    Ng2DropdownButton,
+    DropdownStateService
 }

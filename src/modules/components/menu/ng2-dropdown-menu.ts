@@ -4,8 +4,6 @@ import {
     Renderer,
     ContentChildren,
     QueryList,
-    forwardRef,
-    Inject,
     Input,
     trigger,
     style,
@@ -17,13 +15,12 @@ import {
 import { ACTIONS } from './actions';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
-import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-dropdown-menu',
-    styleUrls: ['style.scss'],
-    templateUrl: 'template.html',
+    styleUrls: [ './style.scss' ],
+    templateUrl: './template.html',
     animations: [
         trigger('fade', [
             state('visible', style({
@@ -46,7 +43,6 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     ]
 })
 export class Ng2DropdownMenu {
-
     // possible values: 2, 4, 6
     @Input() public width: number = 4;
     @Input() public focusFirstElement: boolean = true;
@@ -141,11 +137,17 @@ export class Ng2DropdownMenu {
      * @returns {{top: string, left: string}}
      */
     private calcPositionOffset(position): { top: string, left: string } {
+        if (!position) {
+            return;
+        }
+
         var supportPageOffset = window.pageXOffset !== undefined;
         var isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
 
-        let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-        let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+        let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ?
+            document.documentElement.scrollLeft : document.body.scrollLeft;
+        let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ?
+            document.documentElement.scrollTop : document.body.scrollTop;
 
         let { top, left } = this.applyOffset(
             `${position.top + y - 15}px`,
@@ -200,12 +202,14 @@ export class Ng2DropdownMenu {
     }
 
     ngDoCheck() {
-        if (this.state.menuState.isVisible === true) {
+        if (this.state.menuState.isVisible && this.position) {
             const element = this.getMenuElement();
-            const {top, left} = this.calcPositionOffset(this.position);
+            const position = this.calcPositionOffset(this.position);
 
-            this.renderer.setElementStyle(element, 'top', top);
-            this.renderer.setElementStyle(element, 'left', left);
+            if (position) {
+                this.renderer.setElementStyle(element, 'top', position.top);
+                this.renderer.setElementStyle(element, 'left', position.left);
+            }
         }
     }
 

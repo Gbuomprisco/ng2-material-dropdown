@@ -1,17 +1,14 @@
 import {
     Component,
-    Input,
-    Inject,
-    forwardRef
+    Input
 } from '@angular/core';
 
-import { Ng2Dropdown } from '../dropdown/ng2-dropdown';
 import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-menu-item',
-    styleUrls: [ 'style.scss' ],
-    templateUrl: 'template.html'
+    styleUrls: [ './style.scss' ],
+    templateUrl: './template.html'
 })
 export class Ng2MenuItem {
     /**

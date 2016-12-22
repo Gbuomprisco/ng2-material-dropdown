@@ -8,8 +8,8 @@ import {
 
 @Component({
     selector: 'ng2-dropdown-button',
-    styleUrls: [ 'style.scss' ],
-    templateUrl: 'template.html'
+    styleUrls: [ './style.scss' ],
+    templateUrl: './template.html'
 })
 export class Ng2DropdownButton {
     @Output() public onMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
