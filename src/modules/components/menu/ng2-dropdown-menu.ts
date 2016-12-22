@@ -61,7 +61,7 @@ export class Ng2DropdownMenu {
     private position: ClientRect;
     private listener;
 
-    constructor(private state: DropdownStateService,
+    constructor(public state: DropdownStateService,
                 private element: ElementRef,
                 private renderer: Renderer) {}
 
