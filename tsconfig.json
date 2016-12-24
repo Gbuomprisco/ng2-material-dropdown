@@ -19,7 +19,8 @@
     "useWebpackText": true
   },
   "angularCompilerOptions": {
-    "genDir": "./ngfactory"
+    "genDir": "./ngfactory",
+    "strictMetadataEmit": false
   },
   "files": [
     "./src/modules/ng2-dropdown.module.ts"
