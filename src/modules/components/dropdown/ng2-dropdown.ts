@@ -37,11 +37,20 @@ export class Ng2Dropdown {
         this.state.menuState.isVisible ? this.hide() : this.show(position);
     }
 
-    private hide(): void {
+    /**
+     * - hides dropdown
+     * @name hide
+     */
+    public hide(): void {
         this.menu.hide();
         this.onHide.emit(this);
     }
 
+    /**
+     * - shows dropdown
+     * @name show
+     * @param position
+     */
     private show(position = this.button.getPosition()): void {
         this.menu.show();
 
@@ -50,6 +59,9 @@ export class Ng2Dropdown {
         this.onShow.emit(this);
     }
 
+    /**
+     * @name scrollListener
+     */
     @HostListener('window:scroll')
     private scrollListener() {
         if (this.state.menuState.isVisible && this.button) {
