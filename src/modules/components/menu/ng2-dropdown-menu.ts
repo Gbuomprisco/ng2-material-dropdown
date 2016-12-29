@@ -12,7 +12,7 @@ import {
     state
 } from '@angular/core';
 
-import { ACTIONS } from './actions';
+import { ACTIONS, arrowKeysHandler } from './actions';
 
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { DropdownStateService } from '../../services/dropdown-state.service';
@@ -73,6 +73,8 @@ export class Ng2DropdownMenu {
         if (this.focusFirstElement) {
             this.state.dropdownState.select(this.items.first, false);
         }
+
+        window.addEventListener('keydown', arrowKeysHandler, false);
     }
 
     /**
@@ -86,6 +88,8 @@ export class Ng2DropdownMenu {
 
         // reset selected item state
         this.state.dropdownState.unselect();
+
+        window.removeEventListener('keydown', arrowKeysHandler, false);
     }
 
     /**
@@ -119,6 +123,7 @@ export class Ng2DropdownMenu {
         ACTIONS[key].call(this, index, items, this.state.dropdownState);
 
         $event.preventDefault();
+        $event.stopPropagation();
     }
 
     /**

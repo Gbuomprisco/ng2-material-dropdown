@@ -44,8 +44,12 @@ export class Ng2MenuItem {
      * @name click
      * @desc emits select event
      */
-    public select(): void {
+    public select($event?): void {
         this.state.dropdownState.select(this, true);
+        if ($event) {
+            $event.stopPropagation();
+            $event.preventDefault();
+        }
     }
 
     /**
