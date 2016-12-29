@@ -24,20 +24,18 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     animations: [
         trigger('fade', [
             state('visible', style({
-                width: '100%',
-                maxHeight: '350px',
+                maxHeight: '400px',
                 opacity: 1
             })),
             state('hidden', style({
-                width: '0px',
-                maxHeight: '0px',
+                maxHeight: '0',
                 opacity: 0
             })),
             transition('visible => hidden', [
-                animate('100ms ease-out')
+                animate('250ms ease-out')
             ]),
             transition('hidden => visible', [
-                animate('150ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+                animate('300ms cubic-bezier(0.55, 0, 0.55, 0.2)')
             ])
         ])
     ]
@@ -46,6 +44,7 @@ export class Ng2DropdownMenu {
     // possible values: 2, 4, 6
     @Input() public width: number = 4;
     @Input() public focusFirstElement: boolean = true;
+    @Input() public offset: string;
     @Input() public offset: string;
 
     /**

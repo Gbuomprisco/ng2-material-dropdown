@@ -1,11 +1,11 @@
 .ng2-menu-item {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial;
 
-    padding: 0 1.25rem;
+    padding: 0.3em 1.25rem;
     background: #fff;
-    color: #444;
+    color: rgba(0, 0, 0, 0.87);
     cursor: pointer;
-    font-size: 15px;
+    font-size: 0.9em;
     text-transform: none;
     font-weight: 400;
     transition: background 0.2s;
@@ -19,7 +19,7 @@
 }
 
 .ng2-menu-item--selected {
-    background: #f9f9f9;
+    background: rgba(158, 158, 158, 0.2);
     outline: 0;
 }
 
@@ -28,13 +28,13 @@
 }
 
 .ng2-menu-item:active {
-    background: #eee;
+    background: rgba(158, 158, 158, 0.4);
 }
 
-.ng2-menu-item [ng2-menu-item-icon] {
-    vertical-align: bottom;
+:host(ng2-menu-item) /deep/ [ng2-menu-item-icon] {
+    vertical-align: middle;
     font-size: 28px;
-    width: 40px;
-    height: 40px;
-    color: rgba(0, 0, 0, 0.54);
+    width: 1.5em;
+    height: 30px;
+    color: rgba(0, 0, 0, 0.44);
 }

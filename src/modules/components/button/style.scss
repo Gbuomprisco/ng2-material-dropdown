@@ -1,5 +1,6 @@
 .ng2-dropdown-button {
-    font-family: "Helvetica Neue", Helvetica, Arial;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial;
+
     background: #fff;
     padding: 0.45rem 0.25rem;
     font-size: 14px;
@@ -15,7 +16,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    max-width: 240px;
+    max-width: 150px;
 }
 
 .ng2-dropdown-button:hover {
@@ -36,4 +37,19 @@
     height: 12px;
     display: flex;
     flex: 1 1 6%;
+}
+
+:host-context(.ng2-dropdown-button--icon) .ng2-dropdown-button {
+    border: none;
+    min-width: 40px;
+    width: 40px;
+    border-radius: 100%;
+    transition: all 0.2s;
+    text-align: center;
+    height: 40px;
+    padding: 0.5em;
+}
+
+:host-context(.ng2-dropdown-button--icon) .ng2-dropdown-button:active {
+    background: rgba(0, 0, 0, 0.2);
 }

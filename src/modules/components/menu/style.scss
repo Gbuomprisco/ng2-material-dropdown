@@ -2,20 +2,18 @@
     position: absolute;
     z-index: 2;
     overflow-y: auto;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-    padding: 0.5em 0;
-    background: #fff;
-    border-radius: 2px;
-    display: none;
-    max-height: 400px;
+    visibility: hidden;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    width: 0;
+    transition: width 0.5s;
 }
 
-.ng2-dropdown-menu-container.ng2-dropdown-menu-container--open {
-    display: block;
+.ng2-dropdown-menu-container--open {
+    visibility: visible;
 }
 
 .ng2-dropdown-menu-container--2 {
-    width: 150px;
+    width: 180px;
 }
 
 // default
@@ -35,6 +33,11 @@
 
 .ng2-dropdown-menu {
     position: relative;
+    padding: 0.5em 0;
+    background: #fff;
+    border-radius: 2px;
+    max-height: 400px;
+    display: block;
 }
 
 .ng2-dropdown-menu * {
@@ -55,7 +58,7 @@
     z-index: 1;
 }
 
-.ng2-menu-divider {
+:host /deep/ .ng2-menu-divider {
     height: 1px;
     min-height: 1px;
     max-height: 1px;

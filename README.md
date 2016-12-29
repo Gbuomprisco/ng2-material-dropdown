@@ -46,12 +46,11 @@ export class MyModule {}
 ## API
 
 `ng2-dropdown`
-
+- **`dynamicUpdate`** - **`[?boolean]`** : option to disable the dynamic update of the position on scroll events (defaults to `true`)
 - **`onItemSelected()`** - **`[(onItemSelected($event)]`** : event that emits the currently selected/hovered item
 - **`onItemClicked()`** - **`[(onItemClicked($event)]`** : event that emits the item clicked on
 - **`onShow()`** - **`[(onItemClicked($event)]`** : event that emits when the dropdown gets shown
 - **`onHide()`** - **`[(onItemClicked($event)]`** : event that emits when the dropdown gets hidden
-
 
 `ng2-dropdown-menu`
 - **`focusFirstElement`** - **`[?boolean]`** : by default the first element is immediately focused. You can disable by setting this option to false

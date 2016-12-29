@@ -3,7 +3,8 @@ import {
     Component,
     ContentChild,
     Output,
-    EventEmitter
+    EventEmitter,
+    Input
 } from '@angular/core';
 
 import { Ng2DropdownButton } from '../button/ng2-dropdown-button';
@@ -20,6 +21,8 @@ export class Ng2Dropdown {
     // get children components
     @ContentChild(Ng2DropdownButton) public button: Ng2DropdownButton;
     @ContentChild(Ng2DropdownMenu) public menu: Ng2DropdownMenu;
+
+    @Input() public dynamicUpdate: boolean = true;
 
     // outputs
     @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<string>();
@@ -64,7 +67,7 @@ export class Ng2Dropdown {
      */
     @HostListener('window:scroll')
     private scrollListener() {
-        if (this.state.menuState.isVisible && this.button) {
+        if (this.state.menuState.isVisible && this.button && this.dynamicUpdate) {
             this.menu.updatePosition(this.button.getPosition());
         }
     }

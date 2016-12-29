@@ -51,7 +51,6 @@
         </ng2-dropdown>
     </div>
 
-
     <div>
         <h2>Dropdown with width = 2</h2>
         <ng2-dropdown>
@@ -68,6 +67,28 @@
                 </ng2-menu-item>
             </ng2-dropdown-menu>
         </ng2-dropdown>
+    </div>
+
+    <div>
+        <h2>Dropdown with icon</h2>
+        <div>
+            <ng2-dropdown>
+                <ng2-dropdown-button class="ng2-dropdown-button--icon" [showCaret]="false">
+                    <i class="material-icons" ng2-menu-item-icon>menu_vert</i>
+                </ng2-dropdown-button>
+                <ng2-dropdown-menu [width]="4">
+                    <ng2-menu-item>
+                        Home
+                    </ng2-menu-item>
+                    <ng2-menu-item>
+                        About
+                    </ng2-menu-item>
+                    <ng2-menu-item>
+                        Logout
+                    </ng2-menu-item>
+                </ng2-dropdown-menu>
+            </ng2-dropdown>
+        </div>
     </div>
 
     <div>

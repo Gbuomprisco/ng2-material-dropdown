@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var path = require('path');
 var precss       = require('precss');
 var autoprefixer = require('autoprefixer');
-const { CheckerPlugin } = require('awesome-typescript-loader');
 
 // Webpack Config
 var webpackConfig = {
@@ -14,8 +13,7 @@ var webpackConfig = {
         path: './dist'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'polyfills'], minChunks: Infinity }),
-        new CheckerPlugin()
+        new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'polyfills'], minChunks: Infinity })
     ],
     tslint: {
         emitErrors: false,
