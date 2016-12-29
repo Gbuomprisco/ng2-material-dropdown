@@ -27,6 +27,7 @@ export class Ng2DropdownState {
             return;
         }
 
+        item.focus();
         this.onItemSelected.emit(item);
     }
 

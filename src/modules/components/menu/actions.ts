@@ -2,7 +2,6 @@ import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 import { Ng2DropdownState } from '../../services/ng2-dropdown-state';
 
 const KEYS = {
-    ENTER: 13,
     BACKSPACE: 9,
     PREV: 38,
     NEXT: 40
@@ -28,17 +27,8 @@ const onBackspace = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStat
     }
 };
 
-const onEnter = (index: number, items: Ng2MenuItem[], state: Ng2DropdownState) => {
-    if (!state.selectedItem) {
-        return;
-    }
-
-    state.onItemClicked.emit(state.selectedItem);
-};
-
 export const ACTIONS = {
     [KEYS.BACKSPACE]: onBackspace,
     [KEYS.PREV]: onSwitchPrev,
-    [KEYS.NEXT]: onSwitchNext,
-    [KEYS.ENTER]: onEnter
+    [KEYS.NEXT]: onSwitchNext
 };

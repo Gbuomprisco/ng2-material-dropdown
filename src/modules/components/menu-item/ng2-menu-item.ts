@@ -1,6 +1,8 @@
 import {
     Component,
-    Input
+    Input,
+    Renderer,
+    ElementRef
 } from '@angular/core';
 
 import { DropdownStateService } from '../../services/dropdown-state.service';
@@ -25,7 +27,9 @@ export class Ng2MenuItem {
      */
     @Input() public value: any;
 
-    constructor(private state: DropdownStateService) {}
+    constructor(private state: DropdownStateService,
+                private element: ElementRef,
+                private renderer: Renderer) {}
 
     /**
      * @name isSelected
@@ -50,5 +54,12 @@ export class Ng2MenuItem {
      */
     public click(): void {
         this.state.dropdownState.onItemClicked.emit(this);
+    }
+
+    /**
+     * @name focus
+     */
+    public focus() {
+        this.renderer.invokeElementMethod(this.element.nativeElement.children[0], 'focus', []);
     }
 }

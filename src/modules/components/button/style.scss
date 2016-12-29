@@ -23,7 +23,8 @@
     color: #222;
 }
 
-.ng2-dropdown-button:active {
+.ng2-dropdown-button:active,
+.ng2-dropdown-button:focus {
     color: #222;
     border-bottom: 2px solid #2196F3;
 }
