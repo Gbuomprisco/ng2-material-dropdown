@@ -45,7 +45,6 @@ export class Ng2DropdownMenu {
     @Input() public width: number = 4;
     @Input() public focusFirstElement: boolean = true;
     @Input() public offset: string;
-    @Input() public offset: string;
 
     /**
      * @name items
