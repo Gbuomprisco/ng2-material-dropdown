@@ -34,7 +34,7 @@ export const ACTIONS = {
 };
 
 export function arrowKeysHandler(event): void {
-    if ([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+    if ([38, 40].indexOf(event.keyCode) > -1) {
         event.preventDefault();
     }
 }
