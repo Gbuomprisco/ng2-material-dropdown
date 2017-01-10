@@ -4,4 +4,4 @@ export {
     Ng2MenuItem,
     Ng2DropdownButton,
     Ng2DropdownModule
-} from './dist/src/index';
+} from './dist/src/modules/ng2-dropdown.module';
