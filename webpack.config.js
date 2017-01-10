@@ -7,7 +7,7 @@ var autoprefixer = require('autoprefixer');
 var webpackConfig = {
     entry: {
         'vendor': ['@angular/core', '@angular/common'],
-        'ng2-dropdown': './src/index.ts'
+        'ng2-dropdown': './src/modules/ng2-dropdown.module.ts'
     },
 
     output: {
