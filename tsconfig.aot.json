@@ -19,7 +19,7 @@
   },
   "angularCompilerOptions": {
     "genDir": "factories",
-    "debug": true
+    "skipMetadataEmit": true
   },
   "files": [
     "src/modules/ng2-dropdown.module.ts"
