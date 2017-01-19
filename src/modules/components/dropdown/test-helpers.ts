@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { Ng2DropdownModule } from '../../../index';
+import { Ng2DropdownModule } from '../../ng2-dropdown.module';
 
 @Component({
     selector: 'basic-dropdown',

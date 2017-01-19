@@ -7,8 +7,11 @@
     "outDir": "dist",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "stripInternal": true,
     "declaration": true,
     "sourceMap": true,
+    "inlineSources": true,
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "rootDir": ".",
     "types": ["node", "es6-shim", "es6-collections", "jasmine"]
@@ -19,7 +22,7 @@
   },
   "angularCompilerOptions": {
     "genDir": "factories",
-    "skipMetadataEmit": true
+    "strictMetadataEmit": true
   },
   "files": [
     "src/modules/ng2-dropdown.module.ts"
