@@ -1,32 +1,32 @@
 .ng2-dropdown-menu-container {
     position: fixed;
     z-index: 100;
-    overflow-y: auto;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    background: #fff;
 }
 
-.ng2-dropdown-menu-container--2 {
+.ng2-dropdown-menu-container--2 .ng2-dropdown-menu {
     width: 180px;
 }
 
 // default
-.ng2-dropdown-menu-container--4 {
+.ng2-dropdown-menu-container--4 .ng2-dropdown-menu {
     width: 250px;
 }
 
 // default
-.ng2-dropdown-menu-container--6 {
+.ng2-dropdown-menu-container--6 .ng2-dropdown-menu {
     width: 320px;
 }
 
-.ng2-dropdown-menu-container:focus {
+.ng2-dropdown-menu-container:focus .ng2-dropdown-menu {
     outline: 0;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 .ng2-dropdown-menu {
-    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+
+    position: absolute;
     padding: 0.5em 0;
     background: #fff;
     border-radius: 2px;
