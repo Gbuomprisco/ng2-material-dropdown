@@ -46,6 +46,7 @@ export class Ng2MenuItem {
      */
     public select($event?): void {
         this.state.dropdownState.select(this, true);
+
         if ($event) {
             $event.stopPropagation();
             $event.preventDefault();
@@ -64,6 +65,6 @@ export class Ng2MenuItem {
      * @name focus
      */
     public focus() {
-        this.renderer.invokeElementMethod(this.element.nativeElement.children[0], 'focus', []);
+        this.renderer.invokeElementMethod(this.element.nativeElement.children[0], 'focus');
     }
 }
