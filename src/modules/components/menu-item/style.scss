@@ -1,7 +1,6 @@
 .ng2-menu-item {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial;
 
-    padding: 0.3em 1.25rem;
     background: #fff;
     color: rgba(0, 0, 0, 0.87);
     cursor: pointer;
@@ -10,12 +9,14 @@
     font-weight: 400;
     transition: background 0.2s;
     letter-spacing: 0.03em;
+
     height: 48px;
     line-height: 48px;
+    padding: 0.3em 1.25rem;
 
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .ng2-menu-item--selected {

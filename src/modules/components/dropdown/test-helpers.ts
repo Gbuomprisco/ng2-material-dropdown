@@ -9,7 +9,7 @@ import { Ng2DropdownModule } from '../../ng2-dropdown.module';
             <ng2-dropdown-button>
                 Open
             </ng2-dropdown-button>
-            <ng2-dropdown-menu>
+            <ng2-dropdown-menu [focusFirstElement]="true">
                 <ng2-menu-item>
                     First item
                 </ng2-menu-item>

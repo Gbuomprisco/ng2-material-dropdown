@@ -14,7 +14,8 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "rootDir": ".",
-    "types": ["node", "es6-shim", "jasmine"],
+    "types": ["node", "jasmine"],
+    "lib": ["dom", "es2015"],
     "suppressImplicitAnyIndexErrors": true
   },
   "awesomeTypescriptLoaderOptions": {
@@ -23,7 +24,7 @@
   },
   "angularCompilerOptions": {
     "genDir": "./ngfactory",
-    "skipMetadataEmit": true
+    "strictMetadataEmit": true
   },
   "files": [
     "./src/modules/ng2-dropdown.module.ts"

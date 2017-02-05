@@ -9,6 +9,7 @@ import {
     style,
     transition,
     animate,
+    keyframes,
     state
 } from '@angular/core';
 
@@ -23,28 +24,49 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     templateUrl: './template.html',
     animations: [
         trigger('fade', [
-            state('visible', style({
-                maxHeight: '400px',
-                opacity: 1
-            })),
-            state('hidden', style({
-                maxHeight: '0',
-                opacity: 0
-            })),
-            transition('visible => hidden', [
-                animate('250ms ease-out')
-            ]),
+            state('visible', style({opacity: '1', height: '*', width: '*', display: 'block'})),
+            state('hidden', style({opacity: '0', height: '0', width: '0', display: 'none'})),
             transition('hidden => visible', [
-                animate('300ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+                animate(200, keyframes([
+                    style({opacity: 0, offset: 0, height: '0', width: '0'}),
+                    style({opacity: 1, offset: 1, height: '*', width: '*'}),
+                ]))
+            ]),
+            transition('visible => hidden', [
+                animate(200, keyframes([
+                    style({opacity: 1, offset: 0}),
+                    style({opacity: 0.5, offset: 0.5}),
+                    style({opacity: 0, offset: 1, height: '0', width: '0'}),
+                ]))
             ])
         ])
     ]
 })
 export class Ng2DropdownMenu {
-    // possible values: 2, 4, 6
+    /**
+     * @name width
+     * @type {number} [2, 4, 6]
+     */
     @Input() public width: number = 4;
+
+    /**
+     * @description if set to true, the first element of the dropdown will be automatically focused
+     * @name focusFirstElement
+     * @type {boolean}
+     */
     @Input() public focusFirstElement: boolean = true;
+
+    /**
+     * @description sets dropdown offset from the button
+     * @name offset {string} follow format '<number> <number>' ex. '0 20'
+     */
     @Input() public offset: string;
+
+    /**
+     * @name appendToBody
+     * @type {boolean}
+     */
+    @Input() public appendToBody: boolean = true;
 
     /**
      * @name items
@@ -68,11 +90,6 @@ export class Ng2DropdownMenu {
 
         // update state
         this.state.menuState.isVisible = true;
-
-        // select first item unless user disabled this option
-        if (this.focusFirstElement) {
-            this.state.dropdownState.select(this.items.first, false);
-        }
 
         window.addEventListener('keydown', arrowKeysHandler, false);
     }
@@ -112,9 +129,9 @@ export class Ng2DropdownMenu {
             return;
         }
 
-        const key = $event.keyCode,
-            items = this.items.toArray(),
-            index = items.indexOf(this.state.dropdownState.selectedItem);
+        const key = $event.keyCode;
+        const items = this.items.toArray();
+        const index = items.indexOf(this.state.dropdownState.selectedItem);
 
         if (!ACTIONS.hasOwnProperty(key)) {
             return;
@@ -144,12 +161,13 @@ export class Ng2DropdownMenu {
             return;
         }
 
-        var supportPageOffset = window.pageXOffset !== undefined;
-        var isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
+        const supportPageOffset = window.pageXOffset !== undefined;
+        const isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
 
-        let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ?
+        const x = supportPageOffset ? window.pageXOffset : isCSS1Compat ?
             document.documentElement.scrollLeft : document.body.scrollLeft;
-        let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ?
+
+        const y = supportPageOffset ? window.pageYOffset : isCSS1Compat ?
             document.documentElement.scrollTop : document.body.scrollTop;
 
         let { top, left } = this.applyOffset(
@@ -157,15 +175,15 @@ export class Ng2DropdownMenu {
             `${position.left + x - 5}px`
         );
 
-        const element = this.getMenuElement(),
-            clientWidth = element.clientWidth,
-            clientHeight = element.clientHeight,
+        const element = this.getMenuElement();
+        const clientWidth = element.clientWidth;
+        const clientHeight = element.clientHeight;
 
-            marginFromBottom = parseInt(top) + clientHeight,
-            marginFromRight = parseInt(left) + clientWidth,
+        const marginFromBottom = parseInt(top) + clientHeight;
+        const marginFromRight = parseInt(left) + clientWidth;
 
-            windowScrollHeight = window.innerHeight + window.scrollY,
-            windowScrollWidth = window.innerWidth + window.scrollX;
+        const windowScrollHeight = window.innerHeight + window.scrollY;
+        const windowScrollWidth = window.innerWidth + window.scrollX;
 
         if (marginFromBottom >= windowScrollHeight) {
             top = `${parseInt(top.replace('px', '')) - clientHeight}px`;
@@ -197,22 +215,32 @@ export class Ng2DropdownMenu {
     }
 
     ngOnInit() {
-        // append menu element to the body
         const body = document.querySelector('body');
-        body.appendChild(this.element.nativeElement);
+
+        if (this.appendToBody) {
+            // append menu element to the body
+            body.appendChild(this.element.nativeElement);
+        }
 
         this.listener = this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
     }
 
     ngDoCheck() {
-        if (this.state.menuState.isVisible && this.position) {
-            const element = this.getMenuElement();
-            const position = this.calcPositionOffset(this.position);
+        if (!(this.state.menuState.isVisible && this.position)) {
+            return;
+        }
 
-            if (position) {
-                this.renderer.setElementStyle(element, 'top', position.top);
-                this.renderer.setElementStyle(element, 'left', position.left);
-            }
+        const element = this.getMenuElement();
+        const position = this.calcPositionOffset(this.position);
+
+        if (position) {
+            this.renderer.setElementStyle(element, 'top', position.top);
+            this.renderer.setElementStyle(element, 'left', position.left);
+        }
+
+        // select first item unless user disabled this option
+        if (this.focusFirstElement && !this.state.dropdownState.selectedItem) {
+            this.state.dropdownState.select(this.items.first, false);
         }
     }
 

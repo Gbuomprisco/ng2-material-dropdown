@@ -13,7 +13,6 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-dropdown',
-    styleUrls: [ './style.scss' ],
     templateUrl: './template.html',
     providers: [ DropdownStateService ]
 })
@@ -54,7 +53,7 @@ export class Ng2Dropdown {
      * @name show
      * @param position
      */
-    private show(position = this.button.getPosition()): void {
+    public show(position = this.button.getPosition()): void {
         this.menu.show();
 
         // update menu position based on its button's
