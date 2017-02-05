@@ -239,8 +239,10 @@ export class Ng2DropdownMenu {
         }
 
         // select first item unless user disabled this option
-        if (this.focusFirstElement && !this.state.dropdownState.selectedItem) {
-            this.state.dropdownState.select(this.items.first, false);
+        if (this.focusFirstElement &&
+            this.items.first &&
+            !this.state.dropdownState.selectedItem) {
+                this.state.dropdownState.select(this.items.first, false);
         }
     }
 
