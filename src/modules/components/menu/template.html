@@ -1,12 +1,9 @@
-<!-- CONTAINER -->
-<div class="ng2-dropdown-menu-container ng2-dropdown-menu-container--{{ width }}"
-     [class.ng2-dropdown-menu-container--open]="state.menuState.isVisible"
-     tabindex="-1">
-
-    <!-- MENU -->
-    <div class='ng2-dropdown-menu' [@fade]="state.menuState.toString()">
+<!-- MENU -->
+<div class='ng2-dropdown-menu ng2-dropdown-menu---width--{{ width }}'
+     [class.ng2-dropdown-menu--inside-element]="!appendToBody"
+     [class.ng2-dropdown-menu--open]="state.menuState.isVisible"
+     [@fade]="state.menuState.toString()">
         <ng-content></ng-content>
-    </div>
 </div>
 
 <!-- BACKDROP -->
