@@ -7,7 +7,6 @@
     font-size: 0.9em;
     text-transform: none;
     font-weight: 400;
-    transition: background 0.2s;
     letter-spacing: 0.03em;
 
     height: 48px;
@@ -17,6 +16,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    transition: background 0.25s;
 }
 
 .ng2-menu-item--selected {

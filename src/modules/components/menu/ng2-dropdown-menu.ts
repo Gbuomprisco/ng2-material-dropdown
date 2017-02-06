@@ -24,19 +24,33 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     templateUrl: './template.html',
     animations: [
         trigger('fade', [
-            state('visible', style({opacity: '1', height: '*', width: '*', display: 'block'})),
-            state('hidden', style({opacity: '0', height: '0', width: '0', display: 'none'})),
+            state('visible', style({display: 'block', overflow: '*'})),
+            state('hidden', style({display: 'none', overflow: 'hidden', width: '0'})),
             transition('hidden => visible', [
-                animate(200, keyframes([
+                animate(150, keyframes([
                     style({opacity: 0, offset: 0, height: '0', width: '0'}),
                     style({opacity: 1, offset: 1, height: '*', width: '*'}),
                 ]))
             ]),
             transition('visible => hidden', [
+                animate(250, keyframes([
+                    style({opacity: 1, offset: 0, height: '*', width: '*'}),
+                    style({opacity: 0, offset: 1, height: '0', width: '0'}),
+                ]))
+            ])
+        ]),
+        trigger('opacity', [
+            transition('hidden => visible', [
+                animate(450, keyframes([
+                    style({opacity: 0, offset: 0}),
+                    style({opacity: 1, offset: 1}),
+                ]))
+            ]),
+            transition('visible => hidden', [
                 animate(200, keyframes([
                     style({opacity: 1, offset: 0}),
-                    style({opacity: 0.5, offset: 0.5}),
-                    style({opacity: 0, offset: 1, height: '0', width: '0'}),
+                    style({opacity: 0.5, offset: 0.3}),
+                    style({opacity: 0, offset: 1}),
                 ]))
             ])
         ])
@@ -75,7 +89,11 @@ export class Ng2DropdownMenu {
     @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
 
     private position: ClientRect;
-    private listener;
+
+    private listeners = {
+        arrowHandler: undefined,
+        handleKeypress: undefined
+    };
 
     constructor(public state: DropdownStateService,
                 private element: ElementRef,
@@ -86,12 +104,9 @@ export class Ng2DropdownMenu {
      * @shows menu and selects first item
      */
     public show(): void {
-        this.renderer.setElementStyle(this.getMenuElement(), 'display', 'block');
-
         // update state
         this.state.menuState.isVisible = true;
-
-        window.addEventListener('keydown', arrowKeysHandler, false);
+        this.listeners.arrowHandler = this.renderer.listen(window, 'keydown', arrowKeysHandler);
     }
 
     /**
@@ -101,12 +116,11 @@ export class Ng2DropdownMenu {
     public hide(): void {
         this.state.menuState.isVisible = false;
 
-        this.renderer.setElementStyle(this.getMenuElement(), 'display', 'none');
-
         // reset selected item state
         this.state.dropdownState.unselect();
 
-        window.removeEventListener('keydown', arrowKeysHandler, false);
+        // call function to unlisten
+        this.listeners.arrowHandler();
     }
 
     /**
@@ -222,7 +236,7 @@ export class Ng2DropdownMenu {
             body.appendChild(this.element.nativeElement);
         }
 
-        this.listener = this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
+        this.listeners.handleKeypress = this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
     }
 
     ngDoCheck() {
@@ -250,8 +264,8 @@ export class Ng2DropdownMenu {
         const elem = this.element.nativeElement;
         elem.parentNode.removeChild(elem);
 
-        if (this.listener) {
-            this.listener();
+        if (this.listeners.handleKeypress) {
+            this.listeners.handleKeypress();
         }
     }
 }

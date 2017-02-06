@@ -7,10 +7,10 @@
     position: absolute;
     padding: 0.5em 0;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 1px;
 
     max-height: 400px;
-    min-width: 180px;
+    width: 260px;
 
     display: block;
 }
@@ -19,25 +19,16 @@
     position: fixed;
 }
 
-.ng2-dropdown-menu--width--2 {
-    width: 180px;
+.ng2-dropdown-menu.ng2-dropdown-menu--width--2 {
+    width: 200px;
 }
 
-.ng2-dropdown-menu--width--4 {
-    width: 250px;
+.ng2-dropdown-menu.ng2-dropdown-menu--width--4 {
+    width: 260px;
 }
 
-.ng2-dropdown-menu--width--6 {
+.ng2-dropdown-menu.ng2-dropdown-menu--width--6 {
     width: 320px;
-}
-
-.ng2-dropdown-menu * {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.ng2-dropdown-menu--open * {
-    opacity: 1;
 }
 
 .ng2-dropdown-backdrop {

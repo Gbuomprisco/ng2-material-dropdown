@@ -17,8 +17,7 @@
     "types": ["node", "es6-shim", "es6-collections", "jasmine"]
   },
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
+    "forkChecker": true
   },
   "angularCompilerOptions": {
     "genDir": "factories",

@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Angular material-like dropdown component",
   "scripts": {
     "prepublish": "npm run build",
@@ -31,7 +31,7 @@
     "@types/es6-shim": "0.0.22-alpha",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^6.0.39",
-    "angular2-template-loader": "^0.6.0",
+    "angular2-template-loader": "0.6.0",
     "autoprefixer": "^6.3.7",
     "awesome-typescript-loader": "3.0.0-beta.10",
     "core-js": "^2.2.0",

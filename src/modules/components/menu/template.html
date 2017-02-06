@@ -3,7 +3,10 @@
      [class.ng2-dropdown-menu--inside-element]="!appendToBody"
      [class.ng2-dropdown-menu--open]="state.menuState.isVisible"
      [@fade]="state.menuState.toString()">
-        <ng-content></ng-content>
+        <div class="ng2-dropdown-menu__options-container"
+             [@opacity]="state.menuState.toString()">
+            <ng-content></ng-content>
+        </div>
 </div>
 
 <!-- BACKDROP -->

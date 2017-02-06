@@ -19,8 +19,7 @@
     "suppressImplicitAnyIndexErrors": true
   },
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
+    "forkChecker": true
   },
   "angularCompilerOptions": {
     "genDir": "./ngfactory",

@@ -22,11 +22,12 @@ export class Ng2DropdownState {
      */
     public select(item: Ng2MenuItem, dispatchEvent = true): void {
         this._selectedItem = item;
-        item.focus();
 
         if (!dispatchEvent) {
             return;
         }
+
+        item.focus();
 
         this.onItemSelected.emit(item);
     }
