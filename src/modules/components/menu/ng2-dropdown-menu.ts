@@ -106,6 +106,9 @@ export class Ng2DropdownMenu {
     public show(): void {
         // update state
         this.state.menuState.isVisible = true;
+
+        // setting handlers
+        this.listeners.handleKeypress = this.renderer.listen(document.body, 'keydown', this.handleKeypress.bind(this));
         this.listeners.arrowHandler = this.renderer.listen(window, 'keydown', arrowKeysHandler);
     }
 
@@ -121,6 +124,7 @@ export class Ng2DropdownMenu {
 
         // call function to unlisten
         this.listeners.arrowHandler();
+        this.listeners.handleKeypress();
     }
 
     /**
@@ -139,10 +143,6 @@ export class Ng2DropdownMenu {
      * @param $event
      */
     public handleKeypress($event): void {
-        if (this.state.menuState.isVisible === false) {
-            return;
-        }
-
         const key = $event.keyCode;
         const items = this.items.toArray();
         const index = items.indexOf(this.state.dropdownState.selectedItem);
@@ -229,14 +229,10 @@ export class Ng2DropdownMenu {
     }
 
     ngOnInit() {
-        const body = document.querySelector('body');
-
         if (this.appendToBody) {
             // append menu element to the body
-            body.appendChild(this.element.nativeElement);
+            document.body.appendChild(this.element.nativeElement);
         }
-
-        this.listeners.handleKeypress = this.renderer.listen(body, 'keyup', this.handleKeypress.bind(this));
     }
 
     ngDoCheck() {
