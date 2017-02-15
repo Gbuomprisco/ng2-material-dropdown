@@ -56,6 +56,8 @@ export class MyModule {}
 - **`focusFirstElement`** - **`[?boolean]`** : by default the first element is immediately focused. You can disable by setting this option to false
 - **`width`** - **`[?number]`**: this determines the width of the menu. Possible values are 2, 4 and 6. By default, this is set to 4
 - **`offset`** - **`[?string]`**: offset to adjust the position of the dropdown with absolute values
+- **`appendToBody`** - **`[?boolean]`** : by default the dropdown is appended to the body, but you can disable this by setting it to `false`
+
 
 `ng2-dropdown-button`
 - **`showCaret`** - **`[?boolean]`** : if present, a caret will be appended to the button's text

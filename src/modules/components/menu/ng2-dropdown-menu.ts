@@ -174,7 +174,8 @@ export class Ng2DropdownMenu {
         if (!position) {
             return;
         }
-
+        
+        const element = this.getMenuElement();
         const supportPageOffset = window.pageXOffset !== undefined;
         const isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
 
@@ -185,15 +186,14 @@ export class Ng2DropdownMenu {
             document.documentElement.scrollTop : document.body.scrollTop;
 
         let { top, left } = this.applyOffset(
-            `${position.top + y - 15}px`,
+            `${position.top + (this.appendToBody ? y - 15 : 0)}px`,
             `${position.left + x - 5}px`
         );
 
-        const element = this.getMenuElement();
         const clientWidth = element.clientWidth;
         const clientHeight = element.clientHeight;
 
-        const marginFromBottom = parseInt(top) + clientHeight;
+        const marginFromBottom = parseInt(top) + clientHeight + (this.appendToBody ? 0 : y - 15);
         const marginFromRight = parseInt(left) + clientWidth;
 
         const windowScrollHeight = window.innerHeight + window.scrollY;
