@@ -65,13 +65,13 @@ export class Ng2Dropdown {
      * @name scrollListener
      */
     @HostListener('window:scroll')
-    private scrollListener() {
+    public scrollListener() {
         if (this.state.menuState.isVisible && this.button && this.dynamicUpdate) {
             this.menu.updatePosition(this.button.getPosition());
         }
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.state.dropdownState.onItemClicked.subscribe(item => {
             this.onItemClicked.emit(item);
 

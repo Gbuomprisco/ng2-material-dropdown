@@ -228,14 +228,14 @@ export class Ng2DropdownMenu {
         return { top, left };
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         if (this.appendToBody) {
             // append menu element to the body
             document.body.appendChild(this.element.nativeElement);
         }
     }
 
-    ngDoCheck() {
+    public ngDoCheck() {
         if (!(this.state.menuState.isVisible && this.position)) {
             return;
         }
@@ -256,7 +256,7 @@ export class Ng2DropdownMenu {
         }
     }
 
-    ngOnDestroy() {
+    public ngOnDestroy() {
         const elem = this.element.nativeElement;
         elem.parentNode.removeChild(elem);
 
