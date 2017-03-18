@@ -152,9 +152,6 @@ export class Ng2DropdownMenu {
         }
 
         ACTIONS[key].call(this, index, items, this.state.dropdownState);
-
-        $event.preventDefault();
-        $event.stopPropagation();
     }
 
     /**
@@ -174,7 +171,7 @@ export class Ng2DropdownMenu {
         if (!position) {
             return;
         }
-        
+
         const element = this.getMenuElement();
         const supportPageOffset = window.pageXOffset !== undefined;
         const isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
@@ -236,23 +233,21 @@ export class Ng2DropdownMenu {
     }
 
     public ngDoCheck() {
-        if (!(this.state.menuState.isVisible && this.position)) {
-            return;
-        }
+        if (this.state.menuState.isVisible && this.position) {
+            const element = this.getMenuElement();
+            const position = this.calcPositionOffset(this.position);
 
-        const element = this.getMenuElement();
-        const position = this.calcPositionOffset(this.position);
+            if (position) {
+                this.renderer.setElementStyle(element, 'top', position.top);
+                this.renderer.setElementStyle(element, 'left', position.left);
+            }
 
-        if (position) {
-            this.renderer.setElementStyle(element, 'top', position.top);
-            this.renderer.setElementStyle(element, 'left', position.left);
-        }
-
-        // select first item unless user disabled this option
-        if (this.focusFirstElement &&
-            this.items.first &&
-            !this.state.dropdownState.selectedItem) {
+            // select first item unless user disabled this option
+            if (this.focusFirstElement &&
+                this.items.first &&
+                !this.state.dropdownState.selectedItem) {
                 this.state.dropdownState.select(this.items.first, false);
+            }
         }
     }
 
