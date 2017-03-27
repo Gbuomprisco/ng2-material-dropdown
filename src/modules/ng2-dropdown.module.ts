@@ -3,6 +3,7 @@ import { Ng2DropdownMenu } from './components/menu/ng2-dropdown-menu';
 import { Ng2DropdownButton } from './components/button/ng2-dropdown-button';
 import { Ng2MenuItem } from './components/menu-item/ng2-menu-item';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownStateService } from './services/dropdown-state.service';
@@ -20,7 +21,10 @@ import { DropdownStateService } from './services/dropdown-state.service';
         Ng2DropdownButton,
         Ng2DropdownMenu,
     ],
-    imports: [ CommonModule ]
+    imports: [
+        CommonModule,
+        BrowserAnimationsModule
+    ]
 })
 export class Ng2DropdownModule {}
 
