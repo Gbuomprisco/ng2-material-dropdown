@@ -86,7 +86,7 @@ export class Ng2DropdownMenu {
      * @name items
      * @type {QueryList<Ng2MenuItem>}
      */
-    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
+    @ContentChildren(Ng2MenuItem, { descendants: true }) public items: QueryList<Ng2MenuItem>;
 
     private position: ClientRect;
 
