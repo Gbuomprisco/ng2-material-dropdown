@@ -127,8 +127,8 @@ export class Ng2DropdownMenu {
         this.state.dropdownState.unselect();
 
         // call function to unlisten
-        this.listeners.arrowHandler();
-        this.listeners.handleKeypress();
+        this.listeners.arrowHandler ? this.listeners.arrowHandler() : undefined;
+        this.listeners.handleKeypress ? this.listeners.handleKeypress() : undefined;
     }
 
     /**
