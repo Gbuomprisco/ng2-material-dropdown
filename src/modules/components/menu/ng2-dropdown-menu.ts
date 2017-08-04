@@ -25,15 +25,15 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     animations: [
         trigger('fade', [
             state('visible', style({display: 'block', overflow: '*'})),
-            state('hidden', style({display: 'none', overflow: 'hidden', width: '0'})),
+            state('hidden', style({display: 'none', overflow: 'hidden', width: '0', height: '0'})),
             transition('hidden => visible', [
-                animate("150ms", keyframes([
+                animate('150ms', keyframes([
                     style({opacity: 0, offset: 0, height: '0', width: '0'}),
                     style({opacity: 1, offset: 1, height: '*', width: '*'}),
                 ]))
             ]),
             transition('visible => hidden', [
-                animate("250ms", keyframes([
+                animate('250ms', keyframes([
                     style({opacity: 1, offset: 0, height: '*', width: '*'}),
                     style({opacity: 0, offset: 1, height: '0', width: '0'}),
                 ]))
@@ -41,13 +41,13 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
         ]),
         trigger('opacity', [
             transition('hidden => visible', [
-                animate("450ms", keyframes([
+                animate('450ms', keyframes([
                     style({opacity: 0, offset: 0}),
                     style({opacity: 1, offset: 1}),
                 ]))
             ]),
             transition('visible => hidden', [
-                animate("200ms", keyframes([
+                animate('200ms', keyframes([
                     style({opacity: 1, offset: 0}),
                     style({opacity: 0.5, offset: 0.3}),
                     style({opacity: 0, offset: 1}),
