@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 
 import { Ng2Dropdown } from './ng2-dropdown';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { By } from '@angular/platform-browser';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +22,7 @@ function getComponent(fixture, component) {
 describe('Ng2Dropdown', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [BrowserModule, TestModule]
+            imports: [BrowserModule, NoopAnimationsModule, TestModule]
         });
     });
 
