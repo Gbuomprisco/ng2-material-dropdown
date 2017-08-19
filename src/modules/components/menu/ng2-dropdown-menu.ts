@@ -25,7 +25,7 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     animations: [
         trigger('fade', [
             state('visible', style(
-                {display: 'block', overflow: 'initial', height: '*', width: '*'}
+                {display: 'block', height: '*', width: '*'}
             )),
             state('hidden', style(
                 {display: 'none', overflow: 'hidden', height: 0, width: 0}
