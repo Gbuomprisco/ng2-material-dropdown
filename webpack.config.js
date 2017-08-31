@@ -6,7 +6,6 @@ var autoprefixer = require('autoprefixer');
 // Webpack Config
 var webpackConfig = {
     entry: {
-        'vendor': ['@angular/core', '@angular/common'],
         'ng2-dropdown': './src/modules/ng2-dropdown.module.ts'
     },
 
@@ -35,7 +34,7 @@ var webpackConfig = {
             // .ts files for TypeScript
             {
                 test: /\.ts$/,
-                loaders: ['angular2-template-loader', 'awesome-typescript-loader']
+                loaders: ['awesome-typescript-loader']
             },
             {
                 test: /\.png/,

@@ -1,3 +1,4 @@
+import '../src/modules/ng2-dropdown.scss';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { App } from './home/home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

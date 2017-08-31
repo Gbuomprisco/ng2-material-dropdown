@@ -4,13 +4,14 @@
   "description": "Angular material-like dropdown component",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "tsc && npm run moveassets && npm run ngc && webpack --colors --progress --display-error-details --display-cached",
+    "build": "tsc && npm run moveassets && npm run ngc && npm run sass && webpack --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --config webpack.demo.js --inline --colors --progress --display-error-details --display-cached --port 3005  --content-base demo",
     "start": "npm run server",
     "test": "karma start karma.conf.js --single-run",
     "ngc": "ngc -p ./tsconfig.aot.json",
-    "moveassets": "rsync -a --include='*.scss' --include='*.html' --include='*/' --exclude='*' ./src/ ./dist/src"
+    "moveassets": "rsync -a --include='*.scss' --include='*/' --exclude='*' ./src/ ./dist/src",
+    "sass": "node-sass src/modules/ng2-dropdown.scss dist/ng2-dropdown.css"
   },
   "author": {
     "name": "Giancarlo Buomprisco",
@@ -87,11 +88,10 @@
   },
   "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
   "main": "./dist/ng2-dropdown.bundle.js",
+  "module": "./dist/src/modules/ng2-dropdown.module.js",
+  "typings": "./dist/src/modules/ng2-dropdown.module.d.ts",
   "files": [
-    "dist",
-    "tsconfig.json",
-    "tsconfig.aot.json",
-    "index.ts"
+    "dist"
   ],
   "exclude": [
     "**/*.spec.ts"

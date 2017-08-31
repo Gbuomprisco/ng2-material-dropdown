@@ -9,8 +9,17 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-menu-item',
-    styleUrls: [ './style.scss' ],
-    templateUrl: './template.html'
+    template: `
+        <div class='ng2-menu-item'
+             role="button"
+             tabindex="0"
+             [class.ng2-menu-item--selected]="isSelected"
+             (keydown.enter)="click()"
+             (click)="click()"
+             (mouseover)="select()">
+                <ng-content></ng-content>
+        </div>
+    `
 })
 export class Ng2MenuItem {
     /**

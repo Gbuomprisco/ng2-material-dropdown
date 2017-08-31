@@ -13,7 +13,12 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-dropdown',
-    templateUrl: './template.html',
+    template: `
+        <div class="ng2-dropdown-container">
+            <ng-content select="ng2-dropdown-button"></ng-content>
+            <ng-content select="ng2-dropdown-menu"></ng-content>
+        </div>
+    `,
     providers: [ DropdownStateService ]
 })
 export class Ng2Dropdown {

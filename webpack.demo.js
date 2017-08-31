@@ -25,7 +25,7 @@ var webpackConfig = {
             // .ts files for TypeScript
             {
                 test: /\.ts$/,
-                loaders: ['angular2-template-loader', 'awesome-typescript-loader']
+                loaders: ['awesome-typescript-loader']
             },
             {
                 test: /\.png/,
@@ -38,7 +38,7 @@ var webpackConfig = {
             },
             {
                 test: /\.scss$/,
-                loaders: ["raw", "postcss", "sass"]
+                loaders: ["style", "css", "postcss", "sass"]
             }
         ]
     }

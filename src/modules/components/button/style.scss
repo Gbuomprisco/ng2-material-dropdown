@@ -40,7 +40,7 @@
     flex: 1 1 6%;
 }
 
-:host-context(.ng2-dropdown-button--icon) .ng2-dropdown-button {
+ng2-dropdown-button.ng2-dropdown-button--icon .ng2-dropdown-button {
     border: none;
     min-width: 40px;
     width: 40px;
@@ -51,6 +51,6 @@
     padding: 0.5em;
 }
 
-:host-context(.ng2-dropdown-button--icon) .ng2-dropdown-button:active {
+ng2-dropdown-button.ng2-dropdown-button--icon .ng2-dropdown-button:active {
     background: rgba(0, 0, 0, 0.2);
 }
