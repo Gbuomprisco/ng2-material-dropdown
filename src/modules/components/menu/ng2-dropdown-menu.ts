@@ -108,12 +108,15 @@ export class Ng2DropdownMenu {
      * @shows menu and selects first item
      */
     public show(): void {
+        const dc = typeof document !== 'undefined' ? document : undefined;
+        const wd = typeof window !== 'undefined' ? window : undefined;
+
         // update state
         this.state.menuState.isVisible = true;
 
         // setting handlers
-        this.listeners.handleKeypress = this.renderer.listen(document.body, 'keydown', this.handleKeypress.bind(this));
-        this.listeners.arrowHandler = this.renderer.listen(window, 'keydown', arrowKeysHandler);
+        this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
+        this.listeners.arrowHandler = this.renderer.listen(wd, 'keydown', arrowKeysHandler);
     }
 
     /**
@@ -172,19 +175,22 @@ export class Ng2DropdownMenu {
      * @returns {{top: string, left: string}}
      */
     private calcPositionOffset(position): { top: string, left: string } {
-        if (!position) {
+        const wd = typeof window !== 'undefined' ? window : undefined;
+        const dc = typeof document !== 'undefined' ? document : undefined;
+
+        if (!wd || !dc || !position) {
             return;
         }
 
         const element = this.getMenuElement();
-        const supportPageOffset = window.pageXOffset !== undefined;
-        const isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
+        const supportPageOffset = wd.pageXOffset !== undefined;
+        const isCSS1Compat = ((dc.compatMode || '') === 'CSS1Compat');
 
-        const x = supportPageOffset ? window.pageXOffset : isCSS1Compat ?
-            document.documentElement.scrollLeft : document.body.scrollLeft;
+        const x = supportPageOffset ? wd.pageXOffset : isCSS1Compat ?
+            dc.documentElement.scrollLeft : dc.body.scrollLeft;
 
-        const y = supportPageOffset ? window.pageYOffset : isCSS1Compat ?
-            document.documentElement.scrollTop : document.body.scrollTop;
+        const y = supportPageOffset ? wd.pageYOffset : isCSS1Compat ?
+            dc.documentElement.scrollTop : dc.body.scrollTop;
 
         let { top, left } = this.applyOffset(
             `${position.top + (this.appendToBody ? y - 15 : 0)}px`,
@@ -197,8 +203,8 @@ export class Ng2DropdownMenu {
         const marginFromBottom = parseInt(top) + clientHeight + (this.appendToBody ? 0 : y - 15);
         const marginFromRight = parseInt(left) + clientWidth;
 
-        const windowScrollHeight = window.innerHeight + window.scrollY;
-        const windowScrollWidth = window.innerWidth + window.scrollX;
+        const windowScrollHeight = wd.innerHeight + wd.scrollY;
+        const windowScrollWidth = wd.innerWidth + wd.scrollX;
 
         if (marginFromBottom >= windowScrollHeight) {
             top = `${parseInt(top.replace('px', '')) - clientHeight}px`;
@@ -230,9 +236,10 @@ export class Ng2DropdownMenu {
     }
 
     public ngOnInit() {
+        const dc = typeof document !== 'undefined' ? document : undefined;
         if (this.appendToBody) {
             // append menu element to the body
-            document.body.appendChild(this.element.nativeElement);
+            dc.body.appendChild(this.element.nativeElement);
         }
     }
 
