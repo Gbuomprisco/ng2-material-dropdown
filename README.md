@@ -43,6 +43,11 @@ import { Ng2DropdownModule } from 'ng2-material-dropdown';
 export class MyModule {}
 ```
 
+Add the stylesheet somewhere in your app
+```html
+<link href="node_modules/ng2-material-dropdown/dist/ng2-dropdown.css" rel="stylesheet" type="text/css">
+```
+
 ## API
 
 `ng2-dropdown`
