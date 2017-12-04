@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Angular material-like dropdown component",
   "scripts": {
     "release": "npm run build && npm publish dist",
@@ -69,7 +69,6 @@
     "webpack-merge": "^0.8.4",
     "zone.js": "0.8.5"
   },
-  "dependencies": {},
   "keywords": [
     "angular 2",
     "angular 2 material dropdown",
@@ -86,15 +85,6 @@
   },
   "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
   "main": "./dist/ng2-dropdown.bundle.js",
-  "files": [
-    "dist",
-    "tsconfig.json",
-    "tsconfig.aot.json",
-    "index.ts"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
-  ],
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "ngPackage": {
     "lib": {
