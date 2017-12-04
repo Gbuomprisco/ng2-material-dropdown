@@ -5,4 +5,4 @@ export {
     Ng2DropdownButton,
     Ng2DropdownModule,
     DropdownStateService
-} from './dist/src/modules/ng2-dropdown.module';
+} from './src/modules/ng2-dropdown.module';
