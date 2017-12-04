@@ -1,6 +1,6 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "description": "Angular material-like dropdown component",
   "scripts": {
     "release": "npm run build && npm publish dist",
