@@ -1,11 +1,13 @@
 import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
+import { Ng2DropdownMenu } from './ng2-dropdown-menu';
 import { Ng2DropdownState } from '../../services/ng2-dropdown-state';
 
 const KEYS = {
     BACKSPACE: 9,
     PREV: 38,
     NEXT: 40,
-    ENTER: 13
+    ENTER: 13,
+    ESCAPE: 27
 };
 
 /**
@@ -46,6 +48,10 @@ const onBackspace = (index: number, items: Ng2MenuItem[], state: Ng2DropdownStat
     }
 };
 
+function onEscape(this: Ng2DropdownMenu) {
+    this.hide();
+};
+
 /**
  * @name onItemClicked
  * @param index
@@ -60,7 +66,8 @@ export const ACTIONS = {
     [KEYS.BACKSPACE]: onBackspace,
     [KEYS.PREV]: onSwitchPrev,
     [KEYS.NEXT]: onSwitchNext,
-    [KEYS.ENTER]: onItemClicked
+    [KEYS.ENTER]: onItemClicked,
+    [KEYS.ESCAPE]: onEscape
 };
 
 export function arrowKeysHandler(event): void {
