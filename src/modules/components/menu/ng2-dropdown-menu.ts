@@ -4,14 +4,17 @@ import {
     Renderer,
     ContentChildren,
     QueryList,
-    Input,
+    Input
+} from '@angular/core';
+
+import {
     trigger,
     style,
     transition,
     animate,
     keyframes,
     state
-} from '@angular/core';
+} from '@angular/animations';
 
 import { ACTIONS, arrowKeysHandler } from './actions';
 
