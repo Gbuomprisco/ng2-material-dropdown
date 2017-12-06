@@ -4,14 +4,14 @@ import { Ng2MenuItem } from '../components/menu-item/ng2-menu-item';
 export class Ng2DropdownState {
     public onItemSelected: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();
     public onItemClicked: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();
-    private _selectedItem: Ng2MenuItem;
+    private _selectedItem?: Ng2MenuItem;
 
     /**
      * @name selectedItem
      * @desc getter for _selectedItem
      * @returns {Ng2MenuItem}
      */
-    public get selectedItem(): Ng2MenuItem {
+    public get selectedItem(): Ng2MenuItem | undefined {
         return this._selectedItem;
     }
 
