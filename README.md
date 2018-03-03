@@ -6,9 +6,6 @@ Material-like dropdown component for Angular2.
 
     npm install ng2-material-dropdown --save
 
-## Demo
-Check out the demo at [http://www.buompris.co/ng2-material-dropdown](http://www.buompris.co/ng2-material-dropdown)
-
 ## Usage
 
 Once installed, import the directives and use it them your container component:
