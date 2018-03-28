@@ -4,14 +4,17 @@ import {
     Renderer,
     ContentChildren,
     QueryList,
-    Input,
+    Input
+} from '@angular/core';
+
+import {
     trigger,
     style,
     transition,
     animate,
     keyframes,
     state
-} from '@angular/core';
+} from '@angular/animations';
 
 import { ACTIONS, arrowKeysHandler } from './actions';
 
@@ -90,11 +93,11 @@ export class Ng2DropdownMenu {
      * @name items
      * @type {QueryList<Ng2MenuItem>}
      */
-    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
+    @ContentChildren(Ng2MenuItem, { descendants: true }) public items: QueryList<Ng2MenuItem>;
 
     private position: ClientRect;
 
-    private listeners = {
+    private listeners: { arrowHandler?: Function, handleKeypress?: Function } = {
         arrowHandler: undefined,
         handleKeypress: undefined
     };
@@ -115,8 +118,13 @@ export class Ng2DropdownMenu {
         this.state.menuState.isVisible = true;
 
         // setting handlers
-        this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
-        this.listeners.arrowHandler = this.renderer.listen(wd, 'keydown', arrowKeysHandler);
+        if (!!dc) {
+            this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
+        }
+
+        if (!!wd) {
+            this.listeners.arrowHandler = this.renderer.listen(wd, 'keydown', arrowKeysHandler);
+        }
     }
 
     /**
@@ -130,8 +138,13 @@ export class Ng2DropdownMenu {
         this.state.dropdownState.unselect();
 
         // call function to unlisten
-        this.listeners.arrowHandler ? this.listeners.arrowHandler() : undefined;
-        this.listeners.handleKeypress ? this.listeners.handleKeypress() : undefined;
+        if (!!this.listeners.arrowHandler) {
+            this.listeners.arrowHandler();
+        }
+
+        if (!!this.listeners.handleKeypress) {
+            this.listeners.handleKeypress();
+        }
     }
 
     /**
@@ -152,13 +165,16 @@ export class Ng2DropdownMenu {
     public handleKeypress($event): void {
         const key = $event.keyCode;
         const items = this.items.toArray();
-        const index = items.indexOf(this.state.dropdownState.selectedItem);
+        const selectedItem = this.state.dropdownState.selectedItem;
+        if (!!selectedItem) {
+            const index = items.indexOf(selectedItem!);
 
-        if (!ACTIONS.hasOwnProperty(key)) {
-            return;
+            if (!ACTIONS.hasOwnProperty(key)) {
+                return;
+            }
+
+            ACTIONS[key].call(this, index, items, this.state.dropdownState);
         }
-
-        ACTIONS[key].call(this, index, items, this.state.dropdownState);
     }
 
     /**
@@ -174,7 +190,7 @@ export class Ng2DropdownMenu {
      * @param position
      * @returns {{top: string, left: string}}
      */
-    private calcPositionOffset(position): { top: string, left: string } {
+    private calcPositionOffset(position): { top: string, left: string } | undefined {
         const wd = typeof window !== 'undefined' ? window : undefined;
         const dc = typeof document !== 'undefined' ? document : undefined;
 
@@ -237,7 +253,7 @@ export class Ng2DropdownMenu {
 
     public ngOnInit() {
         const dc = typeof document !== 'undefined' ? document : undefined;
-        if (this.appendToBody) {
+        if (this.appendToBody && !!dc) {
             // append menu element to the body
             dc.body.appendChild(this.element.nativeElement);
         }
@@ -248,7 +264,7 @@ export class Ng2DropdownMenu {
             const element = this.getMenuElement();
             const position = this.calcPositionOffset(this.position);
 
-            if (position) {
+            if (!!position) {
                 this.renderer.setElementStyle(element, 'top', position.top);
                 this.renderer.setElementStyle(element, 'left', position.left);
             }
