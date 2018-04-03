@@ -21,7 +21,7 @@ export class Ng2Dropdown {
     @ContentChild(Ng2DropdownButton) public button: Ng2DropdownButton;
     @ContentChild(Ng2DropdownMenu) public menu: Ng2DropdownMenu;
 
-    @Input() public dynamicUpdate: boolean = true;
+    @Input() public dynamicUpdate = true;
 
     // outputs
     @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<string>();
@@ -54,10 +54,7 @@ export class Ng2Dropdown {
      * @param position
      */
     public show(position = this.button.getPosition()): void {
-        this.menu.show();
-
-        // update menu position based on its button's
-        this.menu.updatePosition(position);
+        this.menu.show(position);
         this.onShow.emit(this);
     }
 
@@ -66,7 +63,7 @@ export class Ng2Dropdown {
      */
     @HostListener('window:scroll')
     public scrollListener() {
-        if (this.state.menuState.isVisible && this.button && this.dynamicUpdate) {
+        if (this.button && this.dynamicUpdate) {
             this.menu.updatePosition(this.button.getPosition());
         }
     }
@@ -88,6 +85,8 @@ export class Ng2Dropdown {
             });
         }
 
-        this.state.dropdownState.onItemSelected.subscribe(item => this.onItemSelected.emit(item));
+        this.state.dropdownState.onItemSelected.subscribe(item => {
+            this.onItemSelected.emit(item);
+        });
     }
 }

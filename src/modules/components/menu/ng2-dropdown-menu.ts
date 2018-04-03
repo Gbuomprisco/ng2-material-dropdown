@@ -90,6 +90,12 @@ export class Ng2DropdownMenu {
     @Input() public appendToBody: boolean = true;
 
     /**
+     * @name zIndex
+     * @type {number}
+     */
+    @Input() public zIndex = 1000;
+
+    /**
      * @name items
      * @type {QueryList<Ng2MenuItem>}
      */
@@ -110,12 +116,16 @@ export class Ng2DropdownMenu {
      * @name show
      * @shows menu and selects first item
      */
-    public show(): void {
+    public show(position?: ClientRect): void {
         const dc = typeof document !== 'undefined' ? document : undefined;
         const wd = typeof window !== 'undefined' ? window : undefined;
 
         // update state
         this.state.menuState.isVisible = true;
+
+        if (position) {
+            this.updatePosition(position);
+        }
 
         // setting handlers
         this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
