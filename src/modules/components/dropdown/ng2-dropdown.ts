@@ -55,13 +55,14 @@ export class Ng2Dropdown {
 
         this.state.dropdownState.onItemDestroyed.subscribe((item: Ng2MenuItem) => {
             let newSelectedItem: Ng2MenuItem | undefined;
+            const items = this.menu.items.toArray();
 
             if (item !== this.state.dropdownState.selectedItem) {
                 return;
             }
 
             if (this.menu.focusFirstElement) {
-                newSelectedItem = this.menu.items.first;
+                newSelectedItem = item === items[0] && items.length > 1 ? items[1] : items[0];
             }
 
             this.state.dropdownState.select(newSelectedItem);
