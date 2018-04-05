@@ -10,6 +10,7 @@ import {
 import { Ng2DropdownButton } from '../button/ng2-dropdown-button';
 import { Ng2DropdownMenu } from '../menu/ng2-dropdown-menu';
 import { DropdownStateService } from '../../services/dropdown-state.service';
+import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 
 @Component({
     selector: 'ng2-dropdown',
@@ -30,6 +31,38 @@ export class Ng2Dropdown {
     @Output() public onHide: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
 
     constructor(private state: DropdownStateService) {}
+
+    public ngOnInit() {
+        this.state.dropdownState.onItemClicked.subscribe(item => {
+            this.onItemClicked.emit(item);
+
+            if (item.preventClose) {
+                return;
+            }
+
+            this.hide.call(this);
+        });
+
+        if (this.button) {
+            this.button.onMenuToggled.subscribe(() => {
+                this.toggleMenu();
+            });
+        }
+
+        this.state.dropdownState.onItemSelected.subscribe(item => {
+            this.onItemSelected.emit(item);
+        });
+
+        this.state.dropdownState.onItemDestroyed.subscribe(() => {
+            let item: Ng2MenuItem | undefined;
+
+            if (this.menu.focusFirstElement) {
+                item = this.menu.items.first;
+            }
+
+            this.state.dropdownState.select(item);
+        });
+    }
 
     /**
      * @name toggleMenu
@@ -54,7 +87,7 @@ export class Ng2Dropdown {
      * @param position
      */
     public show(position = this.button.getPosition()): void {
-        this.menu.show(position);
+        this.menu.show(position, this.dynamicUpdate);
         this.onShow.emit(this);
     }
 
@@ -64,29 +97,7 @@ export class Ng2Dropdown {
     @HostListener('window:scroll')
     public scrollListener() {
         if (this.button && this.dynamicUpdate) {
-            this.menu.updatePosition(this.button.getPosition());
+            this.menu.updatePosition(this.button.getPosition(), true);
         }
-    }
-
-    public ngOnInit() {
-        this.state.dropdownState.onItemClicked.subscribe(item => {
-            this.onItemClicked.emit(item);
-
-            if (item.preventClose) {
-                return;
-            }
-
-            this.hide.call(this);
-        });
-
-        if (this.button) {
-            this.button.onMenuToggled.subscribe(() => {
-                this.toggleMenu();
-            });
-        }
-
-        this.state.dropdownState.onItemSelected.subscribe(item => {
-            this.onItemSelected.emit(item);
-        });
     }
 }

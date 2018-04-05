@@ -116,7 +116,7 @@ export class Ng2DropdownMenu {
      * @name show
      * @shows menu and selects first item
      */
-    public show(position?: ClientRect): void {
+    public show(position?: ClientRect, dynamic = true): void {
         const dc = typeof document !== 'undefined' ? document : undefined;
         const wd = typeof window !== 'undefined' ? window : undefined;
 
@@ -124,7 +124,7 @@ export class Ng2DropdownMenu {
         this.state.menuState.isVisible = true;
 
         if (position) {
-            this.updatePosition(position);
+            this.updatePosition(position, dynamic);
         }
 
         // setting handlers
@@ -151,10 +151,11 @@ export class Ng2DropdownMenu {
      * @name updatePosition
      * @desc updates the menu position every time it is toggled
      * @param position {ClientRect}
+     * @param dynamic {boolean}
      */
-    public updatePosition(position: ClientRect): void {
+    public updatePosition(position: ClientRect, dynamic: boolean): void {
         this.position = position;
-        this.ngDoCheck();
+        this.updateOnChange(dynamic);
     }
 
     /**
@@ -256,22 +257,20 @@ export class Ng2DropdownMenu {
         }
     }
 
-    public ngDoCheck() {
-        if (this.state.menuState.isVisible && this.position) {
-            const element = this.getMenuElement();
-            const position = this.calcPositionOffset(this.position);
+    public updateOnChange(dynamic = true) {
+        const element = this.getMenuElement();
+        const position = this.calcPositionOffset(this.position);
 
-            if (position) {
-                this.renderer.setElementStyle(element, 'top', position.top);
-                this.renderer.setElementStyle(element, 'left', position.left);
-            }
+        if (position) {
+            this.renderer.setElementStyle(element, 'top', position.top.toString());
+            this.renderer.setElementStyle(element, 'left', position.left.toString());
+        }
 
-            // select first item unless user disabled this option
-            if (this.focusFirstElement &&
-                this.items.first &&
-                !this.state.dropdownState.selectedItem) {
-                this.state.dropdownState.select(this.items.first, false);
-            }
+        // select first item unless user disabled this option
+        if (this.focusFirstElement &&
+            this.items.first &&
+            !this.state.dropdownState.selectedItem) {
+            this.state.dropdownState.select(this.items.first, false);
         }
     }
 
