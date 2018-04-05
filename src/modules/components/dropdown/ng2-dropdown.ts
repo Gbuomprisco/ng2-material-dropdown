@@ -53,14 +53,18 @@ export class Ng2Dropdown {
             this.onItemSelected.emit(item);
         });
 
-        this.state.dropdownState.onItemDestroyed.subscribe(() => {
-            let item: Ng2MenuItem | undefined;
+        this.state.dropdownState.onItemDestroyed.subscribe((item: Ng2MenuItem) => {
+            let newSelectedItem: Ng2MenuItem | undefined;
 
-            if (this.menu.focusFirstElement) {
-                item = this.menu.items.first;
+            if (item !== this.state.dropdownState.selectedItem) {
+                return;
             }
 
-            this.state.dropdownState.select(item);
+            if (this.menu.focusFirstElement) {
+                newSelectedItem = this.menu.items.first;
+            }
+
+            this.state.dropdownState.select(newSelectedItem);
         });
     }
 
