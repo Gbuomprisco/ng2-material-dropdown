@@ -1,6 +1,5 @@
 import { EventEmitter } from '@angular/core';
 import { Ng2MenuItem } from '../components/menu-item/ng2-menu-item';
-
 export class Ng2DropdownState {
     public onItemSelected: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();
     public onItemClicked: EventEmitter<Ng2MenuItem> = new EventEmitter<Ng2MenuItem>();
@@ -22,10 +21,10 @@ export class Ng2DropdownState {
      * @param item {Ng2MenuItem}
      * @param dispatchEvent {boolean}
      */
-    public select(item: Ng2MenuItem, dispatchEvent = true): void {
+    public select(item: Ng2MenuItem | undefined, dispatchEvent = true): void {
         this._selectedItem = item;
 
-        if (!dispatchEvent) {
+        if (!dispatchEvent || !item) {
             return;
         }
 

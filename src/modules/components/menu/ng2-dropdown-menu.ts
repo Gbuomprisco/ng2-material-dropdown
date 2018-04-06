@@ -120,16 +120,18 @@ export class Ng2DropdownMenu {
         const dc = typeof document !== 'undefined' ? document : undefined;
         const wd = typeof window !== 'undefined' ? window : undefined;
 
+        if (!this.state.menuState.isVisible) {
+            // setting handlers
+            this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
+            this.listeners.arrowHandler = this.renderer.listen(wd, 'keydown', arrowKeysHandler);
+        }
+
         // update state
         this.state.menuState.isVisible = true;
 
         if (position) {
             this.updatePosition(position, dynamic);
         }
-
-        // setting handlers
-        this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
-        this.listeners.arrowHandler = this.renderer.listen(wd, 'keydown', arrowKeysHandler);
     }
 
     /**
