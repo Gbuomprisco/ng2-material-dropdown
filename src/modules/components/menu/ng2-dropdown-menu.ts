@@ -66,14 +66,12 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 export class Ng2DropdownMenu {
     /**
      * @name width
-     * @type {number} [2, 4, 6]
      */
     @Input() public width: number = 4;
 
     /**
      * @description if set to true, the first element of the dropdown will be automatically focused
      * @name focusFirstElement
-     * @type {boolean}
      */
     @Input() public focusFirstElement: boolean = true;
 
@@ -85,19 +83,16 @@ export class Ng2DropdownMenu {
 
     /**
      * @name appendToBody
-     * @type {boolean}
      */
     @Input() public appendToBody: boolean = true;
 
     /**
      * @name zIndex
-     * @type {number}
      */
     @Input() public zIndex = 1000;
 
     /**
      * @name items
-     * @type {QueryList<Ng2MenuItem>}
      */
     @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
 
@@ -179,7 +174,6 @@ export class Ng2DropdownMenu {
 
     /**
      * @name getMenuElement
-     * @returns {Element}
      */
     private getMenuElement(): Element {
         return this.element.nativeElement.children[0];
@@ -188,7 +182,6 @@ export class Ng2DropdownMenu {
     /**
      * @name calcPositionOffset
      * @param position
-     * @returns {{top: string, left: string}}
      */
     private calcPositionOffset(position): { top: string, left: string } {
         const wd = typeof window !== 'undefined' ? window : undefined;

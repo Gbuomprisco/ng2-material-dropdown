@@ -17,14 +17,12 @@ export class Ng2MenuItem implements OnDestroy {
     /**
      * @preventClose
      * @desc if true, clicking on the item won't close the dropdown
-     * @type {boolean}
      */
     @Input() public preventClose: boolean = false;
 
     /**
      * @name value
      * @desc any value associated to the item
-     * @type {any}
      */
     @Input() public value: any;
 
@@ -39,7 +37,6 @@ export class Ng2MenuItem implements OnDestroy {
     /**
      * @name isSelected
      * @desc returns current selected item
-     * @returns {boolean}
      */
     public get isSelected(): boolean {
         return this === this.state.dropdownState.selectedItem;

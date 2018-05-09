@@ -10,7 +10,6 @@ export class Ng2DropdownState {
     /**
      * @name selectedItem
      * @desc getter for _selectedItem
-     * @returns {Ng2MenuItem}
      */
     public get selectedItem(): Ng2MenuItem {
         return this._selectedItem;
@@ -18,8 +17,7 @@ export class Ng2DropdownState {
 
     /**
      * @name selects a menu item and emits event
-     * @param item {Ng2MenuItem}
-     * @param dispatchEvent {boolean}
+     * @param item
      */
     public select(item: Ng2MenuItem | undefined, dispatchEvent = true): void {
         this._selectedItem = item;

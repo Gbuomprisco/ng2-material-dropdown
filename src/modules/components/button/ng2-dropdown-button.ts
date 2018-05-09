@@ -28,7 +28,6 @@ export class Ng2DropdownButton {
     /**
      * @name getPosition
      * @desc returns position of the button
-     * @returns {ClientRect}
      */
     public getPosition(): ClientRect {
       return this.element.nativeElement.getBoundingClientRect();
