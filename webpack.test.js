@@ -1,13 +1,12 @@
 
 module.exports = {
     devtool: 'cheap-module-source-map',
-
     resolve: {
-        extensions: ['', '.ts', '.js']
+        extensions: ['.ts', '.js']
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.ts$/,
                 loaders: ['angular2-template-loader', 'awesome-typescript-loader']
