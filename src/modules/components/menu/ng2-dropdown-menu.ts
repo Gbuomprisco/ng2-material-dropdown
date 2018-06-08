@@ -256,7 +256,7 @@ export class Ng2DropdownMenu {
         const element = this.getMenuElement();
         const position = this.calcPositionOffset(this.position);
 
-        if (position) {
+        if (dynamic && position) {
             this.renderer.setElementStyle(element, 'top', position.top.toString());
             this.renderer.setElementStyle(element, 'left', position.left.toString());
         }
