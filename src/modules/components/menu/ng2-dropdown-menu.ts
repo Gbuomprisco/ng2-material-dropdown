@@ -28,10 +28,10 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
     animations: [
         trigger('fade', [
             state('visible', style(
-                {display: 'block', opacity: 1, height: '*', width: '*'}
+                {opacity: 1, height: '*', width: '*'}
             )),
             state('hidden', style(
-                {display: 'none', opacity: 0, overflow: 'hidden', height: 0, width: 0}
+                {opacity: 0, overflow: 'hidden', height: 0, width: 0}
             )),
             transition('hidden => visible', [
                 animate('250ms ease-in',
