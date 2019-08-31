@@ -15,20 +15,30 @@ import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 @Component({
     selector: 'ng2-dropdown',
     templateUrl: './template.html',
-    providers: [ DropdownStateService ]
+    providers: [DropdownStateService]
 })
 export class Ng2Dropdown {
     // get children components
-    @ContentChild(Ng2DropdownButton) public button: Ng2DropdownButton;
-    @ContentChild(Ng2DropdownMenu) public menu: Ng2DropdownMenu;
+    @ContentChild(Ng2DropdownButton, { static: false })
+    public button: Ng2DropdownButton;
+    @ContentChild(Ng2DropdownMenu, { static: false })
+    public menu: Ng2DropdownMenu;
 
     @Input() public dynamicUpdate = true;
 
     // outputs
-    @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<string>();
-    @Output() public onItemSelected: EventEmitter<string> = new EventEmitter<string>();
-    @Output() public onShow: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
-    @Output() public onHide: EventEmitter<Ng2Dropdown> = new EventEmitter<Ng2Dropdown>();
+    @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<
+        string
+    >();
+    @Output() public onItemSelected: EventEmitter<string> = new EventEmitter<
+        string
+    >();
+    @Output() public onShow: EventEmitter<Ng2Dropdown> = new EventEmitter<
+        Ng2Dropdown
+    >();
+    @Output() public onHide: EventEmitter<Ng2Dropdown> = new EventEmitter<
+        Ng2Dropdown
+    >();
 
     constructor(private state: DropdownStateService) {}
 
@@ -53,20 +63,25 @@ export class Ng2Dropdown {
             this.onItemSelected.emit(item);
         });
 
-        this.state.dropdownState.onItemDestroyed.subscribe((item: Ng2MenuItem) => {
-            let newSelectedItem: Ng2MenuItem | undefined;
-            const items = this.menu.items.toArray();
+        this.state.dropdownState.onItemDestroyed.subscribe(
+            (item: Ng2MenuItem) => {
+                let newSelectedItem: Ng2MenuItem | undefined;
+                const items = this.menu.items.toArray();
 
-            if (item !== this.state.dropdownState.selectedItem) {
-                return;
+                if (item !== this.state.dropdownState.selectedItem) {
+                    return;
+                }
+
+                if (this.menu.focusFirstElement) {
+                    newSelectedItem =
+                        item === items[0] && items.length > 1
+                            ? items[1]
+                            : items[0];
+                }
+
+                this.state.dropdownState.select(newSelectedItem);
             }
-
-            if (this.menu.focusFirstElement) {
-                newSelectedItem = item === items[0] && items.length > 1 ? items[1] : items[0];
-            }
-
-            this.state.dropdownState.select(newSelectedItem);
-        });
+        );
     }
 
     /**

@@ -1,7 +1,7 @@
 import {
     Component,
     ElementRef,
-    Renderer,
+    Renderer2,
     ContentChildren,
     QueryList,
     Input
@@ -23,40 +23,47 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-dropdown-menu',
-    styleUrls: [ './style.scss' ],
+    styleUrls: ['./style.scss'],
     templateUrl: './template.html',
     animations: [
         trigger('fade', [
-            state('visible', style(
-                {opacity: 1, height: '*', width: '*'}
-            )),
-            state('hidden', style(
-                {opacity: 0, overflow: 'hidden', height: 0, width: 0}
-            )),
+            state('visible', style({ opacity: 1, height: '*', width: '*' })),
+            state(
+                'hidden',
+                style({ opacity: 0, overflow: 'hidden', height: 0, width: 0 })
+            ),
             transition('hidden => visible', [
-                animate('250ms ease-in',
-                    style({opacity: 1, height: '*', width: '*'})
+                animate(
+                    '250ms ease-in',
+                    style({ opacity: 1, height: '*', width: '*' })
                 )
             ]),
             transition('visible => hidden', [
-                animate('350ms ease-out',
-                    style({opacity: 0, width: 0, height: 0})
+                animate(
+                    '350ms ease-out',
+                    style({ opacity: 0, width: 0, height: 0 })
                 )
             ])
         ]),
         trigger('opacity', [
             transition('hidden => visible', [
-                animate('450ms ease-in', keyframes([
-                    style({opacity: 0, offset: 0}),
-                    style({opacity: 1, offset: 1}),
-                ]))
+                animate(
+                    '450ms ease-in',
+                    keyframes([
+                        style({ opacity: 0, offset: 0 }),
+                        style({ opacity: 1, offset: 1 })
+                    ])
+                )
             ]),
             transition('visible => hidden', [
-                animate('250ms ease-out', keyframes([
-                    style({opacity: 1, offset: 0}),
-                    style({opacity: 0.5, offset: 0.3}),
-                    style({opacity: 0, offset: 1}),
-                ]))
+                animate(
+                    '250ms ease-out',
+                    keyframes([
+                        style({ opacity: 1, offset: 0 }),
+                        style({ opacity: 0.5, offset: 0.3 }),
+                        style({ opacity: 0, offset: 1 })
+                    ])
+                )
             ])
         ])
     ]
@@ -101,9 +108,11 @@ export class Ng2DropdownMenu {
         handleKeypress: undefined
     };
 
-    constructor(public state: DropdownStateService,
-                private element: ElementRef,
-                private renderer: Renderer) {}
+    constructor(
+        public state: DropdownStateService,
+        private element: ElementRef,
+        private renderer: Renderer2
+    ) {}
 
     /**
      * @name show
@@ -115,8 +124,16 @@ export class Ng2DropdownMenu {
 
         if (!this.state.menuState.isVisible) {
             // setting handlers
-            this.listeners.handleKeypress = this.renderer.listen(dc.body, 'keydown', this.handleKeypress.bind(this));
-            this.listeners.arrowHandler = this.renderer.listen(wd, 'keydown', arrowKeysHandler);
+            this.listeners.handleKeypress = this.renderer.listen(
+                dc.body,
+                'keydown',
+                this.handleKeypress.bind(this)
+            );
+            this.listeners.arrowHandler = this.renderer.listen(
+                wd,
+                'keydown',
+                arrowKeysHandler
+            );
         }
 
         // update state
@@ -139,7 +156,9 @@ export class Ng2DropdownMenu {
 
         // call function to unlisten
         this.listeners.arrowHandler ? this.listeners.arrowHandler() : undefined;
-        this.listeners.handleKeypress ? this.listeners.handleKeypress() : undefined;
+        this.listeners.handleKeypress
+            ? this.listeners.handleKeypress()
+            : undefined;
     }
 
     /**
@@ -181,7 +200,7 @@ export class Ng2DropdownMenu {
      * @name calcPositionOffset
      * @param position
      */
-    private calcPositionOffset(position): { top: string, left: string } {
+    private calcPositionOffset(position): { top: string; left: string } {
         const wd = typeof window !== 'undefined' ? window : undefined;
         const dc = typeof document !== 'undefined' ? document : undefined;
 
@@ -191,13 +210,19 @@ export class Ng2DropdownMenu {
 
         const element = this.getMenuElement();
         const supportPageOffset = wd.pageXOffset !== undefined;
-        const isCSS1Compat = ((dc.compatMode || '') === 'CSS1Compat');
+        const isCSS1Compat = (dc.compatMode || '') === 'CSS1Compat';
 
-        const x = supportPageOffset ? wd.pageXOffset : isCSS1Compat ?
-            dc.documentElement.scrollLeft : dc.body.scrollLeft;
+        const x = supportPageOffset
+            ? wd.pageXOffset
+            : isCSS1Compat
+            ? dc.documentElement.scrollLeft
+            : dc.body.scrollLeft;
 
-        const y = supportPageOffset ? wd.pageYOffset : isCSS1Compat ?
-            dc.documentElement.scrollTop : dc.body.scrollTop;
+        const y = supportPageOffset
+            ? wd.pageYOffset
+            : isCSS1Compat
+            ? dc.documentElement.scrollTop
+            : dc.body.scrollTop;
 
         let { top, left } = this.applyOffset(
             `${position.top + (this.appendToBody ? y - 15 : 0)}px`,
@@ -207,7 +232,8 @@ export class Ng2DropdownMenu {
         const clientWidth = element.clientWidth;
         const clientHeight = element.clientHeight;
 
-        const marginFromBottom = parseInt(top) + clientHeight + (this.appendToBody ? 0 : y - 15);
+        const marginFromBottom =
+            parseInt(top) + clientHeight + (this.appendToBody ? 0 : y - 15);
         const marginFromRight = parseInt(left) + clientWidth;
 
         const windowScrollHeight = wd.innerHeight + wd.scrollY;
@@ -225,7 +251,10 @@ export class Ng2DropdownMenu {
         return { top, left };
     }
 
-    private applyOffset(top: string, left: string): { top: string, left: string } {
+    private applyOffset(
+        top: string,
+        left: string
+    ): { top: string; left: string } {
         if (!this.offset) {
             return { top, left };
         }
@@ -255,14 +284,16 @@ export class Ng2DropdownMenu {
         const position = this.calcPositionOffset(this.position);
 
         if (position) {
-            this.renderer.setElementStyle(element, 'top', position.top.toString());
-            this.renderer.setElementStyle(element, 'left', position.left.toString());
+            this.renderer.setStyle(element, 'top', position.top.toString());
+            this.renderer.setStyle(element, 'left', position.left.toString());
         }
 
         // select first item unless user disabled this option
-        if (this.focusFirstElement &&
+        if (
+            this.focusFirstElement &&
             this.items.first &&
-            !this.state.dropdownState.selectedItem) {
+            !this.state.dropdownState.selectedItem
+        ) {
             this.state.dropdownState.select(this.items.first, false);
         }
     }
