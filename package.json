@@ -93,6 +93,7 @@
     },
     "dependencies": {
         "@angular-devkit/build-angular": "^0.803.2",
-        "@angular/cli": "^8.3.2"
+        "@angular/cli": "^8.3.2",
+        "fibers": "^4.0.1"
     }
 }
