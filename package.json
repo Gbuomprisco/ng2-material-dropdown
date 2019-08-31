@@ -90,5 +90,8 @@
         "lib": {
             "entryFile": "index.ts"
         }
+    },
+    "dependencies": {
+        "@angular/cli": "^8.3.2"
     }
 }
