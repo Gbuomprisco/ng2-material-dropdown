@@ -19,10 +19,10 @@ import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 })
 export class Ng2Dropdown {
     // get children components
-    @ContentChild(Ng2DropdownButton, { static: false })
-    public button: Ng2DropdownButton;
-    @ContentChild(Ng2DropdownMenu, { static: false })
-    public menu: Ng2DropdownMenu;
+    @ContentChild(Ng2DropdownButton, { static: true })
+    public button!: Ng2DropdownButton;
+    @ContentChild(Ng2DropdownMenu, { static: true })
+    public menu!: Ng2DropdownMenu;
 
     @Input() public dynamicUpdate = true;
 

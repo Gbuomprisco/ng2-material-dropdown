@@ -1,8 +1,5 @@
 Error.stackTraceLimit = Infinity;
 
-require('core-js/es6');
-require('core-js/es7/reflect');
-
 // Typescript emit helpers polyfill
 require('ts-helpers');
 
@@ -21,8 +18,8 @@ var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');
 
 testing.TestBed.initTestEnvironment(
-  browser.BrowserDynamicTestingModule,
-  browser.platformBrowserDynamicTesting()
+    browser.BrowserDynamicTestingModule,
+    browser.platformBrowserDynamicTesting()
 );
 
 var context = require.context('./src', true, /\.spec\.ts$/);

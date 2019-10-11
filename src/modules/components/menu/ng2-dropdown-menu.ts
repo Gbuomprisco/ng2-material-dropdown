@@ -24,7 +24,30 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
 @Component({
     selector: 'ng2-dropdown-menu',
     styleUrls: ['./style.scss'],
-    templateUrl: './template.html',
+    template: `
+        <!-- MENU -->
+        <div
+            class="ng2-dropdown-menu ng2-dropdown-menu---width--{{ width }}"
+            [class.ng2-dropdown-menu--inside-element]="!appendToBody"
+            [class.ng2-dropdown-menu--open]="dropdownState.menuState.isVisible"
+            [style.z-index]="zIndex"
+            [@fade]="dropdownState.menuState.toString()"
+        >
+            <div
+                class="ng2-dropdown-menu__options-container"
+                [@opacity]="dropdownState.menuState.toString()"
+            >
+                <ng-content></ng-content>
+            </div>
+        </div>
+
+        <!-- BACKDROP -->
+        <div
+            class="ng2-dropdown-backdrop"
+            *ngIf="dropdownState.menuState.isVisible"
+            (click)="hide()"
+        ></div>
+    `,
     animations: [
         trigger('fade', [
             state('visible', style({ opacity: 1, height: '*', width: '*' })),
@@ -72,13 +95,13 @@ export class Ng2DropdownMenu {
     /**
      * @name width
      */
-    @Input() public width: number = 4;
+    @Input() public width = 4;
 
     /**
      * @description if set to true, the first element of the dropdown will be automatically focused
      * @name focusFirstElement
      */
-    @Input() public focusFirstElement: boolean = true;
+    @Input() public focusFirstElement = true;
 
     /**
      * @description sets dropdown offset from the button
@@ -89,7 +112,7 @@ export class Ng2DropdownMenu {
     /**
      * @name appendToBody
      */
-    @Input() public appendToBody: boolean = true;
+    @Input() public appendToBody = true;
 
     /**
      * @name zIndex
@@ -99,7 +122,8 @@ export class Ng2DropdownMenu {
     /**
      * @name items
      */
-    @ContentChildren(Ng2MenuItem) public items: QueryList<Ng2MenuItem>;
+    @ContentChildren(Ng2MenuItem, { descendants: true })
+    public items!: QueryList<Ng2MenuItem>;
 
     private position: ClientRect;
 
@@ -109,7 +133,7 @@ export class Ng2DropdownMenu {
     };
 
     constructor(
-        public state: DropdownStateService,
+        public dropdownState: DropdownStateService,
         private element: ElementRef,
         private renderer: Renderer2
     ) {}
@@ -122,7 +146,7 @@ export class Ng2DropdownMenu {
         const dc = typeof document !== 'undefined' ? document : undefined;
         const wd = typeof window !== 'undefined' ? window : undefined;
 
-        if (!this.state.menuState.isVisible) {
+        if (!this.dropdownState.menuState.isVisible) {
             // setting handlers
             this.listeners.handleKeypress = this.renderer.listen(
                 dc.body,
@@ -137,7 +161,7 @@ export class Ng2DropdownMenu {
         }
 
         // update state
-        this.state.menuState.isVisible = true;
+        this.dropdownState.menuState.isVisible = true;
 
         if (position) {
             this.updatePosition(position, dynamic);
@@ -149,16 +173,14 @@ export class Ng2DropdownMenu {
      * @desc hides menu
      */
     public hide(): void {
-        this.state.menuState.isVisible = false;
+        this.dropdownState.menuState.isVisible = false;
 
         // reset selected item state
-        this.state.dropdownState.unselect();
+        this.dropdownState.dropdownState.unselect();
 
         // call function to unlisten
-        this.listeners.arrowHandler ? this.listeners.arrowHandler() : undefined;
-        this.listeners.handleKeypress
-            ? this.listeners.handleKeypress()
-            : undefined;
+        this.listeners.arrowHandler && this.listeners.arrowHandler();
+        this.listeners.handleKeypress && this.listeners.handleKeypress();
     }
 
     /**
@@ -180,13 +202,15 @@ export class Ng2DropdownMenu {
     public handleKeypress($event): void {
         const key = $event.keyCode;
         const items = this.items.toArray();
-        const index = items.indexOf(this.state.dropdownState.selectedItem);
+        const index = items.indexOf(
+            this.dropdownState.dropdownState.selectedItem
+        );
 
         if (!ACTIONS.hasOwnProperty(key)) {
             return;
         }
 
-        ACTIONS[key].call(this, index, items, this.state.dropdownState);
+        ACTIONS[key].call(this, index, items, this.dropdownState.dropdownState);
     }
 
     /**
@@ -292,9 +316,9 @@ export class Ng2DropdownMenu {
         if (
             this.focusFirstElement &&
             this.items.first &&
-            !this.state.dropdownState.selectedItem
+            !this.dropdownState.dropdownState.selectedItem
         ) {
-            this.state.dropdownState.select(this.items.first, false);
+            this.dropdownState.dropdownState.select(this.items.first, false);
         }
     }
 

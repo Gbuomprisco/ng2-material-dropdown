@@ -1,18 +1,29 @@
 import { Component, Input, ElementRef, OnDestroy } from '@angular/core';
-
 import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-menu-item',
     styleUrls: ['./style.scss'],
-    templateUrl: './template.html'
+    template: `
+        <div
+            class="ng2-menu-item"
+            role="button"
+            tabindex="0"
+            [class.ng2-menu-item--selected]="isSelected"
+            (keydown.enter)="click()"
+            (click)="click()"
+            (mouseover)="select()"
+        >
+            <ng-content></ng-content>
+        </div>
+    `
 })
 export class Ng2MenuItem implements OnDestroy {
     /**
      * @preventClose
      * @desc if true, clicking on the item won't close the dropdown
      */
-    @Input() public preventClose: boolean = false;
+    @Input() public preventClose = false;
 
     /**
      * @name value
