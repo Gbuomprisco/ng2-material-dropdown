@@ -1,5 +1,5 @@
 .ng2-menu-item {
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial;
 
     background: #fff;
     color: rgba(0, 0, 0, 0.87);
@@ -33,7 +33,7 @@
     background: rgba(158, 158, 158, 0.4);
 }
 
-:host(ng2-menu-item) /deep/ [ng2-menu-item-icon] {
+:host(ng2-menu-item) ::ng-deep [ng2-menu-item-icon] {
     vertical-align: middle;
     font-size: 28px;
     width: 1.5em;

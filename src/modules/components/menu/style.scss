@@ -44,7 +44,7 @@
     overflow: hidden;
 }
 
-:host /deep/ .ng2-menu-divider {
+:host ::ng-deep .ng2-menu-divider {
     height: 1px;
     min-height: 1px;
     max-height: 1px;

@@ -1,24 +1,29 @@
-import {
-    Component,
-    Input,
-    Renderer,
-    ElementRef,
-    OnDestroy
-} from '@angular/core';
-
+import { Component, Input, ElementRef, OnDestroy } from '@angular/core';
 import { DropdownStateService } from '../../services/dropdown-state.service';
 
 @Component({
     selector: 'ng2-menu-item',
-    styleUrls: [ './style.scss' ],
-    templateUrl: './template.html'
+    styleUrls: ['./style.scss'],
+    template: `
+        <div
+            class="ng2-menu-item"
+            role="button"
+            tabindex="0"
+            [class.ng2-menu-item--selected]="isSelected"
+            (keydown.enter)="click()"
+            (click)="click()"
+            (mouseover)="select()"
+        >
+            <ng-content></ng-content>
+        </div>
+    `
 })
 export class Ng2MenuItem implements OnDestroy {
     /**
      * @preventClose
      * @desc if true, clicking on the item won't close the dropdown
      */
-    @Input() public preventClose: boolean = false;
+    @Input() public preventClose = false;
 
     /**
      * @name value
@@ -26,9 +31,10 @@ export class Ng2MenuItem implements OnDestroy {
      */
     @Input() public value: any;
 
-    constructor(private state: DropdownStateService,
-                private element: ElementRef,
-                private renderer: Renderer) {}
+    constructor(
+        private state: DropdownStateService,
+        private element: ElementRef
+    ) {}
 
     public ngOnDestroy(): void {
         this.state.dropdownState.onItemDestroyed.emit(this);
@@ -67,6 +73,6 @@ export class Ng2MenuItem implements OnDestroy {
      * @name focus
      */
     public focus() {
-        this.renderer.invokeElementMethod(this.element.nativeElement.children[0], 'focus');
+        this.element.nativeElement.children[0].focus();
     }
 }
