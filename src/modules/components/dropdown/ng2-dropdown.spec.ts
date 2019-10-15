@@ -16,19 +16,22 @@ import { TestModule, BasicDropdown } from './test-helpers';
 
 function getComponent(fixture, component) {
     fixture.detectChanges();
-    return fixture.debugElement.query(By.directive(component)).componentInstance;
+    return fixture.debugElement.query(By.directive(component))
+        .componentInstance;
 }
 
 describe('Ng2Dropdown', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [BrowserModule, NoopAnimationsModule, TestModule]
-        });
+        }).compileComponents();
     });
 
     describe('when the controller is instantiated', () => {
         it('has its properties defined', () => {
-            const fixture: ComponentFixture<BasicDropdown> = TestBed.createComponent(BasicDropdown);
+            const fixture: ComponentFixture<
+                BasicDropdown
+            > = TestBed.createComponent(BasicDropdown);
             const component = getComponent(fixture, Ng2Dropdown);
             expect(component.button).toBeDefined();
             expect(component.menu).toBeDefined();
@@ -37,7 +40,9 @@ describe('Ng2Dropdown', () => {
         });
 
         it('shows/hides dropdown menu', () => {
-            const fixture: ComponentFixture<BasicDropdown> = TestBed.createComponent(BasicDropdown);
+            const fixture: ComponentFixture<
+                BasicDropdown
+            > = TestBed.createComponent(BasicDropdown);
             const component = getComponent(fixture, Ng2Dropdown);
 
             component.button.toggleMenu();
@@ -60,7 +65,9 @@ describe('Ng2Dropdown', () => {
         tab['keyCode'] = 9;
 
         it('goes through the dropdown items', fakeAsync(() => {
-            const fixture: ComponentFixture<BasicDropdown> = TestBed.createComponent(BasicDropdown);
+            const fixture: ComponentFixture<
+                BasicDropdown
+            > = TestBed.createComponent(BasicDropdown);
             const component = getComponent(fixture, Ng2Dropdown);
 
             component.show();
@@ -68,32 +75,44 @@ describe('Ng2Dropdown', () => {
             fixture.detectChanges();
             tick();
 
-            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
+            expect(component.state.dropdownState.selectedItem).toBe(
+                component.menu.items.toArray()[0]
+            );
 
             component.menu.handleKeypress(keyDown);
 
             fixture.detectChanges();
             tick();
 
-            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+            expect(component.state.dropdownState.selectedItem).toBe(
+                component.menu.items.toArray()[1]
+            );
 
             component.menu.handleKeypress(keyUp);
 
-            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[0]);
+            expect(component.state.dropdownState.selectedItem).toBe(
+                component.menu.items.toArray()[0]
+            );
 
             component.menu.handleKeypress(tab);
-            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+            expect(component.state.dropdownState.selectedItem).toBe(
+                component.menu.items.toArray()[1]
+            );
         }));
 
         it('fires click event when pressing enter', fakeAsync(() => {
-            const fixture: ComponentFixture<BasicDropdown> = TestBed.createComponent(BasicDropdown);
+            const fixture: ComponentFixture<
+                BasicDropdown
+            > = TestBed.createComponent(BasicDropdown);
             const component = getComponent(fixture, Ng2Dropdown);
 
             // show menu and press element with preventClose attribute set to true
             component.show();
 
             component.menu.handleKeypress(keyDown);
-            expect(component.state.dropdownState.selectedItem).toBe(component.menu.items.toArray()[1]);
+            expect(component.state.dropdownState.selectedItem).toBe(
+                component.menu.items.toArray()[1]
+            );
 
             // press enter
             component.menu.handleKeypress(enter);

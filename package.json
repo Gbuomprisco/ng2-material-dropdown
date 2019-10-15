@@ -7,7 +7,7 @@
         "postrelease": "rm -rf dist",
         "build": "ng-packagr -p package.json && mkdir ./dist/dist && cp ./dist/bundles/ng2-material-dropdown.umd.js ./dist/dist/ng2-dropdown.bundle.js",
         "start": "ng serve demo-app",
-        "test": "karma start karma.conf.js --single-run"
+        "test": "ng test modules"
     },
     "author": {
         "name": "Giancarlo Buomprisco",
@@ -16,9 +16,9 @@
     "contributors": [],
     "license": "MIT",
     "devDependencies": {
-        "@angular-devkit/schematics": "^8.3.2",
+        "@angular-devkit/schematics": "^8.3.9",
         "@angular/animations": "^8.2.10",
-        "@angular/cli": "^8.3.8",
+        "@angular/cli": "^8.3.9",
         "@angular/common": "^8.2.10",
         "@angular/compiler": "^8.2.10",
         "@angular/compiler-cli": "^8.2.10",
@@ -26,38 +26,29 @@
         "@angular/platform-browser": "^8.2.10",
         "@angular/platform-browser-dynamic": "^8.2.10",
         "@types/es6-collections": "^0.5.29",
-        "@types/es6-shim": "0.31.39",
-        "@types/jasmine": "^3.4.0",
-        "@types/node": "^12.7.3",
+        "@types/jasmine": "^3.4.4",
+        "@types/node": "^12.7.12",
         "awesome-typescript-loader": "5.2.1",
         "core-js": "^3.2.1",
-        "css-loader": "^3.2.0",
-        "es6-promise": "4.2.8",
-        "es6-shim": "0.35.5",
-        "file-loader": "^4.2.0",
-        "html-loader": "^0.5.5",
-        "jasmine": "^3.4.0",
+        "jasmine": "^3.5.0",
         "karma": "^4.3.0",
         "karma-chrome-launcher": "^3.1.0",
         "karma-coverage": "^2.0.1",
         "karma-jasmine": "^2.0.1",
         "karma-sourcemap-loader": "^0.3.7",
         "karma-webpack": "^4.0.2",
-        "ng-packagr": "^5.5.0",
-        "protractor": "^5.3.2",
+        "ng-packagr": "^5.6.1",
         "raw-loader": "^3.1.0",
         "reflect-metadata": "0.1.13",
-        "rxjs": "^6.1.0",
+        "rxjs": "^6.5.3",
         "source-map-loader": "^0.2.4",
         "ts-helpers": "1.1.2",
-        "ts-node": "^8.3.0",
+        "ts-node": "^8.4.1",
         "tslib": "^1.10.0",
-        "tslint": "^5.19.0",
-        "typescript": "^3.5.2",
-        "typings": "~2.1.1",
-        "webpack": "^4.39.3",
+        "tslint": "^5.20.0",
+        "typescript": "^3.6.4",
+        "webpack": "^4.41.1",
         "webpack-dev-server": "3.8.0",
-        "webpack-merge": "^4.1.0",
         "zone.js": "^0.10.2"
     },
     "keywords": [
@@ -83,6 +74,8 @@
         }
     },
     "dependencies": {
-        "@angular-devkit/build-angular": "^0.803.8"
+        "@angular-devkit/build-angular": "^0.803.9",
+        "karma-coverage-istanbul-reporter": "^2.1.0",
+        "karma-jasmine-html-reporter": "^1.4.2"
     }
 }

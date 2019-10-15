@@ -14,7 +14,12 @@ import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 
 @Component({
     selector: 'ng2-dropdown',
-    templateUrl: './template.html',
+    template: `
+        <div class="ng2-dropdown-container">
+            <ng-content select="ng2-dropdown-button"></ng-content>
+            <ng-content select="ng2-dropdown-menu"></ng-content>
+        </div>
+    `,
     providers: [DropdownStateService]
 })
 export class Ng2Dropdown {
