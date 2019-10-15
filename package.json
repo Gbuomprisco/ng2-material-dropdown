@@ -16,6 +16,7 @@
     "contributors": [],
     "license": "MIT",
     "devDependencies": {
+        "@angular-devkit/build-angular": "^0.803.9",
         "@angular-devkit/schematics": "^8.3.9",
         "@angular/animations": "^8.2.10",
         "@angular/cli": "^8.3.9",
@@ -34,7 +35,9 @@
         "karma": "^4.3.0",
         "karma-chrome-launcher": "^3.1.0",
         "karma-coverage": "^2.0.1",
+        "karma-coverage-istanbul-reporter": "^2.1.0",
         "karma-jasmine": "^2.0.1",
+        "karma-jasmine-html-reporter": "^1.4.2",
         "karma-sourcemap-loader": "^0.3.7",
         "karma-webpack": "^4.0.2",
         "ng-packagr": "^5.6.1",
@@ -46,13 +49,10 @@
         "ts-node": "^8.4.1",
         "tslib": "^1.10.0",
         "tslint": "^5.20.0",
-        "typescript": "^3.6.4",
+        "typescript": "^3.5.2",
         "webpack": "^4.41.1",
         "webpack-dev-server": "3.8.0",
-        "zone.js": "^0.10.2",
-        "@angular-devkit/build-angular": "^0.803.9",
-        "karma-coverage-istanbul-reporter": "^2.1.0",
-        "karma-jasmine-html-reporter": "^1.4.2"
+        "zone.js": "^0.10.2"
     },
     "peerDependencies": {
         "@angular/animations": "^8.0.0",
