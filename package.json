@@ -7,7 +7,7 @@
         "postrelease": "rm -rf dist",
         "build": "ng-packagr -p package.json && mkdir ./dist/dist && cp ./dist/bundles/ng2-material-dropdown.umd.js ./dist/dist/ng2-dropdown.bundle.js",
         "start": "ng serve demo-app",
-        "test": "ng test modules"
+        "test": "ng test modules --watch=false"
     },
     "author": {
         "name": "Giancarlo Buomprisco",
