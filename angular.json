@@ -100,7 +100,7 @@
                     "style": "css"
                 }
             },
-            "root": "",
+            "root": "src",
             "sourceRoot": "modules",
             "prefix": "app",
             "architect": {
