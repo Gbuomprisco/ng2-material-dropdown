@@ -169,4 +169,21 @@
       </ng2-dropdown-menu>
     </ng2-dropdown>
   </div>
+
+  <div>
+    <h2>
+      Dropdown with a lot of items to drop up
+    </h2>
+
+    <ng2-dropdown>
+      <ng2-dropdown-button>
+        Open Menu
+      </ng2-dropdown-button>
+      <ng2-dropdown-menu>
+        <ng2-menu-item *ngFor="let i of count(40)">
+          I am not going to close the menu
+        </ng2-menu-item>
+      </ng2-dropdown-menu>
+    </ng2-dropdown>
+  </div>
 </main>

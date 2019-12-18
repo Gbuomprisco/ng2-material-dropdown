@@ -4,7 +4,8 @@ import {
     Renderer2,
     ContentChildren,
     QueryList,
-    Input
+    Input,
+    ViewChild
 } from '@angular/core';
 
 import {
@@ -33,11 +34,14 @@ import { DropdownStateService } from '../../services/dropdown-state.service';
             [style.z-index]="zIndex"
             [@fade]="dropdownState.menuState.toString()"
         >
-            <div
-                class="ng2-dropdown-menu__options-container"
-                [@opacity]="dropdownState.menuState.toString()"
-            >
-                <ng-content></ng-content>
+            <!-- This extra level of div is to gauge the actual clientHeight during animation -->
+            <div class="ng2-dropdown-menu-container" #menuContainer>
+                <div
+                    class="ng2-dropdown-menu__options-container"
+                    [@opacity]="dropdownState.menuState.toString()"
+                >
+                    <ng-content></ng-content>
+                </div>
             </div>
         </div>
 
@@ -126,6 +130,7 @@ export class Ng2DropdownMenu {
     public items!: QueryList<Ng2MenuItem>;
 
     private position: ClientRect;
+    @ViewChild('menuContainer', { static: false }) private menuContainer?: ElementRef;
 
     private listeners = {
         arrowHandler: undefined,
@@ -214,13 +219,6 @@ export class Ng2DropdownMenu {
     }
 
     /**
-     * @name getMenuElement
-     */
-    private getMenuElement(): Element {
-        return this.element.nativeElement.children[0];
-    }
-
-    /**
      * @name calcPositionOffset
      * @param position
      */
@@ -228,11 +226,12 @@ export class Ng2DropdownMenu {
         const wd = typeof window !== 'undefined' ? window : undefined;
         const dc = typeof document !== 'undefined' ? document : undefined;
 
-        if (!wd || !dc || !position) {
+        const element = this.menuContainer && this.menuContainer.nativeElement;
+
+        if (!wd || !dc || !position || !element) {
             return;
         }
 
-        const element = this.getMenuElement();
         const supportPageOffset = wd.pageXOffset !== undefined;
         const isCSS1Compat = (dc.compatMode || '') === 'CSS1Compat';
 
@@ -304,7 +303,7 @@ export class Ng2DropdownMenu {
     }
 
     public updateOnChange(dynamic = true) {
-        const element = this.getMenuElement();
+        const element = this.element.nativeElement.children[0];
         const position = this.calcPositionOffset(this.position);
 
         if (position) {
