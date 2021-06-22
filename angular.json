@@ -25,7 +25,6 @@
                         "assets": [],
                         "styles": ["demo-app/styles.scss"],
                         "scripts": [],
-                        "es5BrowserSupport": true,
                         "preserveSymlinks": true
                     },
                     "configurations": {
