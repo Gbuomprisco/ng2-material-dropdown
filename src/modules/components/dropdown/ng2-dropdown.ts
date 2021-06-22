@@ -32,11 +32,11 @@ export class Ng2Dropdown {
     @Input() public dynamicUpdate = true;
 
     // outputs
-    @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<
-        string
+    @Output() public onItemClicked: EventEmitter<Ng2MenuItem> = new EventEmitter<
+        Ng2MenuItem
     >();
-    @Output() public onItemSelected: EventEmitter<string> = new EventEmitter<
-        string
+    @Output() public onItemSelected: EventEmitter<Ng2MenuItem> = new EventEmitter<
+        Ng2MenuItem
     >();
     @Output() public onShow: EventEmitter<Ng2Dropdown> = new EventEmitter<
         Ng2Dropdown
