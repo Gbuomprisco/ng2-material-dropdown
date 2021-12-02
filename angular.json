@@ -93,13 +93,6 @@
                         "scripts": [],
                         "assets": ["/favicon.ico", "/assets"]
                     }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json"],
-                        "exclude": ["**/node_modules/**"]
-                    }
                 }
             }
         },
@@ -170,13 +163,6 @@
                         "assets": [],
                         "styles": [],
                         "scripts": []
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json"],
-                        "exclude": ["**/node_modules/**"]
                     }
                 }
             }
