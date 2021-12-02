@@ -17,6 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+            "aot": true,
                         "outputPath": "dist/demo-app",
                         "index": "demo-app/index.html",
                         "main": "demo-app/main.ts",
@@ -50,7 +51,11 @@
                                     "type": "initial",
                                     "maximumWarning": "2mb",
                                     "maximumError": "5mb"
-                                }
+                                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
                             ]
                         }
                     }
@@ -107,6 +112,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+            "aot": true,
                         "outputPath": "dist",
                         "index": "modules/index.ts",
                         "main": "modules/index.ts",
@@ -132,7 +138,11 @@
                                     "type": "initial",
                                     "maximumWarning": "2mb",
                                     "maximumError": "5mb"
-                                }
+                                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
                             ]
                         }
                     }
