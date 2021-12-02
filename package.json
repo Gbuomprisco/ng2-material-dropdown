@@ -1,84 +1,82 @@
 {
-    "name": "ng2-material-dropdown",
-    "version": "0.11.0",
-    "description": "Angular material-like dropdown component",
-    "scripts": {
-        "release": "npm run build && npm publish dist",
-        "postrelease": "rm -rf dist",
-        "build": "ng-packagr -p package.json",
-        "start": "ng serve demo-app",
-        "test": "ng test modules --watch=false"
-    },
-    "author": {
-        "name": "Giancarlo Buomprisco",
-        "email": "giancarlopsk@gmail.com"
-    },
-    "contributors": [],
-    "license": "MIT",
-    "devDependencies": {
-        "@angular-devkit/build-angular": "^0.803.9",
-        "@angular-devkit/schematics": "^8.3.9",
-        "@angular/animations": "^8.2.10",
-        "@angular/cli": "^8.3.29",
-        "@angular/common": "^8.2.10",
-        "@angular/compiler": "^8.2.10",
-        "@angular/compiler-cli": "^8.2.10",
-        "@angular/core": "^8.2.10",
-        "@angular/platform-browser": "^8.2.10",
-        "@angular/platform-browser-dynamic": "^8.2.10",
-        "@types/es6-collections": "^0.5.29",
-        "@types/jasmine": "^3.4.4",
-        "@types/node": "^12.7.12",
-        "awesome-typescript-loader": "5.2.1",
-        "core-js": "^3.2.1",
-        "jasmine": "^3.5.0",
-        "karma": "^4.3.0",
-        "karma-chrome-launcher": "^3.1.0",
-        "karma-coverage": "^2.0.1",
-        "karma-coverage-istanbul-reporter": "^2.1.0",
-        "karma-jasmine": "^2.0.1",
-        "karma-jasmine-html-reporter": "^1.4.2",
-        "karma-sourcemap-loader": "^0.3.7",
-        "karma-webpack": "^4.0.2",
-        "ng-packagr": "^5.6.1",
-        "raw-loader": "^3.1.0",
-        "reflect-metadata": "0.1.13",
-        "rxjs": "^6.5.3",
-        "source-map-loader": "^0.2.4",
-        "ts-helpers": "1.1.2",
-        "ts-node": "^8.4.1",
-        "tslib": "^1.10.0",
-        "tslint": "^5.20.0",
-        "typescript": "^3.5.2",
-        "webpack": "^4.41.1",
-        "webpack-dev-server": "3.8.0",
-        "zone.js": "^0.10.2"
-    },
-    "peerDependencies": {
-        "@angular/animations": "^8.0.0",
-        "@angular/common": "^8.0.0",
-        "@angular/core": "^8.0.0"
-    },
-    "keywords": [
-        "angular 6",
-        "angular 6 material dropdown",
-        "angular 6 component dropdown",
-        "angular 6 dropdown",
-        "angular 6 menu"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Gbuomprisco/ng2-material-dropdown"
-    },
-    "bugs": {
-        "url": "https://github.com/Gbuomprisco/ng2-material-dropdown/issues"
-    },
-    "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
-    "main": "./dist/ng2-dropdown.bundle.js",
-    "$schema": "./node_modules/ng-packagr/package.schema.json",
-    "ngPackage": {
-        "lib": {
-            "entryFile": "index.ts"
-        }
+  "name": "ng2-material-dropdown",
+  "version": "0.11.0",
+  "description": "Angular material-like dropdown component",
+  "scripts": {
+    "release": "npm run build && npm publish dist",
+    "postrelease": "rm -rf dist",
+    "build": "ng-packagr -p package.json && mkdir ./dist/dist && cp ./dist/bundles/ng2-material-dropdown.umd.js ./dist/dist/ng2-dropdown.bundle.js",
+    "build:demo:prod": "ng build demo-app --aot=true --build-optimizer --prod",
+    "start": "ng serve demo-app",
+    "start:prod": "ng serve --prod --aot=true --build-optimizer",
+    "test": "ng test modules --watch=false"
+  },
+  "author": {
+    "name": "Giancarlo Buomprisco",
+    "email": "giancarlopsk@gmail.com"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.803.19",
+    "@angular-devkit/schematics": "^8.3.9",
+    "@angular/animations": "^9.0.0-rc.2",
+    "@angular/cli": "^8.3.19",
+    "@angular/common": "^9.0.0-rc.2",
+    "@angular/compiler": "^9.0.0-rc.2",
+    "@angular/compiler-cli": "^9.0.0-rc.2",
+    "@angular/core": "^9.0.0-rc.2",
+    "@angular/platform-browser": "^9.0.0-rc.2",
+    "@angular/platform-browser-dynamic": "^9.0.0-rc.2",
+    "@types/es6-collections": "^0.5.29",
+    "@types/jasmine": "^3.4.4",
+    "@types/node": "^12.7.12",
+    "awesome-typescript-loader": "5.2.1",
+    "core-js": "^3.2.1",
+    "jasmine": "^3.5.0",
+    "karma": "^4.3.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.1",
+    "karma-coverage-istanbul-reporter": "^2.1.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^4.0.2",
+    "ng-packagr": "^5.6.1",
+    "raw-loader": "^3.1.0",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "^6.5.3",
+    "source-map-loader": "^0.2.4",
+    "ts-helpers": "1.1.2",
+    "ts-node": "^8.4.1",
+    "tslib": "^1.10.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.1",
+    "webpack-dev-server": "3.8.0",
+    "zone.js": "^0.10.2"
+  },
+  "peerDependencies": {},
+  "keywords": [
+    "angular 6",
+    "angular 6 material dropdown",
+    "angular 6 component dropdown",
+    "angular 6 dropdown",
+    "angular 6 menu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gbuomprisco/ng2-material-dropdown"
+  },
+  "bugs": {
+    "url": "https://github.com/Gbuomprisco/ng2-material-dropdown/issues"
+  },
+  "homepage": "https://github.com/Gbuomprisco/ng2-material-dropdown",
+  "main": "./dist/ng2-dropdown.bundle.js",
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "index.ts"
     }
+  }
 }
