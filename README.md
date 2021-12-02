@@ -2,6 +2,8 @@
 
 Material-like dropdown component for Angular2.
 
+NB: This repository is currently unmaintained. Please fork or use Angular Material's module, it's better.
+
 ## Install
 
     npm install ng2-material-dropdown --save
