@@ -2,7 +2,7 @@
     "compilerOptions": {
         "removeComments": true,
         "noImplicitAny": false,
-        "module": "esnext",
+        "module": "es2020",
         "target": "es5",
         "outDir": "dist",
         "emitDecoratorMetadata": true,

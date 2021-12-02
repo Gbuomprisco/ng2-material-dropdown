@@ -17,16 +17,17 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-            "aot": true,
+                        "aot": true,
                         "outputPath": "dist/demo-app",
                         "index": "demo-app/index.html",
                         "main": "demo-app/main.ts",
                         "polyfills": "demo-app/polyfills.ts",
                         "tsConfig": "demo-app/tsconfig.app.json",
                         "assets": [],
-                        "styles": ["demo-app/styles.scss"],
+                        "styles": [
+                            "demo-app/styles.scss"
+                        ],
                         "scripts": [],
-                        "es5BrowserSupport": true,
                         "preserveSymlinks": true
                     },
                     "configurations": {

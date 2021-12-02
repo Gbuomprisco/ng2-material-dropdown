@@ -3,6 +3,9 @@
     "max-line-length": [true, 120],
     "no-inferrable-types": true,
     "class-name": true,
+    "deprecation": {
+      "severity": "warning"
+    },
     "comment-format": [
       true,
       "check-space"
@@ -20,7 +23,6 @@
     "no-bitwise": true,
     "no-shadowed-variable": true,
     "no-unused-expression": true,
-    "no-unused-variable": [true, {"ignore-pattern": "^(_.*)$"}],
     "one-line": [
       true,
       "check-catch",
