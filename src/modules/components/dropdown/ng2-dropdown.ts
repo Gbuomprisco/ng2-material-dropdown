@@ -24,28 +24,21 @@ import { Ng2MenuItem } from '../menu-item/ng2-menu-item';
 })
 export class Ng2Dropdown {
     // get children components
-    @ContentChild(Ng2DropdownButton, { static: true })
+    @ContentChild(Ng2DropdownButton, {static: true})
     public button!: Ng2DropdownButton;
-    @ContentChild(Ng2DropdownMenu, { static: true })
+    @ContentChild(Ng2DropdownMenu, {static: true})
     public menu!: Ng2DropdownMenu;
 
     @Input() public dynamicUpdate = true;
 
     // outputs
-    @Output() public onItemClicked: EventEmitter<string> = new EventEmitter<
-        string
-    >();
-    @Output() public onItemSelected: EventEmitter<string> = new EventEmitter<
-        string
-    >();
-    @Output() public onShow: EventEmitter<Ng2Dropdown> = new EventEmitter<
-        Ng2Dropdown
-    >();
-    @Output() public onHide: EventEmitter<Ng2Dropdown> = new EventEmitter<
-        Ng2Dropdown
-    >();
+    @Output() public onItemClicked = new EventEmitter<Ng2MenuItem>();
+    @Output() public onItemSelected = new EventEmitter<Ng2MenuItem>();
+    @Output() public onShow = new EventEmitter<Ng2Dropdown>();
+    @Output() public onHide = new EventEmitter<Ng2Dropdown>();
 
-    constructor(private state: DropdownStateService) {}
+    constructor(private state: DropdownStateService) {
+    }
 
     public ngOnInit() {
         this.state.dropdownState.onItemClicked.subscribe(item => {

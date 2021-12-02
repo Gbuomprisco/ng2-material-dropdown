@@ -1,11 +1,11 @@
 {
   "name": "ng2-material-dropdown",
-  "version": "0.11.0",
+  "version": "1.0.0",
   "description": "Angular material-like dropdown component",
   "scripts": {
     "release": "npm run build && npm publish dist",
     "postrelease": "rm -rf dist",
-    "build": "ng-packagr -p package.json && mkdir ./dist/dist && cp ./dist/bundles/ng2-material-dropdown.umd.js ./dist/dist/ng2-dropdown.bundle.js",
+    "build": "ng-packagr -p package.json",
     "build:demo:prod": "ng build demo-app --aot=true --build-optimizer --configuration production",
     "start": "ng serve demo-app",
     "start:prod": "ng serve --configuration production --aot=true --build-optimizer",
@@ -50,7 +50,7 @@
     "ts-helpers": "1.1.2",
     "ts-node": "^8.4.1",
     "tslint": "~6.1.0",
-    "typescript": "^4.1.6",
+    "typescript": "4.4.4",
     "webpack": "^4.41.1",
     "webpack-dev-server": "3.8.0",
     "zone.js": "~0.11.4"
